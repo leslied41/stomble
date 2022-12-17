@@ -9,7 +9,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 const Stack = createNativeStackNavigator();
 
 const MainRoutes = () => {
-  const isLoggedIn = true;
+  const isLoggedIn = false;
 
   return (
     <NavigationContainer>
@@ -23,6 +23,7 @@ const MainRoutes = () => {
         ) : (
           AuthRoutes({})
         )}
+
         {CommonRoutes({})}
       </Stack.Navigator>
     </NavigationContainer>

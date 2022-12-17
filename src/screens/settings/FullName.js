@@ -4,7 +4,7 @@ import React from "react";
 const FullName = () => {
   return (
     <View>
-      <Text>FullName</Text>
+      <Text>Full Name</Text>
     </View>
   );
 };
