@@ -2,9 +2,9 @@ import { View, Image } from "react-native";
 import React from "react";
 import { AuthLayout, CustomButton } from "../../../components/auth";
 
-const ChooseAccountType = () => {
+const ChooseAccountType = ({ navigation }) => {
   return (
-    <AuthLayout>
+    <AuthLayout header="Choose account type">
       <View className="flex-1 pt-[39px] pb-[60px] justify-between">
         <View className="items-center">
           <Image
@@ -16,7 +16,7 @@ const ChooseAccountType = () => {
               text="Business"
               width={160}
               borderRadius={90}
-              onPress={() => console.log("to business register")}
+              onPress={() => navigation.navigate("BusinessRegister")}
             />
           </View>
         </View>
@@ -30,7 +30,7 @@ const ChooseAccountType = () => {
               text="Personal"
               width={160}
               borderRadius={90}
-              onPress={() => console.log("to personal register")}
+              onPress={() => navigation.navigate("PersonalRegister")}
             />
           </View>
         </View>

@@ -1,3 +1,7 @@
 export { LoginScreen } from "./login";
-export { RegisterScreen, ChooseAccountTypeScreen } from "./register";
+export {
+  PersonalRegisterScreen,
+  BusinessRegisterScreen,
+  ChooseAccountTypeScreen,
+} from "./register";
 export { LandingScreen, LandingWithAccountsScreen } from "./landing";

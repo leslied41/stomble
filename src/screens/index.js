@@ -1,6 +1,7 @@
 export {
   LoginScreen,
-  RegisterScreen,
+  BusinessRegisterScreen,
+  PersonalRegisterScreen,
   LandingScreen,
   LandingWithAccountsScreen,
   ChooseAccountTypeScreen,

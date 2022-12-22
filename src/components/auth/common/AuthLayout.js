@@ -4,18 +4,14 @@ import { HeaderBar } from "../../../components/common";
 import { useNavigation } from "@react-navigation/native";
 import PropTypes from "prop-types";
 
-const AuthLayout = ({ children }) => {
+const AuthLayout = ({ children, header }) => {
   const [height, setHeight] = useState(0);
   const navigation = useNavigation();
 
   return (
     <View className="bg-[#232637] flex-1">
       <StatusBar barStyle="light-content" />
-      <HeaderBar
-        text="Choose account type"
-        manual
-        onPress={navigation.goBack}
-      />
+      <HeaderBar text={header} manual onPress={navigation.goBack} />
       <View
         className="bg-black flex-1 relative"
         onLayout={(e) => {
@@ -25,7 +21,7 @@ const AuthLayout = ({ children }) => {
       >
         <View className="h-[200px] w-full bg-[#232637] rounded-b-[12px]"></View>
         <View
-          className="absolute left-[17px] right-[17px] bg-[#222222]"
+          className="absolute left-[17px] right-[17px] bg-[#222222] px-[22px]"
           style={{ height: height }}
         >
           {/* children goes here */}
@@ -38,5 +34,6 @@ const AuthLayout = ({ children }) => {
 
 AuthLayout.propTypes = {
   children: PropTypes.node.isRequired,
+  header: PropTypes.string.isRequired,
 };
 export default AuthLayout;
