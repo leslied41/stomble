@@ -11,17 +11,22 @@ import {
   openBusinessBirthdayBottomSheet,
 } from "../../../redux/features/auth/authSlice";
 import { businessValidate } from "../../../services/utils/registerFormValidate";
+import { useNavigation } from "@react-navigation/native";
 
 const BusinessRegisterForm = () => {
   //redux
   const dispatch = useDispatch();
   const birthday = useSelector(getBusinessBirthday);
 
+  const navigation = useNavigation();
+
   const handleSubmit = useCallback(
     (values) => {
       //cause birthday can not be put inside formik, so integrate birthday here.
       const data = { ...values, birthday: birthday };
       console.log(data);
+      //navigate to BusinessRegisterVerifyCodes screen
+      navigation.navigate("BusinessRegisterVerifyCodes");
     },
     [birthday]
   );
@@ -119,8 +124,9 @@ const BusinessRegisterForm = () => {
               }
             />
           </View>
+
           {/* policy */}
-          <View className="mt-7">
+          <View className="mt-20">
             <Text className="text-[13px] leading-[16.38px] font-medium text-white">
               By creating an account to Stomble, you agree to the
               <Text className="text-[13px] leading-[16.38px] font-medium text-[#326FCB]">
@@ -134,6 +140,7 @@ const BusinessRegisterForm = () => {
               </Text>
             </Text>
           </View>
+
           {/* Button */}
           <View className="mt-4">
             <CustomButton

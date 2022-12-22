@@ -13,6 +13,7 @@ import {
   openBirthdayBottomSheet,
 } from "../../../redux/features/auth/authSlice";
 import { personalValidate } from "../../../services/utils/registerFormValidate";
+import { useNavigation } from "@react-navigation/native";
 
 const PersonalRegisterForm = () => {
   //redux
@@ -20,11 +21,15 @@ const PersonalRegisterForm = () => {
   const gender = useSelector(getGender);
   const birthday = useSelector(getBirthday);
 
+  const navigation = useNavigation();
+
   const handleSubmit = useCallback(
     (values) => {
       //cause gender and birthday can not be put inside formik, so integrate gender and birthday here.
       const data = { ...values, gender: gender, birthday: birthday };
       console.log(data);
+      //naviagete to the verify codes screen
+      navigation.navigate("PersonalRegisterVerifyCodes");
     },
     [gender, birthday]
   );

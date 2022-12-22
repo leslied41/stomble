@@ -7,6 +7,8 @@ import {
   LandingScreen,
   LandingWithAccountsScreen,
   ChooseAccountTypeScreen,
+  PersonalRegisterVerifyCodesScreen,
+  BusinessRegisterVerifyCodesScreen,
 } from "../../screens";
 
 const Stack = createNativeStackNavigator();
@@ -32,6 +34,14 @@ const AuthRoutes = () => {
       <Stack.Screen
         name="ChooseAccountType"
         component={ChooseAccountTypeScreen}
+      />
+      <Stack.Screen
+        name="PersonalRegisterVerifyCodes"
+        component={PersonalRegisterVerifyCodesScreen}
+      />
+      <Stack.Screen
+        name="BusinessRegisterVerifyCodes"
+        component={BusinessRegisterVerifyCodesScreen}
       />
     </Stack.Group>
   );

@@ -5,6 +5,8 @@ export {
   LandingScreen,
   LandingWithAccountsScreen,
   ChooseAccountTypeScreen,
+  PersonalRegisterVerifyCodesScreen,
+  BusinessRegisterVerifyCodesScreen,
 } from "./auth";
 export { SearchScreen } from "./search";
 export { SettingsScreen } from "./settings";
