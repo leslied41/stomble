@@ -1,19 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  isBottomSheetOpen: false,
+  isGenderBottomSheetOpen: false,
   gender: "",
+  birthday: "",
 };
 
 export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    openBottomSheet: (state) => {
-      state.isBottomSheetOpen = true;
+    openGenderBottomSheet: (state) => {
+      state.isGenderBottomSheetOpen = true;
     },
-    closeBottomSheet: (state) => {
-      state.isBottomSheetOpen = false;
+    closeGenderBottomSheet: (state) => {
+      state.isGenderBottomSheetOpen = false;
     },
     setGender: (state, action) => {
       state.gender = action.payload;
@@ -21,11 +22,35 @@ export const authSlice = createSlice({
     clearGender: (state) => {
       state.gender = "";
     },
+    openBirthdayBottomSheet: (state) => {
+      state.isBirthdayBottomSheetOpen = true;
+    },
+    closeBirthdayBottomSheet: (state) => {
+      state.isBirthdayBottomSheetOpen = false;
+    },
+    setBirthday: (state, action) => {
+      state.birthday = action.payload;
+    },
+    clearBirthday: (state) => {
+      state.birthday = "";
+    },
   },
 });
 
-export const getIsBottomSheetOpen = (state) => state.auth.isBottomSheetOpen;
+export const getIsGenderBottomSheetOpen = (state) =>
+  state.auth.isGenderBottomSheetOpen;
+export const getIsBirthdayBottomSheetOpen = (state) =>
+  state.auth.isBirthdayBottomSheetOpen;
 export const getGender = (state) => state.auth.gender;
-export const { openBottomSheet, closeBottomSheet, setGender, clearGender } =
-  authSlice.actions;
+export const getBirthday = (state) => state.auth.birthday;
+export const {
+  openGenderBottomSheet,
+  closeGenderBottomSheet,
+  setGender,
+  clearGender,
+  openBirthdayBottomSheet,
+  closeBirthdayBottomSheet,
+  setBirthday,
+  clearBirthday,
+} = authSlice.actions;
 export default authSlice.reducer;

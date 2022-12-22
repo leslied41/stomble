@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { ArrowDown } from "../../icons";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  openBottomSheet,
+  openGenderBottomSheet,
   getGender,
   clearGender,
 } from "../../../redux/features/auth/authSlice";
@@ -22,7 +22,7 @@ const GenderInput = () => {
   return (
     <Pressable
       className="flex-row items-center"
-      onPress={() => dispatch(openBottomSheet())}
+      onPress={() => dispatch(openGenderBottomSheet())}
     >
       <View className="flex-1 h-8 bg-[#5C5C5C] rounded-[5px] justify-center mr-3">
         <Text

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getGender,
   setGender,
-  closeBottomSheet,
+  closeGenderBottomSheet,
 } from "../../../redux/features/auth/authSlice";
 
 const options = ["Male", "Female", "Prefer not to say"];
@@ -20,7 +20,7 @@ const GenderInputBottomSheet = () => {
       <View className="border-b border-[#5C5C5C] px-[18px] pb-[19px]">
         <TouchableOpacity
           className="self-end"
-          onPress={() => dispatch(closeBottomSheet())}
+          onPress={() => dispatch(closeGenderBottomSheet())}
         >
           <Text className="text-[#326FCB] text-[20px] leading-[24px] font-bold">
             Done

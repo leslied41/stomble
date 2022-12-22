@@ -1,29 +1,21 @@
-import React, {
-  useCallback,
-  useMemo,
-  useRef,
-  useState,
-  useEffect,
-} from "react";
+import React, { useCallback, useMemo, useRef } from "react";
 import { View, Dimensions } from "react-native";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import PropTypes from "prop-types";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  getIsBottomSheetOpen,
-  closeBottomSheet,
-} from "../../../redux/features/auth/authSlice";
 import { useEffectSkipInitial } from "../../../hooks";
 
-const BottomSheetLayout = ({ children }) => {
+const BottomSheetLayout = ({
+  children,
+  snapPoint = "30%",
+  isBottomSheetOpen,
+  closeBottomSheet,
+}) => {
   const windowWidth = Dimensions.get("window").width;
   const windowHeight = Dimensions.get("window").height;
-  //redux
-  const isBottomSheetOpen = useSelector(getIsBottomSheetOpen);
-  const dispatch = useDispatch();
+
   const bottomSheetRef = useRef(null);
 
-  const snapPoints = useMemo(() => ["30%"], []);
+  const snapPoints = useMemo(() => [snapPoint], []);
 
   const toggleBottomSheet = useCallback((index) => {
     bottomSheetRef.current?.snapToIndex(index);
@@ -47,7 +39,7 @@ const BottomSheetLayout = ({ children }) => {
         index={-1}
         snapPoints={snapPoints}
         enablePanDownToClose
-        onClose={() => dispatch(closeBottomSheet())}
+        onClose={closeBottomSheet}
         backgroundStyle={{
           backgroundColor: "#222222",
           borderRadius: "10px 10px 0 0 ",
@@ -61,5 +53,8 @@ const BottomSheetLayout = ({ children }) => {
 
 BottomSheetLayout.propTypes = {
   children: PropTypes.node,
+  snapPoint: PropTypes.string,
+  isBottomSheetOpen: PropTypes.bool,
+  closeBottomSheet: PropTypes.func,
 };
 export default BottomSheetLayout;

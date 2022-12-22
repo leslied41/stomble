@@ -1,24 +1,27 @@
 import { View, TextInput, Text, Button } from "react-native";
 import React, { useCallback } from "react";
 import { Formik } from "formik";
-import PhoneNumberInput from "./PhoneNumberInput";
-import PasswordInput from "./PasswordInput";
+import BirthdayInput from "./BirthdayInput";
 import GenderInput from "./GenderInput";
+import PasswordInput from "./PasswordInput";
+import PhoneNumberInput from "./PhoneNumberInput";
+import { CustomButton } from "../common";
 import { useSelector } from "react-redux";
-import { getGender } from "../../../redux/features/auth/authSlice";
+import { getGender, getBirthday } from "../../../redux/features/auth/authSlice";
 import { validate } from "../../../services/utils/registerFormValidate";
 
 const PersonalRegisterForm = () => {
   //redux
   const gender = useSelector(getGender);
+  const birthday = useSelector(getBirthday);
 
   const handleSubmit = useCallback(
     (values) => {
       //cause gender can not be put inside formik, so integrate gender here.
-      const data = { ...values, gender: gender };
+      const data = { ...values, gender: gender, birthday: birthday };
       console.log(data);
     },
-    [gender]
+    [gender, birthday]
   );
 
   return (
@@ -28,7 +31,6 @@ const PersonalRegisterForm = () => {
         email: "",
         phone: "",
         password: "",
-        birthday: "",
       }}
       onSubmit={(values) => handleSubmit(values)}
       validate={validate}
@@ -59,6 +61,7 @@ const PersonalRegisterForm = () => {
               </Text>
             )}
           </View>
+
           {/* Email address */}
           <View className=" mt-5">
             <TextInput
@@ -83,6 +86,7 @@ const PersonalRegisterForm = () => {
               </Text>
             )}
           </View>
+
           {/* phone number */}
           <View className="mt-5">
             <PhoneNumberInput
@@ -93,6 +97,7 @@ const PersonalRegisterForm = () => {
               We will send code to your phone number
             </Text>
           </View>
+
           {/* password */}
           <View className="mt-5">
             <PasswordInput
@@ -103,15 +108,39 @@ const PersonalRegisterForm = () => {
               special_char_check={errors?.password?.special !== "bad"}
             />
           </View>
+
           {/* gender */}
           <View className="mt-[14px]">
             <GenderInput />
           </View>
-          <Button
-            onPress={handleSubmit}
-            title="Submit"
-            disabled={Object.keys(errors).length !== 0}
-          />
+
+          {/* birthday */}
+          <View className="mt-[15px]">
+            <BirthdayInput />
+          </View>
+          {/* policy */}
+          <View className="mt-7">
+            <Text className="text-[13px] leading-[16.38px] font-medium text-white">
+              By creating an account to Stomble, you agree to the
+              <Text className="text-[13px] leading-[16.38px] font-medium text-[#326FCB]">
+                {" "}
+                Terms of Service{" "}
+              </Text>
+              and
+              <Text className="text-[13px] leading-[16.38px] font-medium text-[#326FCB]">
+                {" "}
+                Privacy Policies
+              </Text>
+            </Text>
+          </View>
+          {/* Button */}
+          <View className="mt-4">
+            <CustomButton
+              text="Send code"
+              onPress={handleSubmit}
+              disabled={Object.keys(errors).length !== 0}
+            />
+          </View>
         </View>
       )}
     </Formik>
