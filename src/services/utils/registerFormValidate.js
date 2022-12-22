@@ -16,7 +16,7 @@ function filterObj(obj) {
   }
 }
 
-export const validate = (values) => {
+export const personalValidate = (values) => {
   const errors = {
     password: {
       ps_length: "bad",
@@ -46,6 +46,57 @@ export const validate = (values) => {
     errors.fullName = "invalid";
   } else {
     errors.fullName = "";
+  }
+  //email
+  if (values.email.length === 0) {
+    errors.email = "required";
+  } else if (!reEmail.test(values.email)) {
+    errors.email = "invalid";
+  } else {
+    errors.email = "";
+  }
+  //phone
+  if (values.phone.length === 0) {
+    errors.phone = "required";
+  } else if (!rePhoneNumber.test(values.phone)) {
+    errors.phone = "invalid";
+  } else {
+    errors.phone = "";
+  }
+  filterObj(errors);
+  return errors;
+};
+
+export const businessValidate = (values) => {
+  const errors = {
+    password: {
+      ps_length: "bad",
+      special: "bad",
+    },
+    email: "",
+    phone: "",
+    companyName: "",
+  };
+  //password
+  if (!values.password?.length) {
+    errors.password.ps_length = "bad";
+  } else if (values.password.length < 8) {
+    errors.password.ps_length = "bad";
+  } else {
+    errors.password.ps_length = "";
+  }
+  if (!specialChars.test(values.password)) {
+    errors.password.special = "bad";
+  } else {
+    errors.password.special = "";
+  }
+  //companyname
+  if (values.companyName.length == 0) {
+    errors.companyName = "required";
+  } else if (values.companyName.length > 50) {
+    errors.companyName = "invalid";
+  } else {
+    errors.companyName = "";
   }
   //email
   if (values.email.length === 0) {

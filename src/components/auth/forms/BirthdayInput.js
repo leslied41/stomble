@@ -1,16 +1,10 @@
 import { View, Text, Pressable } from "react-native";
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  openBirthdayBottomSheet,
-  getBirthday,
-} from "../../../redux/features/auth/authSlice";
 import { ArrowDown } from "../../icons";
 import { converDate } from "../../../services/utils";
+import PropTypes from "prop-types";
 
-const BirthdayInput = () => {
-  const dispatch = useDispatch();
-  const currentDate = useSelector(getBirthday);
+const BirthdayInput = ({ openBottomSheet, currentDate }) => {
   return (
     <View>
       <Text className="text-[16px] leading-[19.2px] font-normal text-white">
@@ -18,7 +12,7 @@ const BirthdayInput = () => {
       </Text>
       <Pressable
         className="mt-5 flex-row items-center"
-        onPress={() => dispatch(openBirthdayBottomSheet())}
+        onPress={openBottomSheet}
       >
         <View className="flex-1 h-8 bg-[#5C5C5C] rounded-[5px] justify-center mr-3">
           <Text
@@ -32,6 +26,11 @@ const BirthdayInput = () => {
       </Pressable>
     </View>
   );
+};
+
+BirthdayInput.propTypes = {
+  openBottomSheet: PropTypes.func,
+  currentDate: PropTypes.any,
 };
 
 export default BirthdayInput;

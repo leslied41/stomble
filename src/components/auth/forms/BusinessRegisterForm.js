@@ -2,53 +2,49 @@ import { View, TextInput, Text } from "react-native";
 import React, { useCallback } from "react";
 import { Formik } from "formik";
 import BirthdayInput from "./BirthdayInput";
-import GenderInput from "./GenderInput";
 import PasswordInput from "./PasswordInput";
 import PhoneNumberInput from "./PhoneNumberInput";
 import { CustomButton } from "../common";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  getGender,
-  getBirthday,
-  openBirthdayBottomSheet,
+  getBusinessBirthday,
+  openBusinessBirthdayBottomSheet,
 } from "../../../redux/features/auth/authSlice";
-import { personalValidate } from "../../../services/utils/registerFormValidate";
+import { businessValidate } from "../../../services/utils/registerFormValidate";
 
-const PersonalRegisterForm = () => {
+const BusinessRegisterForm = () => {
   //redux
   const dispatch = useDispatch();
-  const gender = useSelector(getGender);
-  const birthday = useSelector(getBirthday);
+  const birthday = useSelector(getBusinessBirthday);
 
   const handleSubmit = useCallback(
     (values) => {
-      //cause gender and birthday can not be put inside formik, so integrate gender and birthday here.
-      const data = { ...values, gender: gender, birthday: birthday };
+      //cause birthday can not be put inside formik, so integrate birthday here.
+      const data = { ...values, birthday: birthday };
       console.log(data);
     },
-    [gender, birthday]
+    [birthday]
   );
-
   return (
     <Formik
       initialValues={{
-        fullName: "",
+        companyName: "",
         email: "",
         phone: "",
         password: "",
       }}
       onSubmit={(values) => handleSubmit(values)}
-      validate={personalValidate}
+      validate={businessValidate}
     >
       {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
         <View className="flex-1">
           {/* Full name */}
           <View>
             <TextInput
-              onChangeText={handleChange("fullName")}
-              onBlur={handleBlur("fullName")}
-              value={values.fullName}
-              placeholder="Full name"
+              onChangeText={handleChange("companyName")}
+              onBlur={handleBlur("companyName")}
+              value={values.companyName}
+              placeholder="Company name"
               textContentType="name"
               placeholderTextColor={errors.fullName ? "#fff" : "#ABABAB"}
               textAlign="center"
@@ -60,9 +56,9 @@ const PersonalRegisterForm = () => {
                   : { backgroundColor: "#5C5C5C" }
               }
             />
-            {errors.fullName && (
+            {errors.companyName && (
               <Text className="mt-4 text-[13px] leading-4 font-normal text-[#FB4E4E]">
-                Please enter your full name
+                Please enter your company name
               </Text>
             )}
           </View>
@@ -114,16 +110,13 @@ const PersonalRegisterForm = () => {
             />
           </View>
 
-          {/* gender */}
-          <View className="mt-[14px]">
-            <GenderInput />
-          </View>
-
           {/* birthday */}
           <View className="mt-[15px]">
             <BirthdayInput
               currentDate={birthday}
-              openBottomSheet={() => dispatch(openBirthdayBottomSheet())}
+              openBottomSheet={() =>
+                dispatch(openBusinessBirthdayBottomSheet())
+              }
             />
           </View>
           {/* policy */}
@@ -155,4 +148,4 @@ const PersonalRegisterForm = () => {
   );
 };
 
-export default PersonalRegisterForm;
+export default BusinessRegisterForm;

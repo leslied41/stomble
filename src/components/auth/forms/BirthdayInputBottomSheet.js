@@ -1,40 +1,18 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  closeBirthdayBottomSheet,
-  getIsBirthdayBottomSheetOpen,
-  setBirthday,
-  clearBirthday,
-} from "../../../redux/features/auth/authSlice";
+import React from "react";
 import RNDateTimePicker from "@react-native-community/datetimepicker";
-import { converDate } from "../../../services/utils";
+import PropTypes from "prop-types";
 
-const BirthdayInputBottomSheet = () => {
-  const [date, setDate] = useState(new Date());
-  //redux
-  const isBirthdayBottomSheetOpen = useSelector(getIsBirthdayBottomSheetOpen);
-  const dispatch = useDispatch();
-
-  const onChange = (event, selectedDate) => {
-    const currentDate = selectedDate;
-    dispatch(setBirthday(converDate(currentDate)));
-    setDate(currentDate);
-  };
-
-  useEffect(() => {
-    return () => {
-      dispatch(clearBirthday());
-    };
-  }, []);
-
+const BirthdayInputBottomSheet = ({
+  closeBottomSheet,
+  onChange,
+  isBirthdayBottomSheetOpen,
+  date,
+}) => {
   return (
     <View>
       <View className="border-b border-[#5C5C5C] px-[18px] pb-[19px]">
-        <TouchableOpacity
-          className="self-end"
-          onPress={() => dispatch(closeBirthdayBottomSheet())}
-        >
+        <TouchableOpacity className="self-end" onPress={closeBottomSheet}>
           <Text className="text-[#326FCB] text-[20px] leading-[24px] font-bold">
             Done
           </Text>
@@ -58,4 +36,10 @@ const BirthdayInputBottomSheet = () => {
   );
 };
 
+BirthdayInputBottomSheet.propTypes = {
+  closeBottomSheet: PropTypes.func,
+  onChange: PropTypes.func,
+  isBirthdayBottomSheetOpen: PropTypes.bool,
+  date: PropTypes.any,
+};
 export default BirthdayInputBottomSheet;

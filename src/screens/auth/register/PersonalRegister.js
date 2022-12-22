@@ -5,7 +5,7 @@ import {
   PersonalRegisterForm,
   BottomSheetLayout,
   GenderInputBottomSheet,
-  BirthdayInputBottomSheet,
+  PersonalBirthdayBottomSheet,
 } from "../../../components/auth";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -36,7 +36,7 @@ const PersonalRegister = () => {
         isBottomSheetOpen={isBirthdayBottomSheetOpen}
         closeBottomSheet={() => dispatch(closeBirthdayBottomSheet())}
       >
-        <BirthdayInputBottomSheet />
+        <PersonalBirthdayBottomSheet />
       </BottomSheetLayout>
 
       <AuthLayout header="Personal register">
