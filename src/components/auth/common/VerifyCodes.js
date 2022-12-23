@@ -1,18 +1,32 @@
-import { View, Text, StyleSheet } from "react-native";
-import React, { useState } from "react";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import React, { useState, useEffect } from "react";
 import {
   CodeField,
   useClearByFocusCell,
 } from "react-native-confirmation-code-field";
 import CustomButton from "./CustomButton";
+import { useCountdown } from "../../../hooks";
 import PropTypes from "prop-types";
 
 const VerifyCodes = ({ onPress }) => {
   const [value, setValue] = useState("");
+  const [enableResend, setEnableResend] = useState(false);
   const [codeFieldProps, getCellOnLayout] = useClearByFocusCell({
     value,
     setValue,
   });
+  const { seconds } = useCountdown();
+
+  useEffect(() => {
+    setTimeout(() => {
+      setEnableResend(true);
+    }, 60 * 1000);
+  }, []);
+
+  const reSendCode = () => {
+    console.log("resend the code");
+  };
+
   return (
     <View className="mt-[46px]">
       <View>
@@ -44,9 +58,22 @@ const VerifyCodes = ({ onPress }) => {
             </Text>
           )}
         />
-        <Text className="mt-5 text-[15px] leading-[18px] font-normal text-white text-center">
-          Resend code 58 seconds
-        </Text>
+
+        <View className="mt-5">
+          {!enableResend && (
+            <Text className="text-[15px] leading-[18px] font-normal text-white text-center">
+              {`Resend code ${seconds} seconds`}
+            </Text>
+          )}
+
+          {enableResend && (
+            <TouchableOpacity onPress={reSendCode}>
+              <Text className="text-[15px] leading-[18px] font-normal text-white text-center">
+                Resend code
+              </Text>
+            </TouchableOpacity>
+          )}
+        </View>
       </View>
       <View className="mt-[45px]">
         <CustomButton

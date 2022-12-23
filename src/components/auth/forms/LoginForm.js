@@ -15,7 +15,7 @@ const LoginForm = () => {
     //the phone and password will be verified in backend, if
     //verified, navigate to anther screen to verify code sent to
     //phone.
-    navigation.navigate("LoginVerifyCodes", { title: "Sigin in" });
+    navigation.navigate("LoginVerifyCodes", { title: "Sign in" });
   }, []);
 
   const forgetPassword = () => {
