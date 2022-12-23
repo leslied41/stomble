@@ -2,6 +2,7 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {
   LoginScreen,
+  LoginVerifyCodesScreen,
   PersonalRegisterScreen,
   BusinessRegisterScreen,
   LandingScreen,
@@ -23,6 +24,10 @@ const AuthRoutes = () => {
         component={existAccounts ? LandingWithAccountsScreen : LandingScreen}
       />
       <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen
+        name="LoginVerifyCodes"
+        component={LoginVerifyCodesScreen}
+      />
       <Stack.Screen
         name="PersonalRegister"
         component={PersonalRegisterScreen}

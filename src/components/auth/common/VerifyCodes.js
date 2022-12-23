@@ -30,6 +30,8 @@ const VerifyCodes = ({ onPress }) => {
           rootStyle={styles.codeFieldRoot}
           cellCount={6}
           value={value}
+          keyboardType="number-pad"
+          textContentType="oneTimeCode"
           onChangeText={setValue}
           renderCell={({ index, symbol, isFocused }) => (
             <Text

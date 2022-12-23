@@ -4,6 +4,7 @@ import UserAccountProfile from "./UserAccountProfile";
 import PropTypes from "prop-types";
 
 const users = ["lily", "p", "q"];
+//now the users are fake which should be grabbed from localstorage.
 const SavedAccounts = () => {
   const [scrollViewWidth, setScrollViewWidth] = useState(0);
   const [centerItemIndex, setCenterItemIndex] = useState(0);

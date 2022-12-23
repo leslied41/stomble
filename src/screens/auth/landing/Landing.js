@@ -27,7 +27,7 @@ const Landing = ({ navigation }) => {
           <View className="mt-[178px]">
             <CustomButton
               text="Sign in"
-              onPress={() => console.log("to sign in screen")}
+              onPress={() => navigation.navigate("Login", { title: "Sign in" })}
             />
           </View>
 

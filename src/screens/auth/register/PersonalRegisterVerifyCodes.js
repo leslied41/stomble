@@ -1,6 +1,5 @@
 import React from "react";
-import { AuthLayout } from "../../../components/auth";
-import { VerifyCodes } from "../../../components/auth/common";
+import { AuthLayout, VerifyCodes } from "../../../components/auth";
 
 const PersonalRegisterVerifyCodes = () => {
   return (

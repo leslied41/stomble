@@ -4,13 +4,16 @@ import { Formik } from "formik";
 import BirthdayInput from "./BirthdayInput";
 import PasswordInput from "./PasswordInput";
 import PhoneNumberInput from "./PhoneNumberInput";
+import NameInput from "./NameInput";
+import EmailInput from "./EmailInput";
+import Policy from "./Policy";
 import { CustomButton } from "../common";
 import { useSelector, useDispatch } from "react-redux";
 import {
   getBusinessBirthday,
   openBusinessBirthdayBottomSheet,
 } from "../../../redux/features/auth/authSlice";
-import { businessValidate } from "../../../services/utils/registerFormValidate";
+import { businessValidate } from "../../../services/utils";
 import { useNavigation } from "@react-navigation/native";
 
 const BusinessRegisterForm = () => {
@@ -20,7 +23,7 @@ const BusinessRegisterForm = () => {
 
   const navigation = useNavigation();
 
-  const handleSubmit = useCallback(
+  const submitForm = useCallback(
     (values) => {
       //cause birthday can not be put inside formik, so integrate birthday here.
       const data = { ...values, birthday: birthday };
@@ -30,6 +33,7 @@ const BusinessRegisterForm = () => {
     },
     [birthday]
   );
+
   return (
     <Formik
       initialValues={{
@@ -38,59 +42,31 @@ const BusinessRegisterForm = () => {
         phone: "",
         password: "",
       }}
-      onSubmit={(values) => handleSubmit(values)}
+      onSubmit={(values) => submitForm(values)}
       validate={businessValidate}
     >
       {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
         <View className="flex-1">
-          {/* Full name */}
+          {/* Company name */}
           <View>
-            <TextInput
-              onChangeText={handleChange("companyName")}
+            <NameInput
               onBlur={handleBlur("companyName")}
+              onChangeText={handleChange("companyName")}
               value={values.companyName}
               placeholder="Company name"
-              textContentType="name"
-              placeholderTextColor={errors.fullName ? "#fff" : "#ABABAB"}
-              textAlign="center"
-              selectionColor="white"
-              className=" py-2 h-8 rounded-[5px]  text-white  text-[16px] leading-[19.2px]"
-              style={
-                errors.fullName
-                  ? { backgroundColor: "#FB4E4E" }
-                  : { backgroundColor: "#5C5C5C" }
-              }
+              error={errors.companyName}
             />
-            {errors.companyName && (
-              <Text className="mt-4 text-[13px] leading-4 font-normal text-[#FB4E4E]">
-                Please enter your company name
-              </Text>
-            )}
           </View>
 
           {/* Email address */}
           <View className=" mt-5">
-            <TextInput
-              onChangeText={handleChange("email")}
+            <EmailInput
               onBlur={handleBlur("email")}
+              onChangeText={handleChange("email")}
               value={values.email}
               placeholder="Email address"
-              textContentType="emailAddress"
-              placeholderTextColor={errors.email ? "#fff" : "#ABABAB"}
-              textAlign="center"
-              selectionColor="white"
-              className="py-2 h-8 rounded-[5px]  text-white text-[16px] leading-[19.2px]"
-              style={
-                errors.email
-                  ? { backgroundColor: "#FB4E4E" }
-                  : { backgroundColor: "#5C5C5C" }
-              }
+              error={errors.email}
             />
-            {errors.email && (
-              <Text className="mt-4 text-[13px] leading-4 font-normal text-[#FB4E4E]">
-                Please enter a valid email address
-              </Text>
-            )}
           </View>
 
           {/* phone number */}
@@ -127,18 +103,7 @@ const BusinessRegisterForm = () => {
 
           {/* policy */}
           <View className="mt-20">
-            <Text className="text-[13px] leading-[16.38px] font-medium text-white">
-              By creating an account to Stomble, you agree to the
-              <Text className="text-[13px] leading-[16.38px] font-medium text-[#326FCB]">
-                {" "}
-                Terms of Service{" "}
-              </Text>
-              and
-              <Text className="text-[13px] leading-[16.38px] font-medium text-[#326FCB]">
-                {" "}
-                Privacy Policies
-              </Text>
-            </Text>
+            <Policy />
           </View>
 
           {/* Button */}

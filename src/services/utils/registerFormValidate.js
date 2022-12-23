@@ -1,9 +1,9 @@
-const specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-const rePhoneNumber =
+export const specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+export const rePhoneNumber =
   /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/;
-const reEmail = /^\w+([\.-]?\w+)+@\w+([\.:]?\w+)+(\.[a-zA-Z0-9]{2,3})+$/;
+export const reEmail = /^\w+([\.-]?\w+)+@\w+([\.:]?\w+)+(\.[a-zA-Z0-9]{2,3})+$/;
 
-function filterObj(obj) {
+export function filterObj(obj) {
   for (let key in obj) {
     if (typeof obj[key] !== "object") {
       if (!obj[key]) delete obj[key];
@@ -40,7 +40,7 @@ export const personalValidate = (values) => {
     errors.password.special = "";
   }
   //fullname
-  if (values.fullName.length == 0) {
+  if (!values.fullName?.length) {
     errors.fullName = "required";
   } else if (values.fullName.length > 50) {
     errors.fullName = "invalid";
@@ -48,7 +48,7 @@ export const personalValidate = (values) => {
     errors.fullName = "";
   }
   //email
-  if (values.email.length === 0) {
+  if (!values.email?.length) {
     errors.email = "required";
   } else if (!reEmail.test(values.email)) {
     errors.email = "invalid";
@@ -56,7 +56,7 @@ export const personalValidate = (values) => {
     errors.email = "";
   }
   //phone
-  if (values.phone.length === 0) {
+  if (!values.phone?.length) {
     errors.phone = "required";
   } else if (!rePhoneNumber.test(values.phone)) {
     errors.phone = "invalid";
@@ -91,7 +91,7 @@ export const businessValidate = (values) => {
     errors.password.special = "";
   }
   //companyname
-  if (values.companyName.length == 0) {
+  if (!values.companyName?.length) {
     errors.companyName = "required";
   } else if (values.companyName.length > 50) {
     errors.companyName = "invalid";
@@ -99,15 +99,15 @@ export const businessValidate = (values) => {
     errors.companyName = "";
   }
   //email
-  if (values.email.length === 0) {
+  if (!values.email?.length) {
     errors.email = "required";
   } else if (!reEmail.test(values.email)) {
     errors.email = "invalid";
   } else {
     errors.email = "";
   }
-  //phone
-  if (values.phone.length === 0) {
+  //phones
+  if (!values.phone?.length) {
     errors.phone = "required";
   } else if (!rePhoneNumber.test(values.phone)) {
     errors.phone = "invalid";

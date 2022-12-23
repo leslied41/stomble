@@ -9,6 +9,7 @@ const PasswordInput = ({
   value,
   special_char_check,
   ps_length_check,
+  patternCheck = true,
 }) => {
   const [hidePassword, setHidePassword] = useState(true);
 
@@ -32,25 +33,27 @@ const PasswordInput = ({
         </Pressable>
       </View>
 
-      <View className="mt-5">
-        <Text className="text-[13px] leading-[15.6px] font-medium text-white">
-          Your password must have:
-        </Text>
-        <View className="mt-2">
-          <View className="flex-row items-center gap-x-2">
-            <View>{ps_length_check ? <CheckIcon /> : <ErrorIcon />}</View>
-            <Text className="text-[14px] leading-[16.8px] font-medium text-[#FB4E4E] ">
-              At least 8 characters
-            </Text>
-          </View>
-          <View className="flex-row items-center gap-x-2">
-            <View>{special_char_check ? <CheckIcon /> : <ErrorIcon />}</View>
-            <Text className="text-[14px] leading-[16.8px] font-medium text-[#FB4E4E] ">
-              Main contain at least 1 special character
-            </Text>
+      {patternCheck && (
+        <View className="mt-5">
+          <Text className="text-[13px] leading-[15.6px] font-medium text-white">
+            Your password must have:
+          </Text>
+          <View className="mt-2">
+            <View className="flex-row items-center gap-x-2">
+              <View>{ps_length_check ? <CheckIcon /> : <ErrorIcon />}</View>
+              <Text className="text-[14px] leading-[16.8px] font-medium text-[#FB4E4E] ">
+                At least 8 characters
+              </Text>
+            </View>
+            <View className="flex-row items-center gap-x-2">
+              <View>{special_char_check ? <CheckIcon /> : <ErrorIcon />}</View>
+              <Text className="text-[14px] leading-[16.8px] font-medium text-[#FB4E4E] ">
+                Main contain at least 1 special character
+              </Text>
+            </View>
           </View>
         </View>
-      </View>
+      )}
     </View>
   );
 };
@@ -61,6 +64,7 @@ PasswordInput.propTypes = {
   value: PropTypes.string,
   ps_length_check: PropTypes.bool,
   special_char_check: PropTypes.bool,
+  patternCheck: PropTypes.bool,
 };
 
 export default PasswordInput;
