@@ -28,7 +28,7 @@ const BottomSheetLayout = ({
 
   return (
     <View
-      className="absolute left-0 right-0 bottom-0  z-50"
+      className="absolute left-0 right-0 bottom-0 z-50"
       style={{
         width: isBottomSheetOpen ? windowWidth : 0,
         height: isBottomSheetOpen ? windowHeight : 0,
