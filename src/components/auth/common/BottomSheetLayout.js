@@ -1,8 +1,8 @@
 import React, { useCallback, useMemo, useRef } from "react";
 import { View, Dimensions } from "react-native";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
-import PropTypes from "prop-types";
 import { useEffectSkipInitial } from "../../../hooks";
+import PropTypes from "prop-types";
 
 const BottomSheetLayout = ({
   children,

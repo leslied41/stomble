@@ -13,10 +13,10 @@ import {
 } from "../../../redux/features/auth/authSlice";
 
 const BusinessRegister = () => {
+  //redux
   const isBusinessBirthdayBottomSheetOpen = useSelector(
     getIsBusinessBirthdayBottomSheetOpen
   );
-
   const dispatch = useDispatch();
   return (
     <>

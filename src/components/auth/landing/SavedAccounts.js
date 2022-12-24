@@ -1,6 +1,6 @@
 import { View, ScrollView } from "react-native";
 import React, { useState } from "react";
-import UserAccountProfile from "./UserAccountProfile";
+import { UserAccountProfile } from "../common";
 import PropTypes from "prop-types";
 
 const users = ["lily", "p", "q"];

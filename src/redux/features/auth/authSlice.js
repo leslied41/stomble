@@ -4,6 +4,7 @@ const initialState = {
   isGenderBottomSheetOpen: false,
   isBirthdayBottomSheetOpen: false,
   isBusinessBirthdayBottomSheetOpen: false,
+  isLoginBottomSheetOpen: false,
   gender: "",
   birthday: "",
   business_birthday: "",
@@ -52,6 +53,13 @@ export const authSlice = createSlice({
     clearBusinessBirthday: (state) => {
       state.business_birthday = "";
     },
+    //login multiple accounts bottom sheet
+    openLoginBottomSheet: (state) => {
+      state.isLoginBottomSheetOpen = true;
+    },
+    closeLoginBottomSheet: (state) => {
+      state.isLoginBottomSheetOpen = false;
+    },
   },
 });
 
@@ -61,6 +69,8 @@ export const getIsBirthdayBottomSheetOpen = (state) =>
   state.auth.isBirthdayBottomSheetOpen;
 export const getIsBusinessBirthdayBottomSheetOpen = (state) =>
   state.auth.isBusinessBirthdayBottomSheetOpen;
+export const getIsLoginBottomSheetOpen = (state) =>
+  state.auth.isLoginBottomSheetOpen;
 export const getGender = (state) => state.auth.gender;
 export const getBirthday = (state) => state.auth.birthday;
 export const getBusinessBirthday = (state) => state.auth.business_birthday;
@@ -78,5 +88,7 @@ export const {
   closeBusinessBirthdayBottomSheet,
   setBusinessBirthday,
   clearBusinessBirthday,
+  openLoginBottomSheet,
+  closeLoginBottomSheet,
 } = authSlice.actions;
 export default authSlice.reducer;

@@ -3,3 +3,4 @@ export { default as CustomButton } from "./CustomButton";
 export { default as AuthLayout } from "./AuthLayout";
 export { default as BottomSheetLayout } from "./BottomSheetLayout";
 export { default as VerifyCodes } from "./VerifyCodes";
+export { default as UserAccountProfile } from "./UserAccountProfile";
