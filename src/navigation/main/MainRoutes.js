@@ -10,6 +10,9 @@ const Stack = createNativeStackNavigator();
 
 const MainRoutes = () => {
   const isLoggedIn = false;
+  // this routes is to hold all the routes and determine which
+  //route to be available according to if user has logged in.
+  //follow this documentation,https://reactnavigation.org/docs/nesting-navigators/#best-practices-when-nesting
 
   return (
     <NavigationContainer>
