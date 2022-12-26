@@ -14,29 +14,53 @@ const UserAccountProfile = ({
   color = "#E0E0E0",
   gap = 14,
   onPress,
+  isTouchableOpacity = true,
 }) => {
   return (
     <View>
-      <TouchableOpacity onPress={onPress}>
-        <Image
-          source={{
-            uri: "https://static.wikia.nocookie.net/southpark/images/c/c2/Butters_%28Facebook%29.jpg/revision/latest/scale-to-width-down/720?cb=20101010032409",
-          }}
-          style={{ width: width, height: height, borderRadius: rounded }}
-        />
-        <Text
-          style={{
-            textAlign: "center",
-            fontSize: fontSize,
-            lineHeight: lineHeight,
-            fontWeight: "700",
-            color: color,
-            marginTop: gap,
-          }}
-        >
-          @John
-        </Text>
-      </TouchableOpacity>
+      {isTouchableOpacity ? (
+        <TouchableOpacity onPress={onPress}>
+          <Image
+            source={{
+              uri: "https://static.wikia.nocookie.net/southpark/images/c/c2/Butters_%28Facebook%29.jpg/revision/latest/scale-to-width-down/720?cb=20101010032409",
+            }}
+            style={{ width: width, height: height, borderRadius: rounded }}
+          />
+          <Text
+            style={{
+              textAlign: "center",
+              fontSize: fontSize,
+              lineHeight: lineHeight,
+              fontWeight: "700",
+              color: color,
+              marginTop: gap,
+            }}
+          >
+            @John
+          </Text>
+        </TouchableOpacity>
+      ) : (
+        <View>
+          <Image
+            source={{
+              uri: "https://static.wikia.nocookie.net/southpark/images/c/c2/Butters_%28Facebook%29.jpg/revision/latest/scale-to-width-down/720?cb=20101010032409",
+            }}
+            style={{ width: width, height: height, borderRadius: rounded }}
+          />
+          <Text
+            style={{
+              textAlign: "center",
+              fontSize: fontSize,
+              lineHeight: lineHeight,
+              fontWeight: "700",
+              color: color,
+              marginTop: gap,
+            }}
+          >
+            @John
+          </Text>
+        </View>
+      )}
 
       {showRemoveBtn && (
         <TouchableOpacity
@@ -63,5 +87,6 @@ UserAccountProfile.propTypes = {
   lineHeight: PropTypes.number,
   color: PropTypes.string,
   onPress: PropTypes.func,
+  isTouchableOpacity: PropTypes.bool,
 };
 export default UserAccountProfile;

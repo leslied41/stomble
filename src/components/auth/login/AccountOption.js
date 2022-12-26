@@ -21,6 +21,7 @@ const AccountOption = ({ chosen }) => {
         fontSize={14}
         lineHeight={16.8}
         color="#fff"
+        isTouchableOpacity={false}
       />
     </View>
   );

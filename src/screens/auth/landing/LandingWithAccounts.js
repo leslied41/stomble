@@ -36,11 +36,11 @@ const LandingWithAccounts = ({ navigation }) => {
               </Text>
             </TouchableOpacity>
           </View>
-          <View className="absolute bottom-14 flex-row">
+          {/* <View className="absolute bottom-14 flex-row">
             <View className="flex-row flex-1 justify-center">
               <Copyright />
             </View>
-          </View>
+          </View> */}
         </View>
       </View>
     </>

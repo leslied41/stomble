@@ -8,7 +8,7 @@ import CustomButton from "./CustomButton";
 import { useCountdown } from "../../../hooks";
 import PropTypes from "prop-types";
 
-const VerifyCodes = ({ onPress }) => {
+const VerifyCodes = ({ onPress, buttonTitle = "Sign in" }) => {
   const [value, setValue] = useState("");
   const [enableResend, setEnableResend] = useState(false);
   const [codeFieldProps, getCellOnLayout] = useClearByFocusCell({
@@ -77,7 +77,7 @@ const VerifyCodes = ({ onPress }) => {
       </View>
       <View className="mt-[45px]">
         <CustomButton
-          text="Sign in"
+          text={buttonTitle}
           disabled={!value || value.length !== 6}
           onPress={onPress}
         />
@@ -105,5 +105,6 @@ const styles = StyleSheet.create({
 
 VerifyCodes.propTypes = {
   onPress: PropTypes.func,
+  buttonTitle: PropTypes.string,
 };
 export default VerifyCodes;

@@ -18,3 +18,4 @@ export { default as BusinessBirthdayBottomSheet } from "./forms/BusinessBirthday
 export { default as BusinessRegisterForm } from "./forms/BusinessRegisterForm";
 export { default as LoginForm } from "./forms/LoginForm";
 export { LoginBottomSheet } from "./login";
+export { default as ChangePasswordForm } from "./forms/ChangePasswordForm";

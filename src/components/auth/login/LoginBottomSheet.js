@@ -5,7 +5,7 @@ import CreateAccounOption from "./CreateAccounOption";
 import { CustomButton } from "../common";
 import { converArrayInPair } from "../../../services/utils";
 
-const accounts = ["John", "Job", "Leslie"];
+const accounts = ["John", "Leslie", "Job"];
 //fake accounts
 const LoginBottomSheet = () => {
   const [accountChosen, setAccountChosen] = useState("");
@@ -50,6 +50,11 @@ const LoginBottomSheet = () => {
               )}
             </View>
           ))}
+          {accounts.length % 2 === 0 && (
+            <View>
+              <CreateAccounOption onPress={addNewAccount} />
+            </View>
+          )}
         </View>
       </View>
 

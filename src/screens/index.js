@@ -8,6 +8,8 @@ export {
   PersonalRegisterVerifyCodesScreen,
   BusinessRegisterVerifyCodesScreen,
   LoginVerifyCodesScreen,
+  ForgetPasswordVerifyCodesScreen,
+  ChangePasswordScreen,
 } from "./auth";
 export { SearchScreen } from "./search";
 export { SettingsScreen } from "./settings";

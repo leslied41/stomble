@@ -1,4 +1,9 @@
-export { LoginScreen, LoginVerifyCodesScreen } from "./login";
+export {
+  LoginScreen,
+  LoginVerifyCodesScreen,
+  ForgetPasswordVerifyCodesScreen,
+  ChangePasswordScreen,
+} from "./login";
 export {
   PersonalRegisterScreen,
   BusinessRegisterScreen,

@@ -20,6 +20,7 @@ const LoginForm = () => {
 
   const forgetPassword = () => {
     console.log("forget password");
+    navigation.navigate("ForgetPasswordVerifyCodes");
   };
 
   return (

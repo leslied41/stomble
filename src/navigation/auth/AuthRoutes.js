@@ -10,6 +10,8 @@ import {
   ChooseAccountTypeScreen,
   PersonalRegisterVerifyCodesScreen,
   BusinessRegisterVerifyCodesScreen,
+  ForgetPasswordVerifyCodesScreen,
+  ChangePasswordScreen,
 } from "../../screens";
 
 const Stack = createNativeStackNavigator();
@@ -28,6 +30,11 @@ const AuthRoutes = () => {
         name="LoginVerifyCodes"
         component={LoginVerifyCodesScreen}
       />
+      <Stack.Screen
+        name="ForgetPasswordVerifyCodes"
+        component={ForgetPasswordVerifyCodesScreen}
+      />
+      <Stack.Screen name="ChangePassword" component={ChangePasswordScreen} />
       <Stack.Screen
         name="PersonalRegister"
         component={PersonalRegisterScreen}
