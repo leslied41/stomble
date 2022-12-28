@@ -4,6 +4,8 @@ import {
   EvilIcons,
   MaterialIcons,
   Entypo,
+  Feather,
+  FontAwesome5,
 } from "@expo/vector-icons";
 export const UserPlus = () => {
   return <AntDesign name="adduser" size={24} color="black" />;
@@ -49,4 +51,14 @@ export const RadioBtnOff = () => (
 
 export const RadioBtnOn = () => (
   <Ionicons name="radio-button-on" size={15} color="white" />
+);
+
+export const PlayIcon = () => <Feather name="play" size={12} color="#5C5C5C" />;
+
+export const HeartIcon = ({ color = "#5C5C5C" }) => (
+  <AntDesign name="heart" size={12} color={color} />
+);
+
+export const ShareIcon = () => (
+  <FontAwesome5 name="share" size={12} color="#5C5C5C" />
 );

@@ -22,8 +22,8 @@ const BottomSheetLayout = ({
   }, []);
 
   useEffectSkipInitial(() => {
-    if (isBottomSheetOpen) toggleBottomSheet(-1);
-    toggleBottomSheet(0);
+    if (isBottomSheetOpen) toggleBottomSheet(0);
+    else toggleBottomSheet(-1);
   }, [isBottomSheetOpen]);
 
   return (

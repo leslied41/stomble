@@ -11,14 +11,14 @@ const LandingWithAccounts = ({ navigation }) => {
     <>
       <StatusBar barStyle="light-content" />
       <View className="bg-[#232637] flex-1">
-        <View className="mx-[30px] flex-1">
+        <View className="flex-1">
           <Text className="text-[36px] leading-[54px] font-extrabold text-[#E0E0E0] text-center mt-[84px]">
             stomble
           </Text>
           <View className="flex-row mt-[129px]">
             <SavedAccounts />
           </View>
-          <View className="mt-40">
+          <View className="mt-40 mx-[30px]">
             <CustomButton text="Log In" />
           </View>
           <View className="flex-row justify-center mt-[33px]">
@@ -36,11 +36,6 @@ const LandingWithAccounts = ({ navigation }) => {
               </Text>
             </TouchableOpacity>
           </View>
-          {/* <View className="absolute bottom-14 flex-row">
-            <View className="flex-row flex-1 justify-center">
-              <Copyright />
-            </View>
-          </View> */}
         </View>
       </View>
     </>
