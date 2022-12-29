@@ -1,5 +1,5 @@
 import { View, Text } from "react-native";
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 import {
   SearchHeaderBar,
   SearchHintView,
@@ -20,10 +20,10 @@ const Search = () => {
   const dispatch = useDispatch();
   const isBottomSheetOpen = useSelector(getIsSearchBottomOpen);
 
-  const seachBySearchText = useCallback(() => {
-    //when get result
-    //use rtk lazyquery, trigger() to trigger new query.
-  }, [searchText]);
+  // const seachBySearchText = useCallback(() => {
+  //   //when get result
+  //   //use rtk lazyquery, trigger() to trigger new query.
+  // }, [searchText]);
 
   return (
     <View className="bg-[#222222] flex-1 ">

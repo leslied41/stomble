@@ -1,8 +1,9 @@
 import { View, Text, Button } from "react-native";
 import React from "react";
 import { useColorScheme } from "nativewind";
+import { HomeScreenTabProps } from "../../types/navigation";
 
-const Settings = ({ navigation }) => {
+const Settings = ({ navigation }: HomeScreenTabProps<"Settings">) => {
   const { colorScheme, toggleColorScheme } = useColorScheme();
 
   return (

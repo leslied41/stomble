@@ -1,4 +1,4 @@
-import { View, TextInput, Text } from "react-native";
+import { View, Text } from "react-native";
 import React, { useCallback } from "react";
 import { Formik } from "formik";
 import BirthdayInput from "./BirthdayInput";
@@ -15,13 +15,7 @@ import {
 } from "../../../redux/features/auth/authSlice";
 import { businessValidate } from "../../../services/utils";
 import { useNavigation } from "@react-navigation/native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { AuthStackParamList } from "../../../navigation/auth/AuthRoutes";
-
-type authScreenNavigationType = NativeStackNavigationProp<
-  AuthStackParamList,
-  "BusinessRegister"
->;
+import { RootScreenNavigationType } from "../../../types/navigation";
 
 type Values = {
   companyName: string;
@@ -35,7 +29,8 @@ const BusinessRegisterForm = () => {
   const dispatch = useDispatch();
   const birthday = useSelector(getBusinessBirthday);
 
-  const navigation = useNavigation<authScreenNavigationType>();
+  const navigation =
+    useNavigation<RootScreenNavigationType<"BusinessRegister">>();
 
   const submitForm = useCallback(
     (values: Values) => {

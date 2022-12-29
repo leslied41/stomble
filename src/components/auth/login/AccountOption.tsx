@@ -1,10 +1,13 @@
-import { View, Text } from "react-native";
-import React from "react";
+import { View } from "react-native";
+import React, { FC } from "react";
 import { UserAccountProfile } from "../common";
 import { CheckedCircle, UncheckedCircle, Bell } from "../../svg";
-import PropTypes from "prop-types";
 
-const AccountOption = ({ chosen }) => {
+type AccountOptionProps = {
+  chosen: boolean;
+};
+
+const AccountOption: FC<AccountOptionProps> = ({ chosen }) => {
   return (
     <View className="relative justify-center items-center w-[163px] h-[163px] rounded-[10px] border-2 border-[#00A25B]">
       <View className="absolute left-3 top-[11px]">
@@ -27,7 +30,4 @@ const AccountOption = ({ chosen }) => {
   );
 };
 
-AccountOption.propTypes = {
-  chosen: PropTypes.bool,
-};
 export default AccountOption;

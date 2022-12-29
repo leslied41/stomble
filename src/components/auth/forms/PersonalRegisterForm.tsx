@@ -17,13 +17,14 @@ import {
 } from "../../../redux/features/auth/authSlice";
 import { personalValidate } from "../../../services/utils";
 import { useNavigation } from "@react-navigation/native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { AuthStackParamList } from "../../../navigation/auth/AuthRoutes";
+import { RootScreenNavigationType } from "../../../types/navigation";
 
-type authScreenNavigationType = NativeStackNavigationProp<
-  AuthStackParamList,
-  "PersonalRegister"
->;
+type FormValues = {
+  fullName: string;
+  email: string;
+  phone: string;
+  password: string;
+};
 
 const PersonalRegisterForm = () => {
   //redux
@@ -31,10 +32,11 @@ const PersonalRegisterForm = () => {
   const gender = useSelector(getGender);
   const birthday = useSelector(getBirthday);
 
-  const navigation = useNavigation<authScreenNavigationType>();
+  const navigation =
+    useNavigation<RootScreenNavigationType<"PersonalRegister">>();
 
   const submitForm = useCallback(
-    (values) => {
+    (values: FormValues) => {
       //cause gender and birthday can not be put inside formik, so integrate gender and birthday here.
       const data = { ...values, gender: gender, birthday: birthday };
       console.log(data);

@@ -1,11 +1,15 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { FC } from "react";
 import { BrandCheckIcon } from "../../svg";
 import { useDispatch } from "react-redux";
 import { openSearchBottomSheet } from "../../../redux/features/search/searchSlice";
-import PropTypes from "prop-types";
 
-const Brand = ({ image, brand }) => {
+type BrandProps = {
+  image?: string;
+  brand: string;
+};
+
+const Brand: FC<BrandProps> = ({ brand }) => {
   //redux
   const dispatch = useDispatch();
   return (
@@ -30,11 +34,6 @@ const Brand = ({ image, brand }) => {
       </View>
     </TouchableOpacity>
   );
-};
-
-Brand.propTypes = {
-  image: PropTypes.string,
-  brand: PropTypes.string,
 };
 
 export default Brand;

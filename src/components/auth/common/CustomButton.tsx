@@ -1,8 +1,15 @@
 import { Text, TouchableOpacity } from "react-native";
-import React from "react";
-import PropTypes from "prop-types";
+import React, { FC } from "react";
 
-const CustomButton = ({
+type CustomButtonProps = {
+  text: string;
+  onPress: () => void;
+  bgColor?: string;
+  width?: number;
+  borderRadius?: number;
+  disabled?: boolean;
+};
+const CustomButton: FC<CustomButtonProps> = ({
   text,
   onPress,
   bgColor = "#326FCB",
@@ -36,12 +43,4 @@ const CustomButton = ({
   );
 };
 
-CustomButton.propTypes = {
-  onPress: PropTypes.func,
-  text: PropTypes.string,
-  bgColor: PropTypes.string,
-  width: PropTypes.number,
-  borderRadius: PropTypes.number,
-  disabled: PropTypes.bool,
-};
 export default CustomButton;

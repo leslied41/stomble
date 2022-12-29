@@ -1,10 +1,17 @@
 import { View, Text, Pressable } from "react-native";
-import React from "react";
+import React, { FC } from "react";
 import { ArrowDown } from "../../icons";
 import { converDate } from "../../../services/utils";
-import PropTypes from "prop-types";
 
-const BirthdayInput = ({ openBottomSheet, currentDate }) => {
+type BirthdayInputProps = {
+  openBottomSheet: () => void;
+  currentDate: any;
+};
+
+const BirthdayInput: FC<BirthdayInputProps> = ({
+  openBottomSheet,
+  currentDate,
+}) => {
   return (
     <View>
       <Text className="text-[16px] leading-[19.2px] font-normal text-white">
@@ -26,11 +33,6 @@ const BirthdayInput = ({ openBottomSheet, currentDate }) => {
       </Pressable>
     </View>
   );
-};
-
-BirthdayInput.propTypes = {
-  openBottomSheet: PropTypes.func,
-  currentDate: PropTypes.any,
 };
 
 export default BirthdayInput;

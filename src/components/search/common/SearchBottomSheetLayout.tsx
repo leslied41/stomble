@@ -1,9 +1,15 @@
-import React, { useCallback, useMemo, useRef } from "react";
+import React, { FC, useCallback, useMemo, useRef } from "react";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import { useEffectSkipInitial } from "../../../hooks";
-import PropTypes from "prop-types";
 
-const SearchBottomSheetLayout = ({
+type SearchBottomSheetProps = {
+  children: React.ReactNode;
+  snapPoint?: string;
+  isBottomSheetOpen: Boolean;
+  closeBottomSheet: () => void;
+};
+
+const SearchBottomSheetLayout: FC<SearchBottomSheetProps> = ({
   children,
   snapPoint = "60%",
   isBottomSheetOpen,
@@ -11,9 +17,9 @@ const SearchBottomSheetLayout = ({
 }) => {
   const bottomSheetRef = useRef<BottomSheet>(null);
 
-  const snapPoints = useMemo(() => [snapPoint], []);
+  const snapPoints = useMemo(() => [snapPoint], [snapPoint]);
 
-  const toggleBottomSheet = useCallback((index) => {
+  const toggleBottomSheet = useCallback((index: number) => {
     bottomSheetRef.current?.snapToIndex(index);
   }, []);
 
@@ -31,7 +37,7 @@ const SearchBottomSheetLayout = ({
       onClose={closeBottomSheet}
       backgroundStyle={{
         backgroundColor: "#222222",
-       // borderRadius: "10px 10px 0 0 ",
+        // borderRadius: "10px 10px 0 0 ",
       }}
     >
       <BottomSheetView>{children}</BottomSheetView>
@@ -39,10 +45,4 @@ const SearchBottomSheetLayout = ({
   );
 };
 
-SearchBottomSheetLayout.propTypes = {
-  children: PropTypes.node,
-  snapPoint: PropTypes.string,
-  isBottomSheetOpen: PropTypes.bool,
-  closeBottomSheet: PropTypes.func,
-};
 export default SearchBottomSheetLayout;

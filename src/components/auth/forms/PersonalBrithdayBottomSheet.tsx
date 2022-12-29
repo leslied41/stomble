@@ -15,7 +15,7 @@ const PersonalBirthdayBottomSheet = () => {
   const isBirthdayBottomSheetOpen = useSelector(getIsBirthdayBottomSheetOpen);
   const dispatch = useDispatch();
 
-  const onChange = (event, selectedDate) => {
+  const onChange = (event: any, selectedDate: any) => {
     const currentDate = selectedDate;
     dispatch(setBirthday(converDate(currentDate)));
     setDate(currentDate);
@@ -25,7 +25,7 @@ const PersonalBirthdayBottomSheet = () => {
     return () => {
       dispatch(clearBirthday());
     };
-  }, []);
+  }, [dispatch]);
 
   return (
     <BirthdayInputBottomSheet

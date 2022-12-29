@@ -1,9 +1,15 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { FC } from "react";
 import RNDateTimePicker from "@react-native-community/datetimepicker";
-import PropTypes from "prop-types";
 
-const BirthdayInputBottomSheet = ({
+type BirthdayInputBottomSheetProps = {
+  closeBottomSheet: () => void;
+  onChange: (event: any, selectedDate: any) => void;
+  isBirthdayBottomSheetOpen: boolean;
+  date: any;
+};
+
+const BirthdayInputBottomSheet: FC<BirthdayInputBottomSheetProps> = ({
   closeBottomSheet,
   onChange,
   isBirthdayBottomSheetOpen,
@@ -36,10 +42,4 @@ const BirthdayInputBottomSheet = ({
   );
 };
 
-BirthdayInputBottomSheet.propTypes = {
-  closeBottomSheet: PropTypes.func,
-  onChange: PropTypes.func,
-  isBirthdayBottomSheetOpen: PropTypes.bool,
-  date: PropTypes.any,
-};
 export default BirthdayInputBottomSheet;

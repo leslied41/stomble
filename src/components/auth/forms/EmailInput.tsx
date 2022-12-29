@@ -1,8 +1,29 @@
-import { View, Text, TextInput } from "react-native";
-import React from "react";
-import PropTypes from "prop-types";
+import {
+  View,
+  Text,
+  TextInput,
+  NativeSyntheticEvent,
+  TextInputFocusEventData,
+} from "react-native";
+import React, { FC } from "react";
 
-const EmailInput = ({ onChangeText, onBlur, value, placeholder, error }) => {
+export type InputProps = {
+  onChangeText: ((text: string) => void) | undefined;
+  onBlur:
+    | ((e: NativeSyntheticEvent<TextInputFocusEventData>) => void)
+    | undefined;
+  value: string;
+  placeholder: string;
+  error: string;
+};
+
+const EmailInput: FC<InputProps> = ({
+  onChangeText,
+  onBlur,
+  value,
+  placeholder,
+  error,
+}) => {
   return (
     <View>
       <TextInput
@@ -30,11 +51,4 @@ const EmailInput = ({ onChangeText, onBlur, value, placeholder, error }) => {
   );
 };
 
-EmailInput.propTypes = {
-  onChangeText: PropTypes.func,
-  onBlur: PropTypes.func,
-  value: PropTypes.string,
-  placeholder: PropTypes.string,
-  error: PropTypes.string,
-};
 export default EmailInput;

@@ -1,9 +1,11 @@
-import { View, Text, TouchableOpacity } from "react-native";
-import React from "react";
+import { Text, TouchableOpacity } from "react-native";
+import React, { FC } from "react";
 import { NewAccount } from "../../svg";
-import PropTypes from "prop-types";
 
-const CreateAccounOption = ({ onPress }) => {
+type CreateAccounOptionProps = {
+  onPress: () => void;
+};
+const CreateAccounOption: FC<CreateAccounOptionProps> = ({ onPress }) => {
   return (
     <TouchableOpacity
       className="w-[163px] h-[163px] justify-center items-center"
@@ -15,10 +17,6 @@ const CreateAccounOption = ({ onPress }) => {
       </Text>
     </TouchableOpacity>
   );
-};
-
-CreateAccounOption.propTypes = {
-  onPress: PropTypes.func,
 };
 
 export default CreateAccounOption;

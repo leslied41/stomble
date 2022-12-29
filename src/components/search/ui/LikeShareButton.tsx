@@ -1,10 +1,14 @@
 import { View, Text, Pressable } from "react-native";
-import React from "react";
+import React, { FC } from "react";
 import { Shadow } from "react-native-shadow-2";
 import { HeartIcon, ShareIcon } from "../../icons";
-import PropTypes from "prop-types";
 
-const LikeShareButton = ({ like, share }) => {
+type LikeShareButtonProps = {
+  like: () => void;
+  share: () => void;
+};
+
+const LikeShareButton: FC<LikeShareButtonProps> = ({ like, share }) => {
   return (
     <Shadow
       offset={[0, 4]}
@@ -32,8 +36,4 @@ const LikeShareButton = ({ like, share }) => {
   );
 };
 
-LikeShareButton.propTypes = {
-  like: PropTypes.func,
-  share: PropTypes.func,
-};
 export default LikeShareButton;

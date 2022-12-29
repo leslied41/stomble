@@ -7,7 +7,7 @@ export type Props = { focused: boolean; size: number };
 
 const TabBar: FC<Props> = ({ focused, size }) => {
   const route = useRoute();
-  let iconName: string;
+  let iconName = "";
   let Icon: any;
   let text = "";
   size = 20;

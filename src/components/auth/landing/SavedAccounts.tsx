@@ -1,22 +1,25 @@
 import { View, ScrollView } from "react-native";
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import { UserAccountProfile } from "../common";
-import PropTypes from "prop-types";
+
+type SavedAccountsProps = {
+  users?: any[];
+};
 
 const users = ["lily", "p", "q"];
 //now the users are fake which should be grabbed from localstorage.
-const SavedAccounts = () => {
+const SavedAccounts: FC<SavedAccountsProps> = ({}) => {
   const [scrollViewWidth, setScrollViewWidth] = useState(0);
   const [centerItemIndex, setCenterItemIndex] = useState(0);
 
-  const inCneter = (dis) => {
+  const inCneter = (dis: number) => {
     return Math.round(dis / (124 + 56));
   };
 
   return (
     <>
       {users.length === 1 ? (
-        <View className="flex-1 flex-row" horizontal>
+        <View className="flex-1 flex-row">
           <View className="justify-center flex-1  flex-row">
             <View>
               <UserAccountProfile showRemoveBtn />
@@ -41,7 +44,7 @@ const SavedAccounts = () => {
             <View
               className="h-[124px] rounded-[62px]"
               style={{ width: (scrollViewWidth - 124) / 2 }}
-            ></View>
+            />
             {users.map((user, i) => (
               <View key={user} style={i !== 0 ? { marginLeft: 56 } : {}}>
                 <UserAccountProfile showRemoveBtn={centerItemIndex === i} />
@@ -50,7 +53,7 @@ const SavedAccounts = () => {
             <View
               className="h-[124px] rounded-[62px]"
               style={{ width: (scrollViewWidth - 124) / 2 }}
-            ></View>
+            />
           </View>
         </ScrollView>
       )}
@@ -58,7 +61,4 @@ const SavedAccounts = () => {
   );
 };
 
-SavedAccounts.propTypes = {
-  users: PropTypes.array,
-};
 export default SavedAccounts;

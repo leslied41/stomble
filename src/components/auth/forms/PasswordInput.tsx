@@ -1,9 +1,17 @@
 import { View, Pressable, TextInput, Text } from "react-native";
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import React, { FC, useState } from "react";
 import { EyeIcon, EyeCloseIcon, ErrorIcon, CheckIcon } from "../../icons";
 
-const PasswordInput = ({
+type PsInputProps = {
+  onChange: ((text: string) => void) | undefined;
+  onBlur: any;
+  value: string;
+  special_char_check?: boolean;
+  ps_length_check?: boolean;
+  patternCheck?: boolean;
+};
+
+const PasswordInput: FC<PsInputProps> = ({
   onBlur,
   onChange,
   value,
@@ -56,15 +64,6 @@ const PasswordInput = ({
       )}
     </View>
   );
-};
-
-PasswordInput.propTypes = {
-  onChange: PropTypes.func,
-  onBlur: PropTypes.func,
-  value: PropTypes.string,
-  ps_length_check: PropTypes.bool,
-  special_char_check: PropTypes.bool,
-  patternCheck: PropTypes.bool,
 };
 
 export default PasswordInput;

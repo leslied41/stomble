@@ -13,9 +13,8 @@ import {
   ForgetPasswordVerifyCodesScreen,
   ChangePasswordScreen,
 } from "../../screens";
-import { AuthStackParamList } from "../../types/navigation";
 
-const Stack = createNativeStackNavigator<AuthStackParamList>();
+const Stack = createNativeStackNavigator<ReactNavigation.AuthParamList>();
 
 const AuthRoutes = () => {
   //this is to fake if are there accounts stored in localstorage

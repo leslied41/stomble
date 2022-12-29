@@ -17,7 +17,7 @@ const BusinessBirthdayBottomSheet = () => {
   );
   const dispatch = useDispatch();
 
-  const onChange = (event, selectedDate) => {
+  const onChange = (event: any, selectedDate: any) => {
     const currentDate = selectedDate;
     dispatch(setBusinessBirthday(converDate(currentDate)));
     setDate(currentDate);
@@ -27,7 +27,7 @@ const BusinessBirthdayBottomSheet = () => {
     return () => {
       dispatch(clearBusinessBirthday());
     };
-  }, []);
+  }, [dispatch]);
   return (
     <BirthdayInputBottomSheet
       date={date}

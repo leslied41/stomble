@@ -7,9 +7,8 @@ import {
 } from "../../screens";
 import { TabBar } from "../../components/common";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { HomeTabParamList } from "../../types/navigation";
 
-const Tab = createBottomTabNavigator<HomeTabParamList>();
+const Tab = createBottomTabNavigator<ReactNavigation.HomeParamList>();
 
 const HomeRoutes = () => {
   return (

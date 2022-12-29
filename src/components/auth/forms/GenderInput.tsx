@@ -17,7 +17,7 @@ const GenderInput = () => {
     return () => {
       dispatch(clearGender());
     };
-  }, []);
+  }, [dispatch]);
 
   return (
     <Pressable

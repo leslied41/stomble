@@ -1,14 +1,21 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import React, { useState, useEffect } from "react";
+import React, { FC, useState, useEffect } from "react";
 import {
   CodeField,
   useClearByFocusCell,
 } from "react-native-confirmation-code-field";
 import CustomButton from "./CustomButton";
 import { useCountdown } from "../../../hooks";
-import PropTypes from "prop-types";
 
-const VerifyCodes = ({ onPress, buttonTitle = "Sign in" }) => {
+type VerifyCodesProps = {
+  onPress?: () => void;
+  buttonTitle?: string;
+};
+
+const VerifyCodes: FC<VerifyCodesProps> = ({
+  onPress,
+  buttonTitle = "Sign in",
+}) => {
   const [value, setValue] = useState("");
   const [enableResend, setEnableResend] = useState(false);
   const [codeFieldProps, getCellOnLayout] = useClearByFocusCell({
@@ -47,7 +54,7 @@ const VerifyCodes = ({ onPress, buttonTitle = "Sign in" }) => {
           keyboardType="number-pad"
           textContentType="oneTimeCode"
           onChangeText={setValue}
-          renderCell={({ index, symbol, isFocused }) => (
+          renderCell={({ index, symbol }) => (
             <Text
               style={[styles.cell]}
               key={index}
@@ -103,8 +110,4 @@ const styles = StyleSheet.create({
   },
 });
 
-VerifyCodes.propTypes = {
-  onPress: PropTypes.func,
-  buttonTitle: PropTypes.string,
-};
 export default VerifyCodes;

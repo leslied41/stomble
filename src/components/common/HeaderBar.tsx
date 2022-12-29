@@ -1,8 +1,20 @@
 import { View, Text, Pressable } from "react-native";
-import React from "react";
-import PropTypes from "prop-types";
+import React, { FC } from "react";
 import { BackIcon } from "../svg";
-const HeaderBar = ({ onPress, text, bgColor, manual = false }) => {
+
+type HeaderBarProps = {
+  onPress: () => void;
+  text: string;
+  bgColor?: string;
+  manual: boolean;
+};
+
+const HeaderBar: FC<HeaderBarProps> = ({
+  onPress,
+  text,
+  bgColor,
+  manual = false,
+}) => {
   return (
     <View
       className="flex flex-row items-center gap-x-4"
@@ -20,13 +32,6 @@ const HeaderBar = ({ onPress, text, bgColor, manual = false }) => {
       </Text>
     </View>
   );
-};
-
-HeaderBar.propTypes = {
-  onPress: PropTypes.func,
-  text: PropTypes.string,
-  bgColor: PropTypes.string,
-  manual: PropTypes.bool,
 };
 
 export default HeaderBar;

@@ -15,12 +15,12 @@ const LoginBottomSheet = () => {
     console.log("create a new account");
   }, []);
 
-  const chooseAccount = (value) => () => {
+  const chooseAccount = (value: string) => () => {
     setAccountChosen(value);
     console.log(value);
   };
 
-  const login = useCallback(() => {}, [accountChosen]);
+  const login = useCallback(() => {}, []);
 
   return (
     <View>

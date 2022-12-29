@@ -24,7 +24,7 @@ const LoginVerifyCodes = ({ route }) => {
     //if codes verified, the login will proceed. and  the choose account
     //bottom sheet will pop up, where all the accounts associated with this phone will show up.
     dispatch(openLoginBottomSheet());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>

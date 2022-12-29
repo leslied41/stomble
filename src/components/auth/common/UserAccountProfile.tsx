@@ -1,10 +1,23 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
-import React from "react";
-import PropTypes from "prop-types";
+import React, { FC } from "react";
 
-const UserAccountProfile = ({
+type UserAccountProfileProps = {
+  user?: string;
+  img?: string;
+  showRemoveBtn?: boolean;
+  width?: number;
+  height?: number;
+  rounded?: number;
+  gap?: number;
+  fontSize?: number;
+  lineHeight?: number;
+  color?: string;
+  onPress?: () => void;
+  isTouchableOpacity?: boolean;
+};
+
+const UserAccountProfile: FC<UserAccountProfileProps> = ({
   user,
-  img,
   showRemoveBtn,
   width = 124,
   height = 124,
@@ -36,7 +49,7 @@ const UserAccountProfile = ({
               marginTop: gap,
             }}
           >
-            @John
+            @John{user}
           </Text>
         </TouchableOpacity>
       ) : (
@@ -75,18 +88,5 @@ const UserAccountProfile = ({
     </View>
   );
 };
-UserAccountProfile.propTypes = {
-  user: PropTypes.string,
-  img: PropTypes.string,
-  showRemoveBtn: PropTypes.bool,
-  width: PropTypes.number,
-  height: PropTypes.number,
-  rounded: PropTypes.number,
-  gap: PropTypes.number,
-  fontSize: PropTypes.number,
-  lineHeight: PropTypes.number,
-  color: PropTypes.string,
-  onPress: PropTypes.func,
-  isTouchableOpacity: PropTypes.bool,
-};
+
 export default UserAccountProfile;

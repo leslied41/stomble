@@ -1,8 +1,12 @@
-import { View, Text, TouchableOpacity } from "react-native";
-import React from "react";
-import PropTypes from "prop-types";
+import { Text, TouchableOpacity } from "react-native";
+import React, { FC } from "react";
 
-const FollowButton = ({ onPress, isFollowed }) => {
+type FollowButtonProps = {
+  onPress: () => void;
+  isFollowed: boolean;
+};
+
+const FollowButton: FC<FollowButtonProps> = ({ onPress, isFollowed }) => {
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -19,8 +23,4 @@ const FollowButton = ({ onPress, isFollowed }) => {
   );
 };
 
-FollowButton.propTypes = {
-  onPress: PropTypes.func,
-  isFollowed: PropTypes.bool,
-};
 export default FollowButton;

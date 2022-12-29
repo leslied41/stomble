@@ -1,14 +1,23 @@
 import { View, Text, ImageBackground, TouchableOpacity } from "react-native";
-import React, { useCallback } from "react";
+import React, { FC } from "react";
 import Brand from "./Brand";
 import { PlayIcon } from "../../icons";
 import { LikeShareButton, FollowButton } from "../ui";
 
-import PropTypes from "prop-types";
+type item = {
+  id: number;
+  brand: string;
+};
 
-let isFollowed = true;
+type VideoCardProps = {
+  item: item;
+  index: number;
+};
+
 //fake if this branch has been followed by one certain user.
-const VideoCard = ({ item, index }) => {
+const VideoCard: FC<VideoCardProps> = ({ item, index }) => {
+  let isFollowed = true;
+
   return (
     <View
       className="h-[220px] rounded-[30px]"
@@ -65,7 +74,4 @@ const VideoCard = ({ item, index }) => {
   );
 };
 
-VideoCard.propTypes = {
-  item: PropTypes.object,
-};
 export default VideoCard;

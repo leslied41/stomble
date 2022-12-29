@@ -1,11 +1,19 @@
 import { View, Pressable, TextInput } from "react-native";
-import React, { useRef } from "react";
+import React, { FC, useRef } from "react";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { SearchBackIcon, SearchIcon } from "../../svg";
 
-import PropTypes from "prop-types";
+type SearchHeaderBarProps = {
+  searchText: string;
+  setSearchText: (v: string) => void;
+  setShowSearchList: (v: boolean) => void;
+};
 
-const SearchHeaderBar = ({ searchText, setSearchText, setShowSearchList }) => {
+const SearchHeaderBar: FC<SearchHeaderBarProps> = ({
+  searchText,
+  setSearchText,
+  setShowSearchList,
+}) => {
   const navigation = useNavigation();
   const inputRef = useRef<TextInput>(null);
   //plan to use rtk query. const {data,isFetching} = useQueryByText(searchText)
@@ -18,7 +26,7 @@ const SearchHeaderBar = ({ searchText, setSearchText, setShowSearchList }) => {
         inputRef.current?.blur();
         setShowSearchList(false);
       };
-    }, [])
+    }, [setShowSearchList])
   );
 
   return (
@@ -35,9 +43,7 @@ const SearchHeaderBar = ({ searchText, setSearchText, setShowSearchList }) => {
             placeholderTextColor="#fff"
             value={searchText}
             onFocus={() => setShowSearchList(true)}
-            onChangeText={(text) => {
-              setSearchText(text);
-            }}
+            onChangeText={setSearchText}
           />
           <View className="absolute right-[11.95px] h-[34px] justify-center">
             <SearchIcon />
@@ -48,9 +54,4 @@ const SearchHeaderBar = ({ searchText, setSearchText, setShowSearchList }) => {
   );
 };
 
-SearchHeaderBar.propTypes = {
-  searchText: PropTypes.string,
-  setSearchText: PropTypes.func,
-  setShowSearchList: PropTypes.func,
-};
 export default SearchHeaderBar;

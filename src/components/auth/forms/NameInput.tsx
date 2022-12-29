@@ -1,8 +1,14 @@
 import { View, Text, TextInput } from "react-native";
-import React from "react";
-import PropTypes from "prop-types";
+import React, { FC } from "react";
+import { InputProps } from "./EmailInput";
 
-const NameInput = ({ onChangeText, onBlur, value, error, placeholder }) => {
+const NameInput: FC<InputProps> = ({
+  onChangeText,
+  onBlur,
+  value,
+  error,
+  placeholder,
+}) => {
   return (
     <View>
       <TextInput
@@ -28,14 +34,6 @@ const NameInput = ({ onChangeText, onBlur, value, error, placeholder }) => {
       )}
     </View>
   );
-};
-
-NameInput.propTypes = {
-  onChangeText: PropTypes.func,
-  onBlur: PropTypes.func,
-  value: PropTypes.string,
-  placeholder: PropTypes.string,
-  error: PropTypes.string,
 };
 
 export default NameInput;

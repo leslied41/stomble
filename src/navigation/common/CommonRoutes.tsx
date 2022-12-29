@@ -1,9 +1,8 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { FullNameScreen, PersonalInfoScreen } from "../../screens/settings";
-import { CommonStackParamList } from "../../types/navigation";
 
-const Stack = createNativeStackNavigator<CommonStackParamList>();
+const Stack = createNativeStackNavigator<ReactNavigation.CommonParamList>();
 
 const CommonRoutes = () => {
   return (

@@ -7,13 +7,18 @@ import PhoneNumberInput from "./PhoneNumberInput";
 import Policy from "./Policy";
 import { CustomButton } from "../common";
 import { useNavigation } from "@react-navigation/native";
-import { authScreenNavigationType } from "../../../types/navigation";
+import { RootScreenNavigationType } from "../../../types/navigation";
+
+type FormValues = {
+  phone: string;
+  password: string;
+};
 
 const LoginForm = () => {
-  const navigation = useNavigation<authScreenNavigationType<"Login">>();
+  const navigation = useNavigation<RootScreenNavigationType<"Login">>();
 
   const submitForm = useCallback(
-    (values) => {
+    (values: FormValues) => {
       console.log(values);
       //the phone and password will be verified in backend, if
       //verified, navigate to anther screen to verify code sent to

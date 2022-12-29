@@ -1,10 +1,14 @@
 import { View, StatusBar } from "react-native";
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import { HeaderBar } from "../../common";
 import { useNavigation } from "@react-navigation/native";
-import PropTypes from "prop-types";
 
-const AuthLayout = ({ children, header }) => {
+type AuthLayoutProps = {
+  children: React.ReactNode;
+  header: string;
+};
+
+const AuthLayout: FC<AuthLayoutProps> = ({ children, header }) => {
   const [height, setHeight] = useState(0);
   const navigation = useNavigation();
 
@@ -21,7 +25,7 @@ const AuthLayout = ({ children, header }) => {
       >
         <View className="h-[200px] w-full bg-[#232637] rounded-b-[12px]" />
         <View
-          className="absolute left-[17px] right-[17px] bg-[#222222] px-[22px]"
+          className="absolute left-[17px] right-[17px] bg-[#222222] px-[22px] rounded-t-[16px]"
           style={{ height: height }}
         >
           {/* children goes here */}
@@ -32,8 +36,4 @@ const AuthLayout = ({ children, header }) => {
   );
 };
 
-AuthLayout.propTypes = {
-  children: PropTypes.node.isRequired,
-  header: PropTypes.string.isRequired,
-};
 export default AuthLayout;

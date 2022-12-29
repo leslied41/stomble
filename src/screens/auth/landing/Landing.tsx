@@ -1,8 +1,9 @@
 import { View, Text, TouchableOpacity, StatusBar } from "react-native";
 import React from "react";
 import { Copyright, CustomButton } from "../../../components/auth";
+import { RootScreenProps } from "../../../types/navigation";
 
-const Landing = ({ navigation }) => {
+const Landing = ({ navigation }: RootScreenProps<"Landing">) => {
   return (
     <>
       <StatusBar barStyle="light-content" />

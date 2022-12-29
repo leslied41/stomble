@@ -1,10 +1,16 @@
-import React, { useCallback, useMemo, useRef } from "react";
+import React, { FC, useCallback, useMemo, useRef } from "react";
 import { View, Dimensions } from "react-native";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import { useEffectSkipInitial } from "../../../hooks";
-import PropTypes from "prop-types";
 
-const BottomSheetLayout = ({
+type BottomSheetLayoutProps = {
+  children: React.ReactNode;
+  snapPoint?: string;
+  isBottomSheetOpen: boolean;
+  closeBottomSheet: () => void;
+};
+
+const BottomSheetLayout: FC<BottomSheetLayoutProps> = ({
   children,
   snapPoint = "30%",
   isBottomSheetOpen,
@@ -15,9 +21,9 @@ const BottomSheetLayout = ({
 
   const bottomSheetRef = useRef<BottomSheet>(null);
 
-  const snapPoints = useMemo(() => [snapPoint], []);
+  const snapPoints = useMemo(() => [snapPoint], [snapPoint]);
 
-  const toggleBottomSheet = useCallback((index) => {
+  const toggleBottomSheet = useCallback((index: number) => {
     bottomSheetRef.current?.snapToIndex(index);
   }, []);
 
@@ -51,10 +57,4 @@ const BottomSheetLayout = ({
   );
 };
 
-BottomSheetLayout.propTypes = {
-  children: PropTypes.node,
-  snapPoint: PropTypes.string,
-  isBottomSheetOpen: PropTypes.bool,
-  closeBottomSheet: PropTypes.func,
-};
 export default BottomSheetLayout;

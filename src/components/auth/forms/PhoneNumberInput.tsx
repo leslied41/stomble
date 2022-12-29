@@ -1,15 +1,23 @@
 import { View, Text } from "react-native";
-import React, { useRef, useState } from "react";
+import React, { FC, useRef, useState } from "react";
 import PhoneInput from "react-native-phone-number-input";
-import { ArrowDown } from "../../icons";
-import PropTypes from "prop-types";
 
-const PhoneNumberInput = ({ onChangeFormattedText, defaultValue }) => {
+import { ArrowDown } from "../../icons";
+
+type PhoneNumberInputProps = {
+  onChangeFormattedText: (text: string) => void;
+  defaultValue: string;
+};
+
+const PhoneNumberInput: FC<PhoneNumberInputProps> = ({
+  onChangeFormattedText,
+  defaultValue,
+}) => {
   const phoneInput = useRef(null);
-  const [countryObj, setCountryObj] = useState({});
+  const [countryObj, setCountryObj] = useState<any>();
   return (
     <PhoneInput
-      className="flex-1 h-10"
+      withDarkTheme
       ref={phoneInput}
       defaultValue={defaultValue}
       defaultCode="AU"
@@ -57,8 +65,5 @@ const PhoneNumberInput = ({ onChangeFormattedText, defaultValue }) => {
     />
   );
 };
-PhoneNumberInput.propTypes = {
-  onChangeFormattedText: PropTypes.func,
-  defaultValue: PropTypes.string,
-};
+
 export default PhoneNumberInput;

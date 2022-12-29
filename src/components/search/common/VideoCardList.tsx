@@ -1,7 +1,6 @@
-import { View, Text, FlatList,ListRenderItem } from "react-native";
-import React, { useCallback } from "react";
+import { View, Text, FlatList } from "react-native";
+import React, { FC } from "react";
 import VideoCard from "./VideoCard";
-import PropTypes from "prop-types";
 
 const fakeData = [
   { id: 1, brand: "Nike" },
@@ -10,7 +9,15 @@ const fakeData = [
   { id: 4, brand: "HM" },
   { id: 5, brand: "Zara" },
 ];
-const VideoCardList = ({ title }) => {
+
+const ListFooterComponent = () => {
+  return <View className="h-6" />;
+};
+
+type VideoCardListProps = {
+  title: string;
+};
+const VideoCardList: FC<VideoCardListProps> = ({ title }) => {
   return (
     <View className="flex-1">
       <Text className="text-[20px] leading-6 font-bold text-white">
@@ -19,16 +26,13 @@ const VideoCardList = ({ title }) => {
       <View className="mt-[15px] flex-1">
         <FlatList
           data={fakeData}
-          renderItem ={VideoCard}
-          keyExtractor={(item) => (item.id).toString()}
-          ListFooterComponent={() => <View className="h-6"></View>}
+          renderItem={VideoCard}
+          keyExtractor={(item) => item.id.toString()}
+          ListFooterComponent={<ListFooterComponent />}
         />
       </View>
     </View>
   );
 };
 
-VideoCardList.propTypes = {
-  title: PropTypes.string,
-};
 export default VideoCardList;
