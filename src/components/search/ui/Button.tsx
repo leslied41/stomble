@@ -6,23 +6,26 @@ type ButtonProps = {
   isFollowed?: boolean;
   variant: "follow" | "profile";
   size: "large" | "small";
+  borderRadius: number;
 };
 
-const FollowButton: FC<ButtonProps> = ({
+const CustomButton: FC<ButtonProps> = ({
   onPress,
   isFollowed,
   variant,
   size,
+  borderRadius,
 }) => {
   return (
     <TouchableOpacity
       onPress={onPress}
-      className="w-[77px] h-[22px] rounded-[5px]  justify-center items-center"
+      className="w-[77px] h-[22px]   justify-center items-center"
       style={{
         backgroundColor:
           variant === "follow" ? (isFollowed ? "#fff" : "#326FCB") : "#F5F6F8",
         height: size === "large" ? 29 : 22,
         width: size === "large" ? 99 : 77,
+        borderRadius: borderRadius,
       }}
     >
       <Text
@@ -48,4 +51,4 @@ const FollowButton: FC<ButtonProps> = ({
   );
 };
 
-export default FollowButton;
+export default CustomButton;

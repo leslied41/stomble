@@ -1,6 +1,6 @@
 import { View, Text, FlatList } from "react-native";
 import React, { FC } from "react";
-import VideoCard from "./VideoCard";
+import VideoCard from "../common/VideoCard";
 
 const fakeData = [
   { id: 1, brand: "Nike" },

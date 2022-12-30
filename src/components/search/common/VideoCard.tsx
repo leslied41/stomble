@@ -39,6 +39,7 @@ const VideoCard: FC<VideoCardProps> = ({ item, index }) => {
             isFollowed={false}
             variant="follow"
             size="small"
+            borderRadius={5}
           />
         </View>
         {/* play button and info */}

@@ -4,6 +4,11 @@ import authSlice from "./features/auth/authSlice";
 import searchSlice from "./features/search/searchSlice";
 import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux";
 
+/**
+ * apply typescript to redux documentation
+ * https://redux-toolkit.js.org/usage/usage-with-typescript#getting-the-dispatch-type
+ */
+
 const store = configureStore({
   reducer: {
     test: testSlice,

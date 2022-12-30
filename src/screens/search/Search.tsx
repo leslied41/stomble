@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import {
   SearchHeaderBar,
   SearchHintView,
-  VideoCardList,
   SearchBottomSheetLayout,
   SearchBottomSheetView,
+  MainView,
 } from "../../components/search";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import {
@@ -39,7 +39,7 @@ const Search = () => {
           <SearchHintView />
         ) : (
           <View className="mt-7 flex-1">
-            <VideoCardList title="Recommendations" />
+            <MainView />
           </View>
         )}
       </View>

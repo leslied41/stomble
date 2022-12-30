@@ -11,7 +11,7 @@ type SearchBottomSheetProps = {
 
 const SearchBottomSheetLayout: FC<SearchBottomSheetProps> = ({
   children,
-  snapPoint = "60%",
+  snapPoint = "55%",
   isBottomSheetOpen,
   closeBottomSheet,
 }) => {
@@ -37,10 +37,18 @@ const SearchBottomSheetLayout: FC<SearchBottomSheetProps> = ({
       onClose={closeBottomSheet}
       backgroundStyle={{
         backgroundColor: "#222222",
-        // borderRadius: "10px 10px 0 0 ",
+        borderRadius: 10,
+      }}
+      style={{
+        shadowColor: "rgba(0, 0, 0, 0.25)",
+        shadowOffset: {
+          width: 0,
+          height: -10,
+        },
+        shadowRadius: 30,
       }}
     >
-      <BottomSheetView>{children}</BottomSheetView>
+      <BottomSheetView style={{ flex: 1 }}>{children}</BottomSheetView>
     </BottomSheet>
   );
 };

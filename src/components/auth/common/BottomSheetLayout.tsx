@@ -48,7 +48,7 @@ const BottomSheetLayout: FC<BottomSheetLayoutProps> = ({
         onClose={closeBottomSheet}
         backgroundStyle={{
           backgroundColor: "#222222",
-          // borderRadius: "10px 10px 0 0 ",
+          borderRadius: 10,
         }}
       >
         <BottomSheetView>{children}</BottomSheetView>
