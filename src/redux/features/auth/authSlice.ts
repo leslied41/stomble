@@ -1,6 +1,17 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "../../store";
 
-const initialState = {
+type AuthSliceState = {
+  isGenderBottomSheetOpen: boolean;
+  isBirthdayBottomSheetOpen: boolean;
+  isBusinessBirthdayBottomSheetOpen: boolean;
+  isLoginBottomSheetOpen: boolean;
+  gender: string;
+  birthday: string;
+  business_birthday: string;
+};
+
+const initialState: AuthSliceState = {
   isGenderBottomSheetOpen: false,
   isBirthdayBottomSheetOpen: false,
   isBusinessBirthdayBottomSheetOpen: false,
@@ -21,7 +32,7 @@ export const authSlice = createSlice({
     closeGenderBottomSheet: (state) => {
       state.isGenderBottomSheetOpen = false;
     },
-    setGender: (state, action) => {
+    setGender: (state, action: PayloadAction<string>) => {
       state.gender = action.payload;
     },
     clearGender: (state) => {
@@ -34,7 +45,7 @@ export const authSlice = createSlice({
     closeBirthdayBottomSheet: (state) => {
       state.isBirthdayBottomSheetOpen = false;
     },
-    setBirthday: (state, action) => {
+    setBirthday: (state, action: PayloadAction<string>) => {
       state.birthday = action.payload;
     },
     clearBirthday: (state) => {
@@ -47,7 +58,7 @@ export const authSlice = createSlice({
     closeBusinessBirthdayBottomSheet: (state) => {
       state.isBusinessBirthdayBottomSheetOpen = false;
     },
-    setBusinessBirthday: (state, action) => {
+    setBusinessBirthday: (state, action: PayloadAction<string>) => {
       state.business_birthday = action.payload;
     },
     clearBusinessBirthday: (state) => {
@@ -63,17 +74,18 @@ export const authSlice = createSlice({
   },
 });
 
-export const getIsGenderBottomSheetOpen = (state) =>
+export const getIsGenderBottomSheetOpen = (state: RootState) =>
   state.auth.isGenderBottomSheetOpen;
-export const getIsBirthdayBottomSheetOpen = (state) =>
+export const getIsBirthdayBottomSheetOpen = (state: RootState) =>
   state.auth.isBirthdayBottomSheetOpen;
-export const getIsBusinessBirthdayBottomSheetOpen = (state) =>
+export const getIsBusinessBirthdayBottomSheetOpen = (state: RootState) =>
   state.auth.isBusinessBirthdayBottomSheetOpen;
-export const getIsLoginBottomSheetOpen = (state) =>
+export const getIsLoginBottomSheetOpen = (state: RootState) =>
   state.auth.isLoginBottomSheetOpen;
-export const getGender = (state) => state.auth.gender;
-export const getBirthday = (state) => state.auth.birthday;
-export const getBusinessBirthday = (state) => state.auth.business_birthday;
+export const getGender = (state: RootState) => state.auth.gender;
+export const getBirthday = (state: RootState) => state.auth.birthday;
+export const getBusinessBirthday = (state: RootState) =>
+  state.auth.business_birthday;
 
 export const {
   openGenderBottomSheet,

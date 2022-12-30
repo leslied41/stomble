@@ -7,7 +7,7 @@ import {
   GenderInputBottomSheet,
   PersonalBirthdayBottomSheet,
 } from "../../../components/auth";
-import { useSelector, useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../../redux/store";
 import {
   getIsGenderBottomSheetOpen,
   closeGenderBottomSheet,
@@ -16,10 +16,12 @@ import {
 } from "../../../redux/features/auth/authSlice";
 
 const PersonalRegister = () => {
-  const isGenderBottomSheetOpen = useSelector(getIsGenderBottomSheetOpen);
-  const isBirthdayBottomSheetOpen = useSelector(getIsBirthdayBottomSheetOpen);
+  const isGenderBottomSheetOpen = useAppSelector(getIsGenderBottomSheetOpen);
+  const isBirthdayBottomSheetOpen = useAppSelector(
+    getIsBirthdayBottomSheetOpen
+  );
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   return (
     <>
       {/* gender bottom sheet */}

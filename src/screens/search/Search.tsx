@@ -1,12 +1,13 @@
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import React, { useState } from "react";
 import {
   SearchHeaderBar,
   SearchHintView,
   VideoCardList,
   SearchBottomSheetLayout,
+  SearchBottomSheetView,
 } from "../../components/search";
-import { useSelector, useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
 import {
   getIsSearchBottomOpen,
   closeSearchBottomSheet,
@@ -17,8 +18,8 @@ const Search = () => {
   const [showSearchList, setShowSearchList] = useState(false);
 
   //redux
-  const dispatch = useDispatch();
-  const isBottomSheetOpen = useSelector(getIsSearchBottomOpen);
+  const dispatch = useAppDispatch();
+  const isBottomSheetOpen = useAppSelector(getIsSearchBottomOpen);
 
   // const seachBySearchText = useCallback(() => {
   //   //when get result
@@ -32,6 +33,7 @@ const Search = () => {
         setSearchText={setSearchText}
         setShowSearchList={setShowSearchList}
       />
+
       <View className="flex-1 mx-[17px]">
         {showSearchList ? (
           <SearchHintView />
@@ -41,12 +43,13 @@ const Search = () => {
           </View>
         )}
       </View>
+
       {/*  bottom sheet */}
       <SearchBottomSheetLayout
         isBottomSheetOpen={isBottomSheetOpen}
         closeBottomSheet={() => dispatch(closeSearchBottomSheet())}
       >
-        <Text>test</Text>
+        <SearchBottomSheetView />
       </SearchBottomSheetLayout>
     </View>
   );

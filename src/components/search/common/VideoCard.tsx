@@ -2,7 +2,7 @@ import { View, Text, ImageBackground, TouchableOpacity } from "react-native";
 import React, { FC } from "react";
 import Brand from "./Brand";
 import { PlayIcon } from "../../icons";
-import { LikeShareButton, FollowButton } from "../ui";
+import { LikeShareButton, CustomButton } from "../ui";
 
 type item = {
   id: number;
@@ -34,9 +34,11 @@ const VideoCard: FC<VideoCardProps> = ({ item, index }) => {
         </View>
         {/* follow button */}
         <View className="absolute top-[23px] right-4">
-          <FollowButton
+          <CustomButton
             onPress={() => console.log("you followed this brand")}
-            isFollowed
+            isFollowed={false}
+            variant="follow"
+            size="small"
           />
         </View>
         {/* play button and info */}
@@ -67,7 +69,10 @@ const VideoCard: FC<VideoCardProps> = ({ item, index }) => {
           className="absolute top-[204px] left-1/2 bg-transparent"
           style={{ transform: [{ translateX: -67 }] }}
         >
-          <LikeShareButton />
+          <LikeShareButton
+            like={() => console.log("like")}
+            share={() => console.log("share")}
+          />
         </View>
       </ImageBackground>
     </View>

@@ -9,7 +9,7 @@ import NameInput from "./NameInput";
 import EmailInput from "./EmailInput";
 import Policy from "./Policy";
 import { CustomButton } from "../common";
-import { useSelector, useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../../redux/store";
 import {
   getGender,
   getBirthday,
@@ -28,9 +28,9 @@ type FormValues = {
 
 const PersonalRegisterForm = () => {
   //redux
-  const dispatch = useDispatch();
-  const gender = useSelector(getGender);
-  const birthday = useSelector(getBirthday);
+  const dispatch = useAppDispatch();
+  const gender = useAppSelector(getGender);
+  const birthday = useAppSelector(getBirthday);
 
   const navigation =
     useNavigation<RootScreenNavigationType<"PersonalRegister">>();

@@ -8,7 +8,7 @@ import NameInput from "./NameInput";
 import EmailInput from "./EmailInput";
 import Policy from "./Policy";
 import { CustomButton } from "../common";
-import { useSelector, useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../../redux/store";
 import {
   getBusinessBirthday,
   openBusinessBirthdayBottomSheet,
@@ -26,8 +26,8 @@ type Values = {
 
 const BusinessRegisterForm = () => {
   //redux
-  const dispatch = useDispatch();
-  const birthday = useSelector(getBusinessBirthday);
+  const dispatch = useAppDispatch();
+  const birthday = useAppSelector(getBusinessBirthday);
 
   const navigation =
     useNavigation<RootScreenNavigationType<"BusinessRegister">>();

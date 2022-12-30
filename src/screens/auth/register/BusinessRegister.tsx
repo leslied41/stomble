@@ -6,7 +6,7 @@ import {
   BottomSheetLayout,
   BusinessBirthdayBottomSheet,
 } from "../../../components/auth";
-import { useSelector, useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../../redux/store";
 import {
   getIsBusinessBirthdayBottomSheetOpen,
   closeBusinessBirthdayBottomSheet,
@@ -14,10 +14,10 @@ import {
 
 const BusinessRegister = () => {
   //redux
-  const isBusinessBirthdayBottomSheetOpen = useSelector(
+  const isBusinessBirthdayBottomSheetOpen = useAppSelector(
     getIsBusinessBirthdayBottomSheetOpen
   );
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   return (
     <>
       {/*business birthday bottom sheet */}

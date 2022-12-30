@@ -1,6 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { RootState } from "../../store";
 
-const initialState = {
+type SearchSliceState = {
+  isSearchBottomSheetOpen: boolean;
+};
+
+const initialState: SearchSliceState = {
   isSearchBottomSheetOpen: false,
 };
 
@@ -18,7 +23,7 @@ export const searchSlice = createSlice({
   },
 });
 
-export const getIsSearchBottomOpen = (state) =>
+export const getIsSearchBottomOpen = (state: RootState) =>
   state.search.isSearchBottomSheetOpen;
 export const { openSearchBottomSheet, closeSearchBottomSheet } =
   searchSlice.actions;

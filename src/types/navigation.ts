@@ -39,7 +39,9 @@ export type RootStackParamList = AuthStackParamList &
   };
 
 /**
- * the screens inside the tab in homeroutes. this is the nesting navigator.
+ * this is to combine HomeTabParamList and RootStackParamList, which can make it possible to
+ * navigate from the nesting screens in the tab of HomeRoutes to the screens in
+ * AuthRoutes or CommonRoutes.
  */
 export type HomeScreenTabProps<T extends keyof HomeTabParamList> =
   CompositeScreenProps<
@@ -59,7 +61,8 @@ export type AuthScreenProps<T extends keyof AuthStackParamList> =
   NativeStackScreenProps<AuthStackParamList, T>;
 
 /**
- * Common routes
+ * CommonScreenNavigationType
+ * logic and scenario same like AuthScreenNavigationType.
  */
 export type CommonScreenNavigationType<T extends keyof CommonStackParamList> =
   NativeStackNavigationProp<CommonStackParamList, T>;
@@ -67,7 +70,9 @@ export type CommonScreenProps<T extends keyof CommonStackParamList> =
   NativeStackScreenProps<CommonStackParamList, T>;
 
 /**
- * RootScreenProps and RootScreenNavigationType include both AuthScreenProps and CommonScreenProps
+ * RootScreenProps and RootScreenNavigationType include both AuthScreenProps and CommonScreenProps.
+ * The logic and scenario is same like above two. And you can only use this one, cause this one is
+ * the combination of above two. As RootStackParamList inherit AuthStackParamList and CommonStackParamList.
  */
 export type RootScreenNavigationType<T extends keyof RootStackParamList> =
   NativeStackNavigationProp<RootStackParamList, T>;
@@ -75,7 +80,9 @@ export type RootScreenProps<T extends keyof RootStackParamList> =
   NativeStackScreenProps<RootStackParamList, T>;
 
 /**
- * declared these ParamList globally
+ * declared these ParamList globally. So when use the ParamLists below,
+ * you do not need to import, as they are declared as global now.
+ * scenario: const Tab = createBottomTabNavigator<ReactNavigation.HomeParamList>();
  */
 declare global {
   namespace ReactNavigation {

@@ -5,19 +5,20 @@ import {
   BottomSheetLayout,
   LoginBottomSheet,
 } from "../../../components/auth";
-import { useSelector, useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../../redux/store";
 import {
   getIsLoginBottomSheetOpen,
   closeLoginBottomSheet,
   openLoginBottomSheet,
 } from "../../../redux/features/auth/authSlice";
+import { RootScreenProps } from "../../../types/navigation";
 
-const LoginVerifyCodes = ({ route }) => {
+const LoginVerifyCodes = ({ route }: RootScreenProps<"LoginVerifyCodes">) => {
   const { title } = route.params;
 
   //redux
-  const isLoginBottomSheetOpen = useSelector(getIsLoginBottomSheetOpen);
-  const dispatch = useDispatch();
+  const isLoginBottomSheetOpen = useAppSelector(getIsLoginBottomSheetOpen);
+  const dispatch = useAppDispatch();
 
   const verifyCodes = useCallback(() => {
     console.log("verify codes logic goes here");

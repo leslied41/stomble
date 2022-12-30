@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import {
   closeBusinessBirthdayBottomSheet,
   getIsBusinessBirthdayBottomSheetOpen,
@@ -8,14 +7,15 @@ import {
 } from "../../../redux/features/auth/authSlice";
 import BirthdayInputBottomSheet from "./BirthdayInputBottomSheet";
 import { converDate } from "../../../services/utils";
+import { useAppDispatch, useAppSelector } from "../../../redux/store";
 
 const BusinessBirthdayBottomSheet = () => {
   const [date, setDate] = useState(new Date());
   //redux
-  const isBusinessBirthdayBottomSheetOpen = useSelector(
+  const isBusinessBirthdayBottomSheetOpen = useAppSelector(
     getIsBusinessBirthdayBottomSheetOpen
   );
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const onChange = (event: any, selectedDate: any) => {
     const currentDate = selectedDate;

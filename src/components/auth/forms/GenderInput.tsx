@@ -1,7 +1,7 @@
 import { View, Text, Pressable } from "react-native";
 import React, { useEffect } from "react";
 import { ArrowDown } from "../../icons";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../../redux/store";
 import {
   openGenderBottomSheet,
   getGender,
@@ -10,8 +10,8 @@ import {
 
 const GenderInput = () => {
   //redux
-  const dispatch = useDispatch();
-  const gender = useSelector(getGender);
+  const dispatch = useAppDispatch();
+  const gender = useAppSelector(getGender);
 
   useEffect(() => {
     return () => {

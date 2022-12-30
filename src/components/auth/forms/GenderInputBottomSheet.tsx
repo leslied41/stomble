@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import { RadioBtnOff, RadioBtnOn } from "../../icons";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../../redux/store";
 import {
   getGender,
   setGender,
@@ -12,8 +12,8 @@ const options = ["Male", "Female", "Prefer not to say"];
 
 const GenderInputBottomSheet = () => {
   //redux
-  const dispatch = useDispatch();
-  const currentGender = useSelector(getGender);
+  const dispatch = useAppDispatch();
+  const currentGender = useAppSelector(getGender);
 
   return (
     <View>

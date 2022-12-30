@@ -1,7 +1,7 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import React, { FC } from "react";
 import { BrandCheckIcon } from "../../svg";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../../../redux/store";
 import { openSearchBottomSheet } from "../../../redux/features/search/searchSlice";
 
 type BrandProps = {
@@ -11,7 +11,7 @@ type BrandProps = {
 
 const Brand: FC<BrandProps> = ({ brand }) => {
   //redux
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   return (
     <TouchableOpacity
       className="flex-row items-center gap-x-[6px]"
