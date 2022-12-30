@@ -6,12 +6,14 @@ import { SearchBackIcon, SearchIcon } from "../../svg";
 type SearchHeaderBarProps = {
   searchText: string;
   setSearchText: (v: string) => void;
+  showSearchList: boolean;
   setShowSearchList: (v: boolean) => void;
 };
 
 const SearchHeaderBar: FC<SearchHeaderBarProps> = ({
   searchText,
   setSearchText,
+  showSearchList,
   setShowSearchList,
 }) => {
   const navigation = useNavigation();
@@ -32,7 +34,16 @@ const SearchHeaderBar: FC<SearchHeaderBarProps> = ({
   return (
     <View className="h-[119px] mx-[18px]">
       <View className="mt-[72px] flex-1 flex-row items-center justify-between gap-x-[19.25px]">
-        <Pressable onPress={navigation.goBack}>
+        <Pressable
+          onPress={
+            showSearchList
+              ? () => {
+                  inputRef.current?.blur();
+                  setShowSearchList(false);
+                }
+              : navigation.goBack
+          }
+        >
           <SearchBackIcon />
         </Pressable>
         <View className="flex-1 flex-row relative">

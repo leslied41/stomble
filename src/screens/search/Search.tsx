@@ -31,14 +31,15 @@ const Search = () => {
       <SearchHeaderBar
         searchText={searchText}
         setSearchText={setSearchText}
+        showSearchList={showSearchList}
         setShowSearchList={setShowSearchList}
       />
 
-      <View className="flex-1 mx-[17px]">
+      <View className="flex-1 ">
         {showSearchList ? (
-          <SearchHintView />
+          <SearchHintView searchText={searchText} />
         ) : (
-          <View className="mt-7 flex-1">
+          <View className="mt-7 mx-[17px] flex-1">
             <MainView />
           </View>
         )}

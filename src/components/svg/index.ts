@@ -6,3 +6,5 @@ export { default as Bell } from "./Bell";
 export { default as SearchBackIcon } from "./SearchBackIcon";
 export { default as SearchIcon } from "./SearchIcon";
 export { default as BrandCheckIcon } from "./BrandCheckIcon";
+export { default as CircleCloseIcon } from "./CircleClose";
+export { default as HintSearchIcon } from "./HintSearchIcon";

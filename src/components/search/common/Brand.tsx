@@ -1,8 +1,9 @@
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import React, { FC } from "react";
 import { BrandCheckIcon } from "../../svg";
 import { useAppDispatch } from "../../../redux/store";
 import { openSearchBottomSheet } from "../../../redux/features/search/searchSlice";
+import BusinessProfile from "./BusinessProfile";
 
 type BrandProps = {
   image?: string;
@@ -17,13 +18,7 @@ const Brand: FC<BrandProps> = ({ brand }) => {
       className="flex-row items-center gap-x-[6px]"
       onPress={() => dispatch(openSearchBottomSheet())}
     >
-      <View className="w-[30px] h-[30px] rounded-[15px] bg-white justify-center items-center">
-        <Image
-          source={require("../../../../assets/images/search/Nike-logo.png")}
-          //for static image, it cannot be passed as props as it need to be built here.
-          //but for https image it can be done using uri.
-        />
-      </View>
+      <BusinessProfile width={30} height={30} borderRadius={15} />
       <View className="flex-row items-center">
         <Text className="text-[12px] leading-[14.52px] text-white font-medium">
           {brand}
