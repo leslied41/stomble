@@ -1,3 +1,0 @@
-export { default as converDate } from "./converDate";
-export { loginFormValidate } from "./loginFormValidate";
-export { personalValidate, businessValidate } from "./registerFormValidate";
