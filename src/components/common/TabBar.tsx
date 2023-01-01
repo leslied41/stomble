@@ -16,7 +16,7 @@ const TabBar: FC<Props> = ({ focused, size }) => {
     iconName = "home";
     Icon = Octicons;
     text = "Home";
-  } else if (route.name === "Search") {
+  } else if (route.name === "SearchRoutes") {
     iconName = "search";
     Icon = Octicons;
     text = "Discover";

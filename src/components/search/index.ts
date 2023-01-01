@@ -3,3 +3,4 @@ export { default as SearchBottomSheetLayout } from "./common/SearchBottomSheetLa
 export { SearchHintView } from "./searchHintView";
 export { SearchBottomSheetView } from "./bottomSheetView";
 export { MainView } from "./mainView";
+export { BusinessList, ResultMainView } from "./searchResult";

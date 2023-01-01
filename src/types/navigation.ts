@@ -10,7 +10,7 @@ import type { CompositeScreenProps } from "@react-navigation/native";
 
 export type HomeTabParamList = {
   VideoPlay: undefined;
-  Search: undefined;
+  SearchRoutes: undefined;
   User: undefined;
   Settings: undefined;
 };
@@ -31,6 +31,11 @@ export type AuthStackParamList = {
 export type CommonStackParamList = {
   FullName: undefined;
   PersonalInfo: undefined;
+};
+
+export type SearchStackParamList = {
+  Search: undefined;
+  SearchResult: undefined;
 };
 
 export type RootStackParamList = AuthStackParamList &
@@ -80,6 +85,14 @@ export type RootScreenProps<T extends keyof RootStackParamList> =
   NativeStackScreenProps<RootStackParamList, T>;
 
 /**
+ * SearchScreenNavigationType
+ */
+export type SearchScreenNavigationType<T extends keyof SearchStackParamList> =
+  NativeStackNavigationProp<SearchStackParamList, T>;
+export type SearchScreenProps<T extends keyof SearchStackParamList> =
+  NativeStackScreenProps<SearchStackParamList, T>;
+
+/**
  * declared these ParamList globally. So when use the ParamLists below,
  * you do not need to import, as they are declared as global now.
  * scenario: const Tab = createBottomTabNavigator<ReactNavigation.HomeParamList>();
@@ -89,6 +102,7 @@ declare global {
     interface HomeParamList extends HomeTabParamList {}
     interface AuthParamList extends AuthStackParamList {}
     interface CommonParamList extends CommonStackParamList {}
+    interface SearchParamList extends SearchStackParamList {}
     interface RootParamList extends RootStackParamList {}
   }
 }

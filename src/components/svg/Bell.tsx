@@ -1,7 +1,7 @@
 import React from "react";
 import Svg, { Path } from "react-native-svg";
 
-const NewAccount = () => {
+const Bell = () => {
   return (
     <Svg width="16" height="20" viewBox="0 0 16 20" fill="none">
       <Path
@@ -12,4 +12,4 @@ const NewAccount = () => {
   );
 };
 
-export default NewAccount;
+export default Bell;

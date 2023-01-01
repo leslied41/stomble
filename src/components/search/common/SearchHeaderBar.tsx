@@ -2,6 +2,7 @@ import { View, Pressable, TextInput } from "react-native";
 import React, { FC, useRef } from "react";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { SearchBackIcon, SearchIcon } from "../../svg";
+import { SearchScreenNavigationType } from "../../../types/navigation";
 
 type SearchHeaderBarProps = {
   searchText: string;
@@ -16,7 +17,7 @@ const SearchHeaderBar: FC<SearchHeaderBarProps> = ({
   showSearchList,
   setShowSearchList,
 }) => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<SearchScreenNavigationType<"Search">>();
   const inputRef = useRef<TextInput>(null);
   //plan to use rtk query. const {data,isFetching} = useQueryByText(searchText)
   //so every time searchText updates, useQueryByText will be called and
@@ -55,9 +56,17 @@ const SearchHeaderBar: FC<SearchHeaderBarProps> = ({
             value={searchText}
             onFocus={() => setShowSearchList(true)}
             onChangeText={setSearchText}
+            returnKeyType="search"
+            onSubmitEditing={() => {
+              console.log("submit");
+              navigation.navigate("SearchResult");
+            }}
+            //when input is submitted, this will be called.
           />
           <View className="absolute right-[11.95px] h-[34px] justify-center">
-            <SearchIcon />
+            <Pressable onPress={() => navigation.navigate("SearchResult")}>
+              <SearchIcon />
+            </Pressable>
           </View>
         </View>
       </View>
