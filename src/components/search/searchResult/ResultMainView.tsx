@@ -35,6 +35,7 @@ const ResultMainView = () => {
           />
         )}
         ListHeaderComponent={BusinessList}
+        stickySectionHeadersEnabled={false}
         renderSectionHeader={({ section: { title } }) => (
           <Text className="text-[16px] leading-5 font-bold text-white mb-3 mt-[18px] ml-[25px] mr-[17px]">
             {title}:

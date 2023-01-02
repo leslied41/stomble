@@ -28,14 +28,16 @@ const BusinessList = () => {
         </View>
       </View>
 
-      <TouchableOpacity className="mt-[14px]" onPress={moreBusiness}>
-        <Text className="text-[14px] leading-5 text-[#5C5C5C] font-bold text-center">
-          More Business
-        </Text>
-        <View className="items-center mt-1">
-          <ScrollMoreIcon />
-        </View>
-      </TouchableOpacity>
+      {sliceIndex !== fakeData.length && (
+        <TouchableOpacity className="mt-[14px]" onPress={moreBusiness}>
+          <Text className="text-[14px] leading-5 text-[#5C5C5C] font-bold text-center">
+            More Business
+          </Text>
+          <View className="items-center mt-1">
+            <ScrollMoreIcon />
+          </View>
+        </TouchableOpacity>
+      )}
     </View>
   );
 };
