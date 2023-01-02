@@ -39,7 +39,7 @@ const SearchResult = () => {
         {showSearchList ? (
           <SearchHintView searchText={searchText} />
         ) : (
-          <View className="mt-7 mx-[17px] flex-1">
+          <View className="mt-7 flex-1">
             <ResultMainView />
           </View>
         )}

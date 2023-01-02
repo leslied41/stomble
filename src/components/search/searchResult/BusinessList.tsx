@@ -14,7 +14,7 @@ const BusinessList = () => {
     setSliceIndex((prev) => prev + 1);
   };
   return (
-    <View>
+    <View className="pl-[25px] pr-[17px] pb-[13px] border-b border-[#5C5C5C]">
       <Text className="text-[16px] leading-[20px] font-bold text-white">
         Business:
       </Text>

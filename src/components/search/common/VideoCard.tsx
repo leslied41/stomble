@@ -12,16 +12,21 @@ type item = {
 type VideoCardProps = {
   item: item;
   index: number;
+  customMargin?: boolean;
 };
 
 //fake if this branch has been followed by one certain user.
-const VideoCard: FC<VideoCardProps> = ({ item, index }) => {
+const VideoCard: FC<VideoCardProps> = ({ item, index, customMargin }) => {
   let isFollowed = true;
 
   return (
     <View
       className="h-[220px] rounded-[30px]"
-      style={{ marginTop: index !== 0 ? 34.54 : 0 }}
+      style={{
+        marginTop: index !== 0 ? 34.54 : 0,
+        marginLeft: customMargin ? 25 : 0,
+        marginRight: customMargin ? 17 : 0,
+      }}
     >
       <ImageBackground
         source={require("../../../../assets/images/search/BG.png")}

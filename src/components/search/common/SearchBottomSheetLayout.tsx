@@ -1,6 +1,10 @@
 import React, { FC, useCallback, useMemo, useRef } from "react";
-import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
+import BottomSheet, {
+  BottomSheetView,
+  BottomSheetBackdrop,
+} from "@gorhom/bottom-sheet";
 import { useEffectSkipInitial } from "../../../hooks";
+import { BottomSheetDefaultBackdropProps } from "@gorhom/bottom-sheet/lib/typescript/components/bottomSheetBackdrop/types";
 
 type SearchBottomSheetProps = {
   children: React.ReactNode;
@@ -28,12 +32,24 @@ const SearchBottomSheetLayout: FC<SearchBottomSheetProps> = ({
     else toggleBottomSheet(-1);
   }, [isBottomSheetOpen]);
 
+  const renderBackdrop = useCallback(
+    (props: JSX.IntrinsicAttributes & BottomSheetDefaultBackdropProps) => (
+      <BottomSheetBackdrop
+        {...props}
+        disappearsOnIndex={-1}
+        appearsOnIndex={0}
+      />
+    ),
+    []
+  );
+
   return (
     <BottomSheet
       ref={bottomSheetRef}
       index={-1}
       snapPoints={snapPoints}
       enablePanDownToClose
+      backdropComponent={renderBackdrop}
       onClose={closeBottomSheet}
       backgroundStyle={{
         backgroundColor: "#222222",
