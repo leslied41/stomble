@@ -1,22 +1,37 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import React, { FC } from "react";
+import React, { FC, useCallback } from "react";
 import { BrandCheckIcon } from "../../svg";
 import { useAppDispatch } from "../../../redux/store";
-import { openSearchBottomSheet } from "../../../redux/features/search/searchSlice";
+import {
+  openSearchBottomSheet,
+  openSearchResultBottomSheet,
+} from "../../../redux/features/search/searchSlice";
 import BusinessProfile from "./BusinessProfile";
 
 type BrandProps = {
   image?: string;
   brand: string;
+  embedIn: "SearchResult" | "Search";
 };
 
-const Brand: FC<BrandProps> = ({ brand }) => {
+const Brand: FC<BrandProps> = ({ brand, embedIn }) => {
   //redux
   const dispatch = useAppDispatch();
+
+  /**
+   *toggle different bottomsheet based on where is brand component
+   *embedin, either in SearchScreen or SearchResultScreen.
+   */
+  const handlePress = useCallback(() => {
+    embedIn === "Search"
+      ? dispatch(openSearchBottomSheet())
+      : dispatch(openSearchResultBottomSheet());
+  }, [embedIn, dispatch]);
+
   return (
     <TouchableOpacity
       className="flex-row items-center gap-x-[6px]"
-      onPress={() => dispatch(openSearchBottomSheet())}
+      onPress={handlePress}
     >
       <BusinessProfile width={30} height={30} borderRadius={15} />
       <View className="flex-row items-center">

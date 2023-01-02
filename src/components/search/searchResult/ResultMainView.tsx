@@ -27,7 +27,12 @@ const ResultMainView = () => {
         sections={fakeData}
         keyExtractor={(item, index) => item.brand + index}
         renderItem={({ item, index }) => (
-          <VideoCard item={item} index={index} customMargin />
+          <VideoCard
+            item={item}
+            index={index}
+            customMargin
+            embedIn="SearchResult"
+          />
         )}
         ListHeaderComponent={BusinessList}
         renderSectionHeader={({ section: { title } }) => (

@@ -26,7 +26,9 @@ const VideoCardList: FC<VideoCardListProps> = ({ title }) => {
       <View className="mt-[15px] flex-1">
         <FlatList
           data={fakeData}
-          renderItem={VideoCard}
+          renderItem={({ item, index }) => (
+            <VideoCard item={item} index={index} embedIn="Search" />
+          )}
           keyExtractor={(item) => item.id.toString()}
           ListFooterComponent={<ListFooterComponent />}
         />

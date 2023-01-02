@@ -13,10 +13,16 @@ type VideoCardProps = {
   item: item;
   index: number;
   customMargin?: boolean;
+  embedIn: "SearchResult" | "Search";
 };
 
 //fake if this branch has been followed by one certain user.
-const VideoCard: FC<VideoCardProps> = ({ item, index, customMargin }) => {
+const VideoCard: FC<VideoCardProps> = ({
+  item,
+  index,
+  customMargin,
+  embedIn,
+}) => {
   let isFollowed = true;
 
   return (
@@ -35,7 +41,7 @@ const VideoCard: FC<VideoCardProps> = ({ item, index, customMargin }) => {
       >
         {/* brand logo  */}
         <View className="absolute left-[18px] top-[19px]">
-          <Brand brand={item.brand} />
+          <Brand brand={item.brand} embedIn={embedIn} />
         </View>
         {/* follow button */}
         <View className="absolute top-[23px] right-4">

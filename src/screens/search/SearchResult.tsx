@@ -9,8 +9,8 @@ import {
 } from "../../components/search";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import {
-  getIsSearchBottomOpen,
-  closeSearchBottomSheet,
+  getIsSearchResultBottomOpen,
+  closeSearchResultBottomSheet,
 } from "../../redux/features/search/searchSlice";
 
 const SearchResult = () => {
@@ -19,8 +19,7 @@ const SearchResult = () => {
 
   //redux
   const dispatch = useAppDispatch();
-  const isBottomSheetOpen = useAppSelector(getIsSearchBottomOpen);
-
+  const isBottomSheetOpen = useAppSelector(getIsSearchResultBottomOpen);
   // const seachBySearchText = useCallback(() => {
   //   //when get result
   //   //use rtk lazyquery, trigger() to trigger new query.
@@ -48,7 +47,7 @@ const SearchResult = () => {
       {/*  bottom sheet */}
       <SearchBottomSheetLayout
         isBottomSheetOpen={isBottomSheetOpen}
-        closeBottomSheet={() => dispatch(closeSearchBottomSheet())}
+        closeBottomSheet={() => dispatch(closeSearchResultBottomSheet())}
       >
         <SearchBottomSheetView />
       </SearchBottomSheetLayout>
