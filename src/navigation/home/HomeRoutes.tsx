@@ -2,7 +2,7 @@ import React from "react";
 import {
   SettingsScreen,
   UserScreen,
-  VideoPlayScreen,
+  FeedScreen,
   SearchRoutes,
 } from "../../screens";
 import { TabBar } from "../../components/common";
@@ -24,7 +24,7 @@ const HomeRoutes = () => {
           TabBar({ focused, size }) as React.ReactNode,
       })}
     >
-      <Tab.Screen name="VideoPlay" component={VideoPlayScreen} />
+      <Tab.Screen name="Feed" component={FeedScreen} />
       <Tab.Screen name="SearchRoutes" component={SearchRoutes} />
       <Tab.Screen name="User" component={UserScreen} />
       <Tab.Screen name="Settings" component={SettingsScreen} />

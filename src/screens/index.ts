@@ -14,4 +14,4 @@ export {
 export { SearchRoutes } from "./search";
 export { SettingsScreen } from "./settings";
 export { UserScreen } from "./user";
-export { VideoPlayScreen } from "./videoPlay";
+export { FeedScreen } from "./feed";

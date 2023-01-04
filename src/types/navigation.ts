@@ -9,7 +9,7 @@ import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import type { CompositeScreenProps } from "@react-navigation/native";
 
 export type HomeTabParamList = {
-  VideoPlay: undefined;
+  Feed: undefined;
   SearchRoutes: undefined;
   User: undefined;
   Settings: undefined;
