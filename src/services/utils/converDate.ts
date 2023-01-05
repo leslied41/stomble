@@ -1,4 +1,4 @@
-const converDate = (date) => {
+const converDate = (date: Date) => {
   const year = date.getFullYear();
   const month = date.getMonth();
   const day = date.getDate();

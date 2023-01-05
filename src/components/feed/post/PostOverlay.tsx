@@ -3,17 +3,47 @@ import React, { FC, useState } from "react";
 import { CustomButton, BusinessProfile } from "../../search";
 import { ShareIcon, HeartIcon, ThreeDotsIcon } from "../../icons";
 import { PlayIcon } from "../../svg";
+import { AVPlaybackStatusSuccess } from "expo-av";
+import { convertMills } from "../../../services/utils";
 
 type PostOverlayProps = {
   pause: () => void;
   play: () => void;
-  checkIsPlaying: () => Promise<boolean>;
+  checkVideoStatus: () => Promise<
+    AVPlaybackStatusSuccess | { isPlaying: boolean }
+  >;
 };
 
-const PostOverlay: FC<PostOverlayProps> = ({ pause, play, checkIsPlaying }) => {
+/**
+ * type guard
+ * @param obj
+ * @returns
+ */
+function isAVPlaybackStatusSuccess(
+  obj: AVPlaybackStatusSuccess | { isPlaying: boolean }
+): obj is AVPlaybackStatusSuccess {
+  return (obj as AVPlaybackStatusSuccess).positionMillis !== undefined;
+}
+
+const PostOverlay: FC<PostOverlayProps> = ({
+  pause,
+  play,
+  checkVideoStatus,
+}) => {
   const [playing, setPlaying] = useState<boolean>(true);
+  const [playedMills, setPlayedMills] = useState<number>();
+  const [videoMills, setVideoMills] = useState<number>();
+
   const operatePlay = async () => {
-    const isPlaying = await checkIsPlaying();
+    const result = await checkVideoStatus();
+
+    if (isAVPlaybackStatusSuccess(result)) {
+      const { positionMillis, durationMillis } = result;
+      setPlayedMills(positionMillis);
+      setVideoMills(durationMillis);
+    }
+    const { isPlaying } = result;
+
     if (isPlaying) {
       pause();
       setPlaying(false);
@@ -38,14 +68,17 @@ const PostOverlay: FC<PostOverlayProps> = ({ pause, play, checkIsPlaying }) => {
       />
       {/* play Icon */}
       {!playing && (
-        <View className="absolute top-1/2 left-1/2 -translate-x-[33.5px] z-10">
+        <View className="absolute top-1/2 left-1/2 -translate-x-[33.5px] -translate-y-[45px] z-10 items-center">
           <PlayIcon />
+          <Text className="text-[20px] leading-6 font-extrabold text-white mt-[13px] text-center">
+            {convertMills(playedMills!)} / {convertMills(videoMills!)}
+          </Text>
         </View>
       )}
       {/* brand info */}
       <View className="absolute bottom-[26px] left-[17px] right-[17px] z-10">
         <View className="flex-row">
-          <Text className="mr-5 text-[16px] leading-[19.2px] font-bold text-white">
+          <Text className="mr-5 text-[16px] leading-[19.2px] font-bold text-white ">
             @Nike
           </Text>
           <CustomButton
@@ -73,15 +106,21 @@ const PostOverlay: FC<PostOverlayProps> = ({ pause, play, checkIsPlaying }) => {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => console.log("press heart")}
-          className="mt-[30px]"
+          className="mt-[30px] items-center"
         >
           <HeartIcon size={29} color="white" />
+          <Text className="text-[11px] leading-[13.2px] text-white font-bold">
+            100
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => console.log("press share")}
-          className="mt-[30px]"
+          className="mt-[30px] items-center"
         >
           <ShareIcon size={29} color="white" />
+          <Text className="text-[11px] leading-[13.2px] text-white font-bold">
+            100
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => console.log("press three dots")}

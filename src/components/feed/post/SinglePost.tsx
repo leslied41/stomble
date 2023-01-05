@@ -34,13 +34,14 @@ const SinglePost = forwardRef<any, Props>((props, parentRef) => {
    *
    * @returns check video status
    */
-  const checkIsPlaying = useCallback(async () => {
-    if (ref.current == null) return false;
+  const checkVideoStatus = useCallback(async () => {
+    if (ref.current == null) return { isPlaying: false };
 
     const status = await ref.current.getStatusAsync();
-    if (!status.isLoaded) return false;
-    else if (status.isPlaying) return true;
-    else return false;
+    console.log(status);
+    if (!status.isLoaded) return { isPlaying: false };
+    else if (status.isPlaying) return status;
+    else return { isPlaying: false };
   }, []);
 
   /**
@@ -122,7 +123,11 @@ const SinglePost = forwardRef<any, Props>((props, parentRef) => {
 
   return (
     <>
-      <PostOverlay play={play} pause={pause} checkIsPlaying={checkIsPlaying} />
+      <PostOverlay
+        play={play}
+        pause={pause}
+        checkVideoStatus={checkVideoStatus}
+      />
       <Video
         ref={ref}
         className="flex-1"

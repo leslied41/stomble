@@ -7,3 +7,4 @@ export {
 } from "./registerFormValidate";
 export { default as converArrayInPair } from "./covertArrayInPair";
 export { changePasswordFormValidate } from "./changePasswordFormValidate";
+export { convertMills } from "./convertMills";
