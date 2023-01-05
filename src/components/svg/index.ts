@@ -9,3 +9,4 @@ export { default as BrandCheckIcon } from "./BrandCheckIcon";
 export { default as CircleCloseIcon } from "./CircleClose";
 export { default as HintSearchIcon } from "./HintSearchIcon";
 export { default as ScrollMoreIcon } from "./ScrollMoreIcon";
+export { default as PlayIcon } from "./PlayIcon";

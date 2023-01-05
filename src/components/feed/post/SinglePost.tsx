@@ -3,8 +3,10 @@ import React, {
   forwardRef,
   useImperativeHandle,
   useEffect,
+  useCallback,
 } from "react";
 import { Video, ResizeMode } from "expo-av";
+import PostOverlay from "./PostOverlay";
 
 type Props = {};
 
@@ -15,9 +17,9 @@ const SinglePost = forwardRef<any, Props>((props, parentRef) => {
     return {
       play,
       stop,
-      getStatus,
     };
   });
+
   /**
    * at the same time, it will reunder three videos, when
    * the fourth video get rendered, the first one will unload.
@@ -28,19 +30,25 @@ const SinglePost = forwardRef<any, Props>((props, parentRef) => {
     };
   }, []);
 
-  //getStatus
-  const getStatus = async () => {
-    if (ref.current == null) return;
+  /**
+   *
+   * @returns check video status
+   */
+  const checkIsPlaying = useCallback(async () => {
+    if (ref.current == null) return false;
 
     const status = await ref.current.getStatusAsync();
-    console.log(status.isLoaded);
-  };
+    if (!status.isLoaded) return false;
+    else if (status.isPlaying) return true;
+    else return false;
+  }, []);
 
   /**
    * play video
    * @returns
    */
-  const play = async () => {
+
+  const play = useCallback(async () => {
     if (ref.current == null) return;
 
     const status = await ref.current.getStatusAsync();
@@ -53,7 +61,25 @@ const SinglePost = forwardRef<any, Props>((props, parentRef) => {
         console.log(error);
       }
     }
-  };
+  }, []);
+  /**
+   *
+   * @returns pause video
+   */
+  const pause = useCallback(async () => {
+    if (ref.current == null) return;
+
+    const status = await ref.current.getStatusAsync();
+
+    if (!status.isLoaded) return;
+    else if (status.isPlaying) {
+      try {
+        await ref.current.pauseAsync();
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }, []);
 
   /**
    * stop video
@@ -95,16 +121,19 @@ const SinglePost = forwardRef<any, Props>((props, parentRef) => {
   };
 
   return (
-    <Video
-      ref={ref}
-      className="flex-1"
-      resizeMode={ResizeMode.COVER}
-      isLooping
-      shouldPlay={true}
-      source={{
-        uri: "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4",
-      }}
-    />
+    <>
+      <PostOverlay play={play} pause={pause} checkIsPlaying={checkIsPlaying} />
+      <Video
+        ref={ref}
+        className="flex-1"
+        resizeMode={ResizeMode.COVER}
+        isLooping
+        shouldPlay={true}
+        source={{
+          uri: "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4",
+        }}
+      />
+    </>
   );
 });
 

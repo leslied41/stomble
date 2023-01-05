@@ -22,7 +22,6 @@ const Feed = () => {
     ({ changed }: { changed: ViewToken[]; viewableItems: ViewToken[] }) => {
       changed.forEach((element: ViewToken) => {
         const cell = mediaRefs.current[element.item.id];
-        //cell.getStatus();
         if (cell) {
           if (element.isViewable) {
             cell.play();
@@ -55,7 +54,9 @@ const Feed = () => {
         windowSize={4}
         initialNumToRender={0}
         maxToRenderPerBatch={2}
-        //removeClippedSubviews
+        removeClippedSubviews
+        //usePoster
+        //posterSource={{uri:''}}
         viewabilityConfig={{ itemVisiblePercentThreshold: 100 }}
         keyExtractor={(item) => item.id}
         pagingEnabled

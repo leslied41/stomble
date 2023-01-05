@@ -7,7 +7,12 @@ import {
   Feather,
   FontAwesome5,
 } from "@expo/vector-icons";
-import React from "react";
+import React, { FC } from "react";
+
+type IconProps = {
+  size?: number;
+  color?: string;
+};
 export const UserPlus = () => {
   return <AntDesign name="adduser" size={24} color="black" />;
 };
@@ -56,10 +61,15 @@ export const RadioBtnOn = () => (
 
 export const PlayIcon = () => <Feather name="play" size={12} color="#5C5C5C" />;
 
-export const HeartIcon = ({ color = "#5C5C5C" }) => (
-  <AntDesign name="heart" size={12} color={color} />
+export const HeartIcon: FC<IconProps> = ({ color = "#5C5C5C", size = 12 }) => (
+  <AntDesign name="heart" size={size} color={color} />
 );
 
-export const ShareIcon = () => (
-  <FontAwesome5 name="share" size={12} color="#5C5C5C" />
+export const ShareIcon: FC<IconProps> = ({ color = "#5C5C5C", size = 12 }) => (
+  <FontAwesome5 name="share" size={size} color={color} />
 );
+
+export const ThreeDotsIcon: FC<IconProps> = ({
+  size = 24,
+  color = "black",
+}) => <Entypo name="dots-three-horizontal" size={size} color={color} />;
