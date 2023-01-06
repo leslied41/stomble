@@ -51,7 +51,7 @@ const Feed = () => {
       <FlatList
         data={fakeData}
         renderItem={renderItem}
-        windowSize={4}
+        windowSize={3}
         initialNumToRender={0}
         maxToRenderPerBatch={2}
         removeClippedSubviews

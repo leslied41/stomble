@@ -11,7 +11,7 @@ const ProgressiveBar: FC<ProgressiveBarProps> = ({
   durationMillis,
 }) => {
   return (
-    <View className="h-[11px] items-center justify-center">
+    <View className="h-[22px] items-center justify-center">
       <View
         style={{
           width: Dimensions.get("window").width - 40,

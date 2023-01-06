@@ -5,9 +5,14 @@ import Slider from "@react-native-community/slider";
 type SliderBarProps = {
   positionMillis: number | undefined;
   durationMillis: number | undefined;
+  updatePositionMillis: (millis: number) => Promise<void>;
 };
 
-const SliderBar: FC<SliderBarProps> = ({ positionMillis, durationMillis }) => {
+const SliderBar: FC<SliderBarProps> = ({
+  positionMillis,
+  durationMillis,
+  updatePositionMillis,
+}) => {
   return (
     <Slider
       value={
@@ -15,7 +20,10 @@ const SliderBar: FC<SliderBarProps> = ({ positionMillis, durationMillis }) => {
           ? 0
           : (positionMillis ? positionMillis : 0) / durationMillis
       }
-      style={{ width: Dimensions.get("window").width - 34, height: 11 }}
+      onSlidingComplete={async (v) => {
+        await updatePositionMillis(v * (durationMillis ? durationMillis : 0));
+      }}
+      style={{ width: Dimensions.get("window").width - 34, height: 22 }}
       minimumValue={0}
       maximumValue={1}
       minimumTrackTintColor="#ABABAB"

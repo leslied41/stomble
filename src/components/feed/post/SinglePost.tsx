@@ -5,6 +5,7 @@ import React, {
   useImperativeHandle,
   useEffect,
   useCallback,
+  startTransition,
 } from "react";
 import { Video, ResizeMode, AVPlaybackStatus } from "expo-av";
 import PostOverlay from "./PostOverlay";
@@ -15,6 +16,7 @@ const SinglePost = forwardRef<any, Props>((props, parentRef) => {
   const ref = useRef<Video | null>(null);
   const [positionMillis, setPositionMillis] = useState<number>();
   const [durationMillis, setDurationMillis] = useState<number>();
+  const [playing, setPlaying] = useState<boolean>(true);
 
   useImperativeHandle(parentRef, () => {
     return {
@@ -34,19 +36,6 @@ const SinglePost = forwardRef<any, Props>((props, parentRef) => {
   }, []);
 
   /**
-   *
-   * @returns check video status
-   */
-  const checkVideoStatus = useCallback(async () => {
-    if (ref.current == null) return { isPlaying: false };
-
-    const status = await ref.current.getStatusAsync();
-    if (!status.isLoaded) return { isPlaying: false };
-    else if (status.isPlaying) return status;
-    else return { isPlaying: false };
-  }, []);
-
-  /**
    * play video
    * @returns
    */
@@ -60,6 +49,9 @@ const SinglePost = forwardRef<any, Props>((props, parentRef) => {
     else if (!status.isPlaying) {
       try {
         await ref.current.playAsync();
+        startTransition(() => {
+          setPlaying(true);
+        });
       } catch (error) {
         console.log(error);
       }
@@ -78,6 +70,9 @@ const SinglePost = forwardRef<any, Props>((props, parentRef) => {
     else if (status.isPlaying) {
       try {
         await ref.current.pauseAsync();
+        startTransition(() => {
+          setPlaying(false);
+        });
       } catch (error) {
         console.log(error);
       }
@@ -124,6 +119,21 @@ const SinglePost = forwardRef<any, Props>((props, parentRef) => {
   };
 
   /**
+   * change the positionMillis, passed to slider to enable user
+   * to control play.
+   */
+  const updatePositionMillis = useCallback(async (millis: number) => {
+    if (ref.current == null) return;
+    const status = await ref.current.getStatusAsync();
+    if (!status.isLoaded) return;
+    else if (!status.isPlaying)
+      await ref.current.setStatusAsync({
+        positionMillis: Math.floor(millis),
+      });
+    setPositionMillis(Math.floor(millis));
+  }, []);
+
+  /**
    * get real-time position mills
    */
   const statusUpdate = useCallback((status: AVPlaybackStatus) => {
@@ -137,14 +147,16 @@ const SinglePost = forwardRef<any, Props>((props, parentRef) => {
       <PostOverlay
         play={play}
         pause={pause}
-        checkVideoStatus={checkVideoStatus}
+        playing={playing}
         durationMillis={durationMillis}
         positionMillis={positionMillis}
+        updatePositionMillis={updatePositionMillis}
       />
       <Video
         ref={ref}
         className="flex-1"
         resizeMode={ResizeMode.COVER}
+        progressUpdateIntervalMillis={200}
         isLooping
         shouldPlay={true}
         onPlaybackStatusUpdate={statusUpdate}

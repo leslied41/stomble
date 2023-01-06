@@ -1,70 +1,39 @@
 import { View, Text, Pressable } from "react-native";
-import React, { FC, Suspense, useState, startTransition } from "react";
+import React, { FC, Suspense } from "react";
 import ButtonsGroup from "./ButtonsGroup";
 import BrandInfo from "./BrandInfo";
 import ProgressiveBar from "./ProgressiveBar";
 import { PlayIcon } from "../../svg";
-import { AVPlaybackStatusSuccess } from "expo-av";
 import { convertMills } from "../../../services/utils";
 
 type PostOverlayProps = {
   pause: () => void;
   play: () => void;
-  checkVideoStatus: () => Promise<
-    AVPlaybackStatusSuccess | { isPlaying: boolean }
-  >;
+  playing: boolean;
   positionMillis: number | undefined;
   durationMillis: number | undefined;
+  updatePositionMillis: (millis: number) => Promise<void>;
 };
-
-/**
- * type guard
- * @param obj
- * @returns
- */
-function isAVPlaybackStatusSuccess(
-  obj: AVPlaybackStatusSuccess | { isPlaying: boolean }
-): obj is AVPlaybackStatusSuccess {
-  return (obj as AVPlaybackStatusSuccess).positionMillis !== undefined;
-}
 
 const SliderBar = React.lazy(() => import("./SliderBar"));
 
 const PostOverlay: FC<PostOverlayProps> = ({
   pause,
   play,
-  checkVideoStatus,
+  playing,
   positionMillis,
   durationMillis,
+  updatePositionMillis,
 }) => {
-  const [playing, setPlaying] = useState<boolean>(true);
-  const [playedMills, setPlayedMills] = useState<number>();
-  const [videoMills, setVideoMills] = useState<number>();
-
   /**
    * to play or pause of video and grab
    * positionMillis,durationMillis when video paused.
    */
   const operatePlay = async () => {
-    const result = await checkVideoStatus();
-
-    if (isAVPlaybackStatusSuccess(result)) {
-      const { positionMillis: p, durationMillis: d } = result;
-      setPlayedMills(p);
-      setVideoMills(d);
-    }
-    const { isPlaying } = result;
-
-    if (isPlaying) {
+    if (playing) {
       pause();
-      startTransition(() => {
-        setPlaying(false);
-      });
     } else {
       play();
-      startTransition(() => {
-        setPlaying(true);
-      });
     }
   };
 
@@ -86,13 +55,13 @@ const PostOverlay: FC<PostOverlayProps> = ({
         <View className="absolute top-1/2 left-1/2 -translate-x-[33.5px] -translate-y-[45px] z-10 items-center">
           <PlayIcon />
           <Text className="text-[20px] leading-6 font-extrabold text-white mt-[13px] text-center">
-            {convertMills(playedMills!)} / {convertMills(videoMills!)}
+            {convertMills(positionMillis!)} / {convertMills(durationMillis!)}
           </Text>
         </View>
       )}
 
       {/*brandinfo and slider */}
-      <View className="absolute bottom-[26px] left-[17px] right-[17px]">
+      <View className="absolute bottom-[15px] left-[17px] right-[17px]">
         <BrandInfo />
         <View className="mt-[19px]">
           <Suspense>
@@ -103,8 +72,9 @@ const PostOverlay: FC<PostOverlayProps> = ({
               />
             ) : (
               <SliderBar
-                durationMillis={videoMills}
-                positionMillis={playedMills}
+                durationMillis={durationMillis}
+                positionMillis={positionMillis}
+                updatePositionMillis={updatePositionMillis}
               />
             )}
           </Suspense>
