@@ -1,6 +1,5 @@
 import { View, Text, Pressable } from "react-native";
-import React, { FC, useState } from "react";
-import SliderBar from "./SliderBar";
+import React, { FC, Suspense, useState, startTransition } from "react";
 import ButtonsGroup from "./ButtonsGroup";
 import BrandInfo from "./BrandInfo";
 import ProgressiveBar from "./ProgressiveBar";
@@ -29,6 +28,8 @@ function isAVPlaybackStatusSuccess(
   return (obj as AVPlaybackStatusSuccess).positionMillis !== undefined;
 }
 
+const SliderBar = React.lazy(() => import("./SliderBar"));
+
 const PostOverlay: FC<PostOverlayProps> = ({
   pause,
   play,
@@ -41,7 +42,7 @@ const PostOverlay: FC<PostOverlayProps> = ({
   const [videoMills, setVideoMills] = useState<number>();
 
   /**
-   * to control the play or pause of video and grab
+   * to play or pause of video and grab
    * positionMillis,durationMillis when video paused.
    */
   const operatePlay = async () => {
@@ -56,10 +57,14 @@ const PostOverlay: FC<PostOverlayProps> = ({
 
     if (isPlaying) {
       pause();
-      setPlaying(false);
+      startTransition(() => {
+        setPlaying(false);
+      });
     } else {
       play();
-      setPlaying(true);
+      startTransition(() => {
+        setPlaying(true);
+      });
     }
   };
 
@@ -90,18 +95,19 @@ const PostOverlay: FC<PostOverlayProps> = ({
       <View className="absolute bottom-[26px] left-[17px] right-[17px]">
         <BrandInfo />
         <View className="mt-[19px]">
-          {!playing && (
-            <SliderBar
-              durationMillis={videoMills}
-              positionMillis={playedMills}
-            />
-          )}
-          {playing && (
-            <ProgressiveBar
-              durationMillis={durationMillis}
-              positionMillis={positionMillis}
-            />
-          )}
+          <Suspense>
+            {playing === true ? (
+              <ProgressiveBar
+                durationMillis={durationMillis}
+                positionMillis={positionMillis}
+              />
+            ) : (
+              <SliderBar
+                durationMillis={videoMills}
+                positionMillis={playedMills}
+              />
+            )}
+          </Suspense>
         </View>
       </View>
 
