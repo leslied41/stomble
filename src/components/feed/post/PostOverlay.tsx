@@ -1,7 +1,9 @@
-import { View, Text, Pressable, TouchableOpacity } from "react-native";
+import { View, Text, Pressable } from "react-native";
 import React, { FC, useState } from "react";
-import { CustomButton, BusinessProfile } from "../../search";
-import { ShareIcon, HeartIcon, ThreeDotsIcon } from "../../icons";
+import SliderBar from "./SliderBar";
+import ButtonsGroup from "./ButtonsGroup";
+import BrandInfo from "./BrandInfo";
+import ProgressiveBar from "./ProgressiveBar";
 import { PlayIcon } from "../../svg";
 import { AVPlaybackStatusSuccess } from "expo-av";
 import { convertMills } from "../../../services/utils";
@@ -12,6 +14,8 @@ type PostOverlayProps = {
   checkVideoStatus: () => Promise<
     AVPlaybackStatusSuccess | { isPlaying: boolean }
   >;
+  positionMillis: number | undefined;
+  durationMillis: number | undefined;
 };
 
 /**
@@ -29,18 +33,24 @@ const PostOverlay: FC<PostOverlayProps> = ({
   pause,
   play,
   checkVideoStatus,
+  positionMillis,
+  durationMillis,
 }) => {
   const [playing, setPlaying] = useState<boolean>(true);
   const [playedMills, setPlayedMills] = useState<number>();
   const [videoMills, setVideoMills] = useState<number>();
 
+  /**
+   * to control the play or pause of video and grab
+   * positionMillis,durationMillis when video paused.
+   */
   const operatePlay = async () => {
     const result = await checkVideoStatus();
 
     if (isAVPlaybackStatusSuccess(result)) {
-      const { positionMillis, durationMillis } = result;
-      setPlayedMills(positionMillis);
-      setVideoMills(durationMillis);
+      const { positionMillis: p, durationMillis: d } = result;
+      setPlayedMills(p);
+      setVideoMills(d);
     }
     const { isPlaying } = result;
 
@@ -58,7 +68,6 @@ const PostOverlay: FC<PostOverlayProps> = ({
       className="absolute z-50 bottom-0 left-0 top-0 right-0"
       onPress={operatePlay}
     >
-      {/* overlay background color */}
       <View
         className="absolute  bottom-0 left-0 top-0 right-0"
         style={{
@@ -66,6 +75,7 @@ const PostOverlay: FC<PostOverlayProps> = ({
           opacity: playing ? 1 : 0.5,
         }}
       />
+
       {/* play Icon */}
       {!playing && (
         <View className="absolute top-1/2 left-1/2 -translate-x-[33.5px] -translate-y-[45px] z-10 items-center">
@@ -75,59 +85,29 @@ const PostOverlay: FC<PostOverlayProps> = ({
           </Text>
         </View>
       )}
-      {/* brand info */}
-      <View className="absolute bottom-[26px] left-[17px] right-[17px] z-10">
-        <View className="flex-row">
-          <Text className="mr-5 text-[16px] leading-[19.2px] font-bold text-white ">
-            @Nike
-          </Text>
-          <CustomButton
-            variant="follow"
-            size="small"
-            borderRadius={5}
-            onPress={() => console.log("pressed follow button")}
-          />
+
+      {/*brandinfo and slider */}
+      <View className="absolute bottom-[26px] left-[17px] right-[17px]">
+        <BrandInfo />
+        <View className="mt-[19px]">
+          {!playing && (
+            <SliderBar
+              durationMillis={videoMills}
+              positionMillis={playedMills}
+            />
+          )}
+          {playing && (
+            <ProgressiveBar
+              durationMillis={durationMillis}
+              positionMillis={positionMillis}
+            />
+          )}
         </View>
-        <Text className="mt-[13px] text-[13px] leading-[15.6px] font-normal text-white">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tristique id
-          et in lectus.
-          <Text
-            className="font-black text-[13px] leading-[15.6px]  text-white"
-            onPress={() => console.log("read more")}
-          >
-            Read more
-          </Text>
-        </Text>
       </View>
+
       {/* buttons group */}
       <View className="absolute right-[17px] bottom-[142px] items-center z-10">
-        <TouchableOpacity onPress={() => console.log("press brand")}>
-          <BusinessProfile width={48} height={48} borderRadius={24} />
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => console.log("press heart")}
-          className="mt-[30px] items-center"
-        >
-          <HeartIcon size={29} color="white" />
-          <Text className="text-[11px] leading-[13.2px] text-white font-bold">
-            100
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => console.log("press share")}
-          className="mt-[30px] items-center"
-        >
-          <ShareIcon size={29} color="white" />
-          <Text className="text-[11px] leading-[13.2px] text-white font-bold">
-            100
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => console.log("press three dots")}
-          className="mt-[30px]"
-        >
-          <ThreeDotsIcon size={29} color="white" />
-        </TouchableOpacity>
+        <ButtonsGroup />
       </View>
     </Pressable>
   );

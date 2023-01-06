@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import testSlice from "./features/test/testSlice";
 import authSlice from "./features/auth/authSlice";
 import searchSlice from "./features/search/searchSlice";
+import feedSlice from "./features/feed/feedSlice";
 import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux";
 
 /**
@@ -14,6 +15,7 @@ const store = configureStore({
     test: testSlice,
     auth: authSlice,
     search: searchSlice,
+    feed: feedSlice,
   },
 });
 

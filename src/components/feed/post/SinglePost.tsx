@@ -1,17 +1,20 @@
 import React, {
+  useState,
   useRef,
   forwardRef,
   useImperativeHandle,
   useEffect,
   useCallback,
 } from "react";
-import { Video, ResizeMode } from "expo-av";
+import { Video, ResizeMode, AVPlaybackStatus } from "expo-av";
 import PostOverlay from "./PostOverlay";
 
 type Props = {};
 
 const SinglePost = forwardRef<any, Props>((props, parentRef) => {
   const ref = useRef<Video | null>(null);
+  const [positionMillis, setPositionMillis] = useState<number>();
+  const [durationMillis, setDurationMillis] = useState<number>();
 
   useImperativeHandle(parentRef, () => {
     return {
@@ -38,7 +41,6 @@ const SinglePost = forwardRef<any, Props>((props, parentRef) => {
     if (ref.current == null) return { isPlaying: false };
 
     const status = await ref.current.getStatusAsync();
-    console.log(status);
     if (!status.isLoaded) return { isPlaying: false };
     else if (status.isPlaying) return status;
     else return { isPlaying: false };
@@ -121,12 +123,23 @@ const SinglePost = forwardRef<any, Props>((props, parentRef) => {
     }
   };
 
+  /**
+   * get real-time position mills
+   */
+  const statusUpdate = useCallback((status: AVPlaybackStatus) => {
+    if (!status.isLoaded) return;
+    setPositionMillis(status.positionMillis);
+    setDurationMillis(status.durationMillis);
+  }, []);
+
   return (
     <>
       <PostOverlay
         play={play}
         pause={pause}
         checkVideoStatus={checkVideoStatus}
+        durationMillis={durationMillis}
+        positionMillis={positionMillis}
       />
       <Video
         ref={ref}
@@ -134,6 +147,7 @@ const SinglePost = forwardRef<any, Props>((props, parentRef) => {
         resizeMode={ResizeMode.COVER}
         isLooping
         shouldPlay={true}
+        onPlaybackStatusUpdate={statusUpdate}
         source={{
           uri: "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4",
         }}
