@@ -1,12 +1,9 @@
 import { View, Text, TouchableOpacity, StatusBar } from "react-native";
 import React from "react";
-import {
-  Copyright,
-  CustomButton,
-  SavedAccounts,
-} from "../../../components/auth";
+import { CustomButton, SavedAccounts } from "../../../components/auth";
+import { RootScreenProps } from "../../../types/navigation";
 
-const LandingWithAccounts = ({ navigation }) => {
+const LandingWithAccounts = ({ navigation }: RootScreenProps<"Landing">) => {
   return (
     <>
       <StatusBar barStyle="light-content" />
@@ -19,12 +16,12 @@ const LandingWithAccounts = ({ navigation }) => {
             <SavedAccounts />
           </View>
           <View className="mt-40 mx-[30px]">
-            <CustomButton text="Log In" />
+            <CustomButton text="Log In" onPress={() => console.log("log in")} />
           </View>
           <View className="flex-row justify-center mt-[33px]">
             <TouchableOpacity
               className="border-r-2 border-black/20 pr-4"
-              onPress={() => navigation.navigate("Register")}
+              onPress={() => navigation.navigate("PersonalRegister")}
             >
               <Text className="text-[15px] leading-[18px] font-normal text-[#F9F9F9]">
                 Sign Up

@@ -3,9 +3,9 @@ import React from "react";
 import {
   AuthLayout,
   BusinessRegisterForm,
-  BottomSheetLayout,
   BusinessBirthdayBottomSheet,
 } from "../../../components/auth";
+import { BottomSheetLayout } from "../../../components/common";
 import { useAppDispatch, useAppSelector } from "../../../redux/store";
 import {
   getIsBusinessBirthdayBottomSheetOpen,
@@ -25,6 +25,7 @@ const BusinessRegister = () => {
         snapPoint="40%"
         isBottomSheetOpen={isBusinessBirthdayBottomSheetOpen}
         closeBottomSheet={() => dispatch(closeBusinessBirthdayBottomSheet())}
+        variant="auth"
       >
         <BusinessBirthdayBottomSheet />
       </BottomSheetLayout>

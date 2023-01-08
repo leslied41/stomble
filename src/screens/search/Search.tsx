@@ -3,10 +3,10 @@ import React, { useState } from "react";
 import {
   SearchHeaderBar,
   SearchHintView,
-  SearchBottomSheetLayout,
   SearchBottomSheetView,
   MainView,
 } from "../../components/search";
+import { BottomSheetLayout } from "../../components/common";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import {
   getIsSearchBottomOpen,
@@ -46,12 +46,12 @@ const Search = () => {
       </View>
 
       {/*  bottom sheet */}
-      <SearchBottomSheetLayout
+      <BottomSheetLayout
         isBottomSheetOpen={isBottomSheetOpen}
         closeBottomSheet={() => dispatch(closeSearchBottomSheet())}
       >
         <SearchBottomSheetView />
-      </SearchBottomSheetLayout>
+      </BottomSheetLayout>
     </View>
   );
 };

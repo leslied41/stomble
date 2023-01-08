@@ -1,8 +1,11 @@
 import { View, Image } from "react-native";
 import React from "react";
 import { AuthLayout, CustomButton } from "../../../components/auth";
+import { RootScreenProps } from "../../../types/navigation";
 
-const ChooseAccountType = ({ navigation }) => {
+const ChooseAccountType = ({
+  navigation,
+}: RootScreenProps<"ChooseAccountType">) => {
   return (
     <AuthLayout header="Choose account type">
       <View className="flex-1 pt-[39px] pb-[60px] justify-between">

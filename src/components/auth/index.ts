@@ -1,10 +1,4 @@
-export {
-  Copyright,
-  CustomButton,
-  AuthLayout,
-  BottomSheetLayout,
-  VerifyCodes,
-} from "./common";
+export { Copyright, CustomButton, AuthLayout, VerifyCodes } from "./common";
 export { SavedAccounts } from "./landing";
 export { default as PersonalRegisterForm } from "./forms/PersonalRegisterForm";
 export { default as PhoneNumberInput } from "./forms/PhoneNumberInput";

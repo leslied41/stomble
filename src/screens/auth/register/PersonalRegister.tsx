@@ -3,10 +3,10 @@ import React from "react";
 import {
   AuthLayout,
   PersonalRegisterForm,
-  BottomSheetLayout,
   GenderInputBottomSheet,
   PersonalBirthdayBottomSheet,
 } from "../../../components/auth";
+import { BottomSheetLayout } from "../../../components/common";
 import { useAppDispatch, useAppSelector } from "../../../redux/store";
 import {
   getIsGenderBottomSheetOpen,
@@ -33,6 +33,8 @@ const PersonalRegister = () => {
       <BottomSheetLayout
         isBottomSheetOpen={isGenderBottomSheetOpen}
         closeBottomSheet={() => dispatch(closeGenderBottomSheet())}
+        variant="auth"
+        snapPoint="30%"
       >
         <GenderInputBottomSheet />
       </BottomSheetLayout>
@@ -42,6 +44,7 @@ const PersonalRegister = () => {
         snapPoint="40%"
         isBottomSheetOpen={isBirthdayBottomSheetOpen}
         closeBottomSheet={() => dispatch(closeBirthdayBottomSheet())}
+        variant="auth"
       >
         <PersonalBirthdayBottomSheet />
       </BottomSheetLayout>

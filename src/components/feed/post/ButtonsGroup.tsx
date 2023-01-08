@@ -2,11 +2,13 @@ import { Text, View, TouchableOpacity } from "react-native";
 import React, { memo } from "react";
 import { BusinessProfile } from "../../search";
 import { HeartIcon, ShareIcon, ThreeDotsIcon } from "../../icons";
+import { useFeedContext } from "../context/FeedProvider";
 
 const ButtonsGroup = () => {
+  const { toggleBottomSheet } = useFeedContext();
   return (
     <View>
-      <TouchableOpacity onPress={() => console.log("press brand")}>
+      <TouchableOpacity onPress={() => toggleBottomSheet!(4, "BrandInfo")}>
         <BusinessProfile width={48} height={48} borderRadius={24} />
       </TouchableOpacity>
       <TouchableOpacity
@@ -29,7 +31,7 @@ const ButtonsGroup = () => {
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => console.log("press three dots")}
-        className="mt-[30px]"
+        className="mt-[30px] items-center"
       >
         <ThreeDotsIcon size={29} color="white" />
       </TouchableOpacity>

@@ -1,8 +1,10 @@
 import { View, Text } from "react-native";
 import React, { memo } from "react";
 import { CustomButton } from "../../search";
+import { useFeedContext } from "../context/FeedProvider";
 
 const BrandInfo = () => {
+  const { toggleBottomSheet } = useFeedContext();
   return (
     <View>
       <View className="flex-row">
@@ -21,7 +23,7 @@ const BrandInfo = () => {
         in lectus.
         <Text
           className="font-black text-[13px] leading-[15.6px]  text-white"
-          onPress={() => console.log("read more")}
+          onPress={() => toggleBottomSheet!(1, "FeedReadMore")}
         >
           Read more
         </Text>

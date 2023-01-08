@@ -1,9 +1,17 @@
-import { View, FlatList, ViewToken } from "react-native";
+import { View, FlatList, ViewToken, Dimensions } from "react-native";
 import React, { useRef } from "react";
-import { Dimensions } from "react-native";
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 import { SinglePost } from "../../components/feed";
 import { useAsyncStorageScrolled } from "../../hooks";
+import {
+  FeedBottomSheetLayout,
+  MoreOptionsBottomSheetView,
+} from "../../components/feed";
+import FeedProvider from "../../components/feed/context/FeedProvider";
+import { SearchBottomSheetView as BrandInfoView } from "../../components/search";
+//redux
+import { getFeedBottomSheetView } from "../../redux/features/feed/feedSlice";
+import { useAppSelector } from "../../redux/store";
 
 const fakeData = [
   { id: "1", data: "1" },
@@ -20,6 +28,8 @@ const Feed = () => {
   const tabBarHeight = useBottomTabBarHeight();
   const [hasScrolled, writeItemToStorage] =
     useAsyncStorageScrolled("has_scrolled");
+  //redux
+  const feedBottomSheetView = useAppSelector(getFeedBottomSheetView);
 
   const onViewableItemsChanged = useRef(
     ({ changed }: { changed: ViewToken[]; viewableItems: ViewToken[] }) => {
@@ -56,23 +66,31 @@ const Feed = () => {
   );
 
   return (
-    <View className="flex-1">
-      <FlatList
-        data={fakeData}
-        renderItem={renderItem}
-        windowSize={3}
-        initialNumToRender={0}
-        maxToRenderPerBatch={2}
-        removeClippedSubviews
-        //usePoster
-        //posterSource={{uri:''}}
-        viewabilityConfig={{ itemVisiblePercentThreshold: 100 }}
-        keyExtractor={(item) => item.id}
-        pagingEnabled
-        decelerationRate={"normal"}
-        onViewableItemsChanged={onViewableItemsChanged.current}
-      />
-    </View>
+    <FeedProvider>
+      <View className="flex-1">
+        <FlatList
+          data={fakeData}
+          renderItem={renderItem}
+          windowSize={3}
+          initialNumToRender={0}
+          maxToRenderPerBatch={2}
+          removeClippedSubviews
+          //usePoster
+          //posterSource={{uri:''}}
+          viewabilityConfig={{ itemVisiblePercentThreshold: 100 }}
+          keyExtractor={(item) => item.id}
+          pagingEnabled
+          decelerationRate={"normal"}
+          onViewableItemsChanged={onViewableItemsChanged.current}
+        />
+        <FeedBottomSheetLayout>
+          {feedBottomSheetView === "FeedReadMore" && (
+            <MoreOptionsBottomSheetView />
+          )}
+          {feedBottomSheetView === "BrandInfo" && <BrandInfoView />}
+        </FeedBottomSheetLayout>
+      </View>
+    </FeedProvider>
   );
 };
 
