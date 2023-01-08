@@ -21,7 +21,7 @@ const ButtonsGroup = () => {
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
-        onPress={() => console.log("press share")}
+        onPress={() => toggleBottomSheet!(3, "FeedShare")}
         className="mt-[30px] items-center"
       >
         <ShareIcon size={29} color="white" />
@@ -30,7 +30,7 @@ const ButtonsGroup = () => {
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
-        onPress={() => console.log("press three dots")}
+        onPress={() => toggleBottomSheet!(1, "FeedMoreOptions")}
         className="mt-[30px] items-center"
       >
         <ThreeDotsIcon size={29} color="white" />

@@ -10,10 +10,10 @@ import { useAppDispatch } from "../../../redux/store";
 import { setFeedBottomSheetView } from "../../../redux/features/feed/feedSlice";
 
 enum SNAPPOINTS {
-  THANKSREPORT = "10%",
-  FEEDMOREOPTIONS = "25%",
+  THANKSREPORT = "8%",
+  FEEDMOREOPTIONS = "20%",
   FEEDREADMORE = "30%",
-  FEEDSHARE = "35%",
+  FEEDSHARE = "40%",
   BRANDINFO = "55%",
   REPORT = "55%",
 }
@@ -31,6 +31,7 @@ const BottomSheetLayout: FC<BottomSheetProps> = ({ children }) => {
 
   const operateBottomSheet = useCallback(
     () => (index: number, source: FeedBottomSheetView) => {
+      index === -1 && bottomSheetRef.current?.close();
       bottomSheetRef.current?.snapToIndex(index);
       dispatch(setFeedBottomSheetView(source));
     },

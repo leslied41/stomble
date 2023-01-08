@@ -23,7 +23,7 @@ const BrandInfo = () => {
         in lectus.
         <Text
           className="font-black text-[13px] leading-[15.6px]  text-white"
-          onPress={() => toggleBottomSheet!(1, "FeedReadMore")}
+          onPress={() => toggleBottomSheet!(2, "FeedReadMore")}
         >
           Read more
         </Text>

@@ -25,8 +25,8 @@ export const KeyIcon = () => {
   return <Ionicons name="ios-key-outline" size={24} color="black" />;
 };
 
-export const ChevronRight = () => {
-  return <EvilIcons name="chevron-right" size={48} color="black" />;
+export const ChevronRight: FC<IconProps> = ({ color = "black", size = 48 }) => {
+  return <EvilIcons name="chevron-right" size={size} color={color} />;
 };
 
 export const ArrowDown = ({ size = 22, color = "white" }) => (

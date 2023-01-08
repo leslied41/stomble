@@ -6,12 +6,16 @@ import { useAsyncStorageScrolled } from "../../hooks";
 import {
   FeedBottomSheetLayout,
   MoreOptionsBottomSheetView,
+  ReadMoreBottomView,
+  ShareBottomView,
+  ThanksReportBottomView,
 } from "../../components/feed";
 import FeedProvider from "../../components/feed/context/FeedProvider";
 import { SearchBottomSheetView as BrandInfoView } from "../../components/search";
 //redux
 import { getFeedBottomSheetView } from "../../redux/features/feed/feedSlice";
 import { useAppSelector } from "../../redux/store";
+import { ReportVideoBottomView } from "../../components/feed/bottomSheet";
 
 const fakeData = [
   { id: "1", data: "1" },
@@ -84,10 +88,18 @@ const Feed = () => {
           onViewableItemsChanged={onViewableItemsChanged.current}
         />
         <FeedBottomSheetLayout>
-          {feedBottomSheetView === "FeedReadMore" && (
+          {feedBottomSheetView === "FeedReadMore" && <ReadMoreBottomView />}
+          {feedBottomSheetView === "BrandInfo" && <BrandInfoView />}
+          {feedBottomSheetView === "FeedMoreOptions" && (
             <MoreOptionsBottomSheetView />
           )}
-          {feedBottomSheetView === "BrandInfo" && <BrandInfoView />}
+          {feedBottomSheetView === "FeedShare" && <ShareBottomView />}
+          {feedBottomSheetView === "FeedReportVideo" && (
+            <ReportVideoBottomView />
+          )}
+          {feedBottomSheetView === "FeedThanksReport" && (
+            <ThanksReportBottomView />
+          )}
         </FeedBottomSheetLayout>
       </View>
     </FeedProvider>
