@@ -3,6 +3,7 @@ import React, { useRef } from "react";
 import { Dimensions } from "react-native";
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 import { SinglePost } from "../../components/feed";
+import { useAsyncStorageScrolled } from "../../hooks";
 
 const fakeData = [
   { id: "1", data: "1" },
@@ -17,6 +18,8 @@ type Item = Record<string, string>;
 const Feed = () => {
   const mediaRefs = useRef<any>([]);
   const tabBarHeight = useBottomTabBarHeight();
+  const [hasScrolled, writeItemToStorage] =
+    useAsyncStorageScrolled("has_scrolled");
 
   const onViewableItemsChanged = useRef(
     ({ changed }: { changed: ViewToken[]; viewableItems: ViewToken[] }) => {
@@ -24,6 +27,11 @@ const Feed = () => {
         const cell = mediaRefs.current[element.item.id];
         if (cell) {
           if (element.isViewable) {
+            if (element.item.id === "2") {
+              !hasScrolled && writeItemToStorage("true");
+              //if has not scrolled then check if user has scroll to another item.
+            }
+
             cell.play();
           } else {
             cell.stop();
@@ -33,7 +41,7 @@ const Feed = () => {
     }
   );
 
-  const renderItem = ({ item }: { item: Item }) => (
+  const renderItem = ({ item, index }: { item: Item; index: number }) => (
     <View
       style={{
         flex: 1,
@@ -41,6 +49,7 @@ const Feed = () => {
       }}
     >
       <SinglePost
+        isFirstItemOfList={index === 0}
         ref={(SinglePostRef) => (mediaRefs.current[item.id] = SinglePostRef)}
       />
     </View>

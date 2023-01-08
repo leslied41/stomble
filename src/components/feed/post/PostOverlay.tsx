@@ -3,8 +3,9 @@ import React, { FC, Suspense } from "react";
 import ButtonsGroup from "./ButtonsGroup";
 import BrandInfo from "./BrandInfo";
 import ProgressiveBar from "./ProgressiveBar";
-import { PlayIcon } from "../../svg";
+import { PlayIcon, ScrollUpIcon } from "../../svg";
 import { convertMills } from "../../../services/utils";
+import { useAsyncStorageScrolled } from "../../../hooks";
 
 type PostOverlayProps = {
   pause: () => void;
@@ -13,6 +14,7 @@ type PostOverlayProps = {
   positionMillis: number | undefined;
   durationMillis: number | undefined;
   updatePositionMillis: (millis: number) => Promise<void>;
+  isFirstItemOfList: boolean;
 };
 
 const SliderBar = React.lazy(() => import("./SliderBar"));
@@ -24,7 +26,10 @@ const PostOverlay: FC<PostOverlayProps> = ({
   positionMillis,
   durationMillis,
   updatePositionMillis,
+  isFirstItemOfList,
 }) => {
+  const [hasScrolled] = useAsyncStorageScrolled("has_scrolled");
+
   /**
    * to play or pause of video and grab
    * positionMillis,durationMillis when video paused.
@@ -79,6 +84,17 @@ const PostOverlay: FC<PostOverlayProps> = ({
             )}
           </Suspense>
         </View>
+        {/* the scroll up intro will only appear meeting the condition that it's the new user's
+        first time login and has not scrolled yet, and it is located in the first item rendered from
+        the flatlist. */}
+        {isFirstItemOfList && !hasScrolled && (
+          <View className="mt-[13px] items-center">
+            <ScrollUpIcon />
+            <Text className="mt-[13px] text-[12px] leading-[14.4px] font-bold text-white">
+              Scroll up to watch the next video
+            </Text>
+          </View>
+        )}
       </View>
 
       {/* buttons group */}
