@@ -6,3 +6,4 @@ export {
   ShareBottomView,
   ThanksReportBottomView,
 } from "./bottomSheet";
+export { IntroOverlay, Welcome, Demo, Finish } from "./intro";

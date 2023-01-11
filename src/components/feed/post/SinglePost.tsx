@@ -12,10 +12,11 @@ import PostOverlay from "./PostOverlay";
 
 type Props = {
   isFirstItemOfList: boolean;
+  hidenOverlay: boolean;
 };
 
 const SinglePost = forwardRef<any, Props>(
-  ({ isFirstItemOfList = false }, parentRef) => {
+  ({ isFirstItemOfList = false, hidenOverlay = false }, parentRef) => {
     const ref = useRef<Video | null>(null);
     const [positionMillis, setPositionMillis] = useState<number>();
     const [durationMillis, setDurationMillis] = useState<number>();
@@ -147,15 +148,17 @@ const SinglePost = forwardRef<any, Props>(
 
     return (
       <>
-        <PostOverlay
-          play={play}
-          pause={pause}
-          playing={playing}
-          durationMillis={durationMillis}
-          positionMillis={positionMillis}
-          updatePositionMillis={updatePositionMillis}
-          isFirstItemOfList={isFirstItemOfList}
-        />
+        {!hidenOverlay && (
+          <PostOverlay
+            play={play}
+            pause={pause}
+            playing={playing}
+            durationMillis={durationMillis}
+            positionMillis={positionMillis}
+            updatePositionMillis={updatePositionMillis}
+            isFirstItemOfList={isFirstItemOfList}
+          />
+        )}
         <Video
           ref={ref}
           className="flex-1"

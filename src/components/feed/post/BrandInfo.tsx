@@ -1,9 +1,13 @@
 import { View, Text } from "react-native";
-import React, { memo } from "react";
+import React, { FC, memo } from "react";
 import { CustomButton } from "../../search";
 import { useFeedContext } from "../context/FeedProvider";
 
-const BrandInfo = () => {
+type BrandInfoProps = {
+  isStatic?: boolean;
+};
+
+const BrandInfo: FC<BrandInfoProps> = ({ isStatic = false }) => {
   const { toggleBottomSheet } = useFeedContext();
   return (
     <View>
@@ -15,7 +19,11 @@ const BrandInfo = () => {
           variant="follow"
           size="small"
           borderRadius={5}
-          onPress={() => console.log("pressed follow button")}
+          onPress={
+            !isStatic
+              ? () => console.log("pressed follow button")
+              : () => console.log("static brand info")
+          }
         />
       </View>
       <Text className="mt-[13px] text-[13px] leading-[15.6px] font-normal text-white">
@@ -23,7 +31,11 @@ const BrandInfo = () => {
         in lectus.
         <Text
           className="font-black text-[13px] leading-[15.6px]  text-white"
-          onPress={() => toggleBottomSheet!(2, "FeedReadMore")}
+          onPress={
+            !isStatic
+              ? () => toggleBottomSheet!(2, "FeedReadMore")
+              : () => console.log("static brand info")
+          }
         >
           Read more
         </Text>

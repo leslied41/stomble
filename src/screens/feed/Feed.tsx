@@ -1,7 +1,6 @@
 import { View, FlatList, ViewToken, Dimensions } from "react-native";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
-import { SinglePost } from "../../components/feed";
 import { useAsyncStorageScrolled } from "../../hooks";
 import {
   FeedBottomSheetLayout,
@@ -9,6 +8,11 @@ import {
   ReadMoreBottomView,
   ShareBottomView,
   ThanksReportBottomView,
+  IntroOverlay,
+  SinglePost,
+  Welcome,
+  Demo,
+  Finish,
 } from "../../components/feed";
 import FeedProvider from "../../components/feed/context/FeedProvider";
 import { SearchBottomSheetView as BrandInfoView } from "../../components/search";
@@ -26,12 +30,19 @@ const fakeData = [
   { id: "6", data: "6" },
 ];
 type Item = Record<string, string>;
+export type IntroPageType = "welcome" | "demo" | "finish";
 
 const Feed = () => {
   const mediaRefs = useRef<any>([]);
   const tabBarHeight = useBottomTabBarHeight();
   const [hasScrolled, writeItemToStorage] =
     useAsyncStorageScrolled("has_scrolled");
+  //there should be one tag grabbed from backend to show if this account has seen
+  //intro before. if yes, this intro will not come out. if false, user will see
+  //the intro. and after user finshs this intro, or click skip, this tag will
+  //be updated as true.
+  const [isIntroOpen, setIsIntroOpen] = useState(true);
+  const [introPage, setIntroPage] = useState<IntroPageType>("welcome");
   //redux
   const feedBottomSheetView = useAppSelector(getFeedBottomSheetView);
 
@@ -63,6 +74,7 @@ const Feed = () => {
       }}
     >
       <SinglePost
+        hidenOverlay={introPage === "demo"}
         isFirstItemOfList={index === 0}
         ref={(SinglePostRef) => (mediaRefs.current[item.id] = SinglePostRef)}
       />
@@ -72,6 +84,19 @@ const Feed = () => {
   return (
     <FeedProvider>
       <View className="flex-1">
+        <IntroOverlay modalVisible={isIntroOpen}>
+          {introPage === "welcome" && <Welcome setIntroPage={setIntroPage} />}
+          {introPage === "demo" && (
+            <Demo setIntroPage={setIntroPage} setIsIntroOpen={setIsIntroOpen} />
+          )}
+          {introPage === "finish" && (
+            <Finish
+              setIntroPage={setIntroPage}
+              setIsIntroOpen={setIsIntroOpen}
+            />
+          )}
+        </IntroOverlay>
+
         <FlatList
           data={fakeData}
           renderItem={renderItem}
@@ -87,6 +112,7 @@ const Feed = () => {
           decelerationRate={"normal"}
           onViewableItemsChanged={onViewableItemsChanged.current}
         />
+
         <FeedBottomSheetLayout>
           {feedBottomSheetView === "FeedReadMore" && <ReadMoreBottomView />}
           {feedBottomSheetView === "BrandInfo" && <BrandInfoView />}
