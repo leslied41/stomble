@@ -56,7 +56,6 @@ const Feed = () => {
               !hasScrolled && writeItemToStorage("true");
               //if has not scrolled then check if user has scroll to another item.
             }
-
             cell.play();
           } else {
             cell.stop();

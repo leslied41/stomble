@@ -11,6 +11,7 @@ const ButtonsGroup = () => {
       <TouchableOpacity onPress={() => toggleBottomSheet!(4, "BrandInfo")}>
         <BusinessProfile width={48} height={48} borderRadius={24} />
       </TouchableOpacity>
+
       <TouchableOpacity
         onPress={() => console.log("press heart")}
         className="mt-[30px] items-center"
@@ -20,6 +21,7 @@ const ButtonsGroup = () => {
           100
         </Text>
       </TouchableOpacity>
+
       <TouchableOpacity
         onPress={() => toggleBottomSheet!(3, "FeedShare")}
         className="mt-[30px] items-center"
@@ -29,6 +31,7 @@ const ButtonsGroup = () => {
           100
         </Text>
       </TouchableOpacity>
+
       <TouchableOpacity
         onPress={() => toggleBottomSheet!(1, "FeedMoreOptions")}
         className="mt-[30px] items-center"

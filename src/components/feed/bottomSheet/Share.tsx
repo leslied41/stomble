@@ -1,7 +1,26 @@
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import { View, Text, Image, TouchableOpacity, Share } from "react-native";
 import React from "react";
 
-const Share = () => {
+const ShareBottomView = () => {
+  const onShare = async () => {
+    try {
+      const result = await Share.share({
+        message:
+          "React Native | A framework for building native apps using React",
+      });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <View>
       {/* clip info */}
@@ -55,7 +74,7 @@ const Share = () => {
               source={require("../../../../assets/images/feed/email.png")}
             />
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={onShare}>
             <Image
               source={require("../../../../assets/images/feed/options.png")}
             />
@@ -66,4 +85,4 @@ const Share = () => {
   );
 };
 
-export default Share;
+export default ShareBottomView;

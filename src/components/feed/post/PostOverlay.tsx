@@ -1,9 +1,7 @@
 import { View, Text, Pressable } from "react-native";
-import React, { FC, Suspense } from "react";
-import ButtonsGroup from "./ButtonsGroup";
-import BrandInfo from "./BrandInfo";
-import ProgressiveBar from "./ProgressiveBar";
-import { PlayIcon, ScrollUpIcon } from "../../svg";
+import React, { FC, Suspense, useState } from "react";
+import { ButtonsGroup, BrandInfo, ProgressiveBar, FingerScrollUp } from ".";
+import { PlayIcon } from "../../svg";
 import { convertMills } from "../../../services/utils";
 import { useAsyncStorageScrolled } from "../../../hooks";
 
@@ -29,6 +27,8 @@ const PostOverlay: FC<PostOverlayProps> = ({
   isFirstItemOfList,
 }) => {
   const [hasScrolled] = useAsyncStorageScrolled("has_scrolled");
+  const [fingerViewWidth, setFingerViewWidth] = useState<number>();
+  const [fingerViewHeight, setFingerViewHeight] = useState<number>();
 
   /**
    * to play or pause of video and grab
@@ -84,18 +84,29 @@ const PostOverlay: FC<PostOverlayProps> = ({
             )}
           </Suspense>
         </View>
-        {/* the scroll up intro will only appear meeting the condition that it's the new user's
+      </View>
+
+      {/* the scroll up intro icon will only appear meeting the condition that it's the new user's
         first time login and has not scrolled yet, and it is located in the first item rendered from
         the flatlist. */}
-        {isFirstItemOfList && !hasScrolled && (
-          <View className="mt-[13px] items-center">
-            <ScrollUpIcon />
-            <Text className="mt-[13px] text-[12px] leading-[14.4px] font-bold text-white">
-              Scroll up to watch the next video
-            </Text>
-          </View>
-        )}
-      </View>
+      {isFirstItemOfList && !hasScrolled && (
+        <View
+          style={{
+            transform: [
+              { translateX: fingerViewWidth ? -fingerViewWidth / 2 : 0 },
+              { translateY: fingerViewHeight ? -fingerViewHeight / 2 : 0 },
+            ],
+          }}
+          className="absolute top-1/2 left-1/2 items-center"
+          onLayout={(e) => {
+            const { width, height } = e.nativeEvent.layout;
+            setFingerViewHeight(height);
+            setFingerViewWidth(width);
+          }}
+        >
+          <FingerScrollUp />
+        </View>
+      )}
 
       {/* buttons group */}
       <View className="absolute right-[17px] bottom-[142px] items-center z-10">
