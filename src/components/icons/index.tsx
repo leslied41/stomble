@@ -29,6 +29,10 @@ export const ChevronRight: FC<IconProps> = ({ color = "black", size = 48 }) => {
   return <EvilIcons name="chevron-right" size={size} color={color} />;
 };
 
+export const ChevronDown: FC<IconProps> = ({ color = "black", size = 48 }) => {
+  return <EvilIcons name="chevron-down" size={size} color={color} />;
+};
+
 export const ArrowDown = ({ size = 22, color = "white" }) => (
   <MaterialIcons name="keyboard-arrow-down" size={size} color={color} />
 );

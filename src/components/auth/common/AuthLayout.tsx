@@ -23,7 +23,7 @@ const AuthLayout: FC<AuthLayoutProps> = ({ children, header }) => {
           setHeight(h);
         }}
       >
-        <View className="h-[200px] w-full bg-[#232637] rounded-b-[12px]" />
+        <View className="h-[140px] w-full bg-[#232637] rounded-b-[12px]" />
         <View
           className="absolute left-[17px] right-[17px] bg-[#222222] px-[22px] rounded-t-[16px]"
           style={{ height: height }}

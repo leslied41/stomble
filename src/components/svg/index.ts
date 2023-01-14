@@ -12,3 +12,6 @@ export { default as ScrollMoreIcon } from "./ScrollMoreIcon";
 export { default as PlayIcon } from "./PlayIcon";
 export { default as ScrollUpIcon } from "./ScrollUp";
 export { default as OneFingerIcon } from "./OneFinger";
+export { default as ArrowDown } from "./ArrowDown";
+export { default as LockOff } from "./LockOff";
+export { default as LockOn } from "./LockOn";
