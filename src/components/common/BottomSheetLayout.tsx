@@ -1,5 +1,14 @@
 /**
  * for feed screen bottom sheet layout, it is not in here.
+ * the reason why feed use its own bottomsheet is because it has multipe bottomsheets in
+ * one screen, so I set different snappoints standing for different bottomsheets, by manipulating
+ * different snappoints, and set different current view can achieve the same outcome like open
+ * different bottom sheets. so it will make code dry. the proper scenario is that if the multiple bottoms sheets
+ * are in the same screen, this strategy is proper,and put the under a usecontext to store the function
+ * that snapto different index. I tried to make this strategy globally, and set a global usecontext, and import
+ * this bottomsheet whrerever it is needed, but somehow the result is not desirable. so better to make this bottomsheet
+ * in this module global, and applied in where each screen has only one or two bottom sheet, if there are multiple, what I did
+ * in feed is the recommended solution.
  */
 
 import React, { FC, useCallback, useMemo, useRef } from "react";
