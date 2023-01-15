@@ -15,3 +15,4 @@ export { default as OneFingerIcon } from "./OneFinger";
 export { default as ArrowDown } from "./ArrowDown";
 export { default as LockOff } from "./LockOff";
 export { default as LockOn } from "./LockOn";
+export { default as Cross } from "./Corss";

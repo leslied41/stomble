@@ -15,6 +15,12 @@ export type HomeTabParamList = {
   Settings: undefined;
 };
 
+export type UserTabParamList = {
+  Liked: undefined;
+  Following: undefined;
+  History: undefined;
+};
+
 export type AuthStackParamList = {
   Landing: undefined;
   Login: { title: string };
@@ -100,6 +106,7 @@ export type SearchScreenProps<T extends keyof SearchStackParamList> =
 declare global {
   namespace ReactNavigation {
     interface HomeParamList extends HomeTabParamList {}
+    interface UserParamList extends UserTabParamList {}
     interface AuthParamList extends AuthStackParamList {}
     interface CommonParamList extends CommonStackParamList {}
     interface SearchParamList extends SearchStackParamList {}

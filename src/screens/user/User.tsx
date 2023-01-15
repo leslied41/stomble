@@ -1,14 +1,16 @@
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import React from "react";
-import { UserLayout } from "../../components/user";
+import UserRoutes from "./UserRoutes";
+import { Top } from "../../components/user/common";
 
 const User = () => {
   return (
-    <UserLayout>
-      <View className="flex-1 mt-[90px]">
-        <Text>User</Text>
+    <>
+      <Top />
+      <View className="flex-1">
+        <UserRoutes />
       </View>
-    </UserLayout>
+    </>
   );
 };
 

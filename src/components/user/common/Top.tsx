@@ -2,29 +2,20 @@ import {
   View,
   Text,
   StatusBar,
-  SafeAreaView,
-  Platform,
   TouchableOpacity,
   Pressable,
   Image,
 } from "react-native";
-import React, { FC, ReactNode, useState } from "react";
-import { Bell, ArrowDown, LockOff, LockOn } from "../../svg";
+import React, { useState } from "react";
+import { Bell, ArrowDown, LockOff, LockOn, Cross } from "../../svg";
 
-type UserLayoutTypes = {
-  children: ReactNode;
-};
-
-const UserLayout: FC<UserLayoutTypes> = ({ children }) => {
+const Top = () => {
   const [lockOn, setLockOn] = useState(false);
-  const [height, setHeight] = useState(0);
   return (
-    <View className="flex-1 bg-[#232637]">
-      <SafeAreaView
-        className="flex-1"
-        style={{ marginTop: Platform.OS === "android" ? 52 : 0 }}
-      >
+    <View className="h-[209px] bg-[#232637] rounded-b-[12px] ">
+      <View className="flex-1" style={{ marginTop: 63 }}>
         <StatusBar barStyle="light-content" />
+
         <View className="relative items-center">
           {/* user name */}
           <TouchableOpacity className="flex-row items-center">
@@ -50,37 +41,25 @@ const UserLayout: FC<UserLayoutTypes> = ({ children }) => {
           </Pressable>
         </View>
 
-        <View
-          className="flex-1 bg-[#000] realative mt-5"
-          onLayout={(e) => {
-            const { height: h } = e.nativeEvent.layout;
-            setHeight(h);
-          }}
-        >
-          {/* profile */}
-          <View
-            className="absolute w-[100px] h-[100px] rounded-[50px] bg-[#222222] z-10 left-1/2 justify-center items-center"
-            style={{ transform: [{ translateX: -50 }, { translateY: -40 }] }}
+        <View className="flex-1 mt-[14px] bg-[#222222]  relative ">
+          <TouchableOpacity
+            className="absolute w-[110px] h-[110px] rounded-[55px] left-1/2 bg-[#222222] justify-center items-center"
+            style={{ transform: [{ translateX: -55 }, { translateY: -38 }] }}
           >
             <Image
               source={{
                 uri: "https://static.wikia.nocookie.net/southpark/images/c/c2/Butters_%28Facebook%29.jpg/revision/latest/scale-to-width-down/720?cb=20101010032409",
               }}
-              className="w-[80px] h-[80px] rounded-[40px]"
+              className="w-[90px] h-[90px] rounded-[45px]"
             />
-          </View>
-
-          <View className="h-[140px] w-full bg-[#232637] rounded-b-[12px]" />
-          <View
-            className="bg-[#222222] absolute left-[17px] right-[17px] rounded-t-[16px]"
-            style={{ height: height }}
-          >
-            {children}
-          </View>
+            <View className="w-[23px] h-[23px] rounded-[11.5px] bg-white justify-center items-center absolute right-0 bottom-[15%]">
+              <Cross />
+            </View>
+          </TouchableOpacity>
         </View>
-      </SafeAreaView>
+      </View>
     </View>
   );
 };
 
-export default UserLayout;
+export default Top;

@@ -68,7 +68,10 @@ export const PlayIcon = () => <Feather name="play" size={12} color="#5C5C5C" />;
 export const HeartIcon: FC<IconProps> = ({ color = "#5C5C5C", size = 12 }) => (
   <AntDesign name="heart" size={size} color={color} />
 );
-
+export const EmptyHeartIcon: FC<IconProps> = ({
+  color = "#5C5C5C",
+  size = 24,
+}) => <AntDesign name="hearto" size={size} color={color} />;
 export const ShareIcon: FC<IconProps> = ({ color = "#5C5C5C", size = 12 }) => (
   <FontAwesome5 name="share" size={size} color={color} />
 );
@@ -77,3 +80,11 @@ export const ThreeDotsIcon: FC<IconProps> = ({
   size = 24,
   color = "black",
 }) => <Entypo name="dots-three-horizontal" size={size} color={color} />;
+
+export const ClockIcon: FC<IconProps> = ({ color = "#5C5C5C", size = 24 }) => (
+  <FontAwesome5 name="clock" size={size} color={color} />
+);
+
+export const UserIcon: FC<IconProps> = ({ color = "#5C5C5C", size = 24 }) => (
+  <FontAwesome5 name="user" size={size} color={color} />
+);
