@@ -1,5 +1,7 @@
 import { View, Text, TouchableOpacity, FlatList, Image } from "react-native";
 import React from "react";
+import { useAppDispatch } from "../../../redux/store";
+import { openUserBottomSheet } from "../../../redux/features/user/userSlice";
 
 type ItemProps = {
   title: string;
@@ -7,24 +9,28 @@ type ItemProps = {
   image: string;
   id: string;
   index: number;
+  onPress: () => void;
 };
 
-const Item = ({ title, subTitle, index }: ItemProps) => (
+const Item = ({ title, subTitle, index, onPress }: ItemProps) => (
   <View
     className="flex-row flex-1 justify-between items-center"
     style={{ marginTop: index === 0 ? 0 : 15 }}
   >
     <View className="flex-row">
-      <Image
-        source={require("../../../../assets/images/user/test.png")}
-        style={{
-          width: 40.7,
-          height: 40.7,
-          borderRadius: 40.7 / 2,
-          borderWidth: 1,
-          borderColor: "#fff",
-        }}
-      />
+      <TouchableOpacity onPress={onPress}>
+        <Image
+          source={require("../../../../assets/images/user/test.png")}
+          style={{
+            width: 40.7,
+            height: 40.7,
+            borderRadius: 40.7 / 2,
+            borderWidth: 1,
+            borderColor: "#fff",
+          }}
+        />
+      </TouchableOpacity>
+
       <View className="ml-[9px]">
         <Text className="text-[11.76px] leading-[19.9px] font-bold text-white ">
           {title}
@@ -64,10 +70,19 @@ const DATA = [
 ];
 
 const FollowingList = () => {
+  //redux
+  const dispatch = useAppDispatch();
+
   return (
     <FlatList
       data={DATA}
-      renderItem={({ item, index }) => <Item {...item} index={index} />}
+      renderItem={({ item, index }) => (
+        <Item
+          {...item}
+          index={index}
+          onPress={() => dispatch(openUserBottomSheet())}
+        />
+      )}
       keyExtractor={(item) => item.id}
     />
   );

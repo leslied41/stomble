@@ -1,1 +1,1 @@
-export { default as SearchBottomSheetView } from "./BottomSheetView";
+export { default as BusinessBottomSheetView } from "./BottomSheetView";

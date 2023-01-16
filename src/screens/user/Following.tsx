@@ -6,10 +6,13 @@ import {
   FollowingList,
 } from "../../components/user";
 import { FollowedNoContent } from "../../components/svg";
+import { UserScreenNavigationProps } from "../../types/navigation";
+import { useNavigation } from "@react-navigation/native";
 
 let hasFollowing = true;
 
 const FollowingScreen = () => {
+  const navigation = useNavigation<UserScreenNavigationProps<"Following">>();
   return (
     <View className="flex-1 bg-[#222222]">
       <View className="mt-[11px]">
@@ -24,6 +27,7 @@ const FollowingScreen = () => {
           <NoContent
             text="Sorry, you haven’t followed any users yet"
             Icon={<FollowedNoContent />}
+            onPress={() => navigation.navigate("Feed")}
           />
         </View>
       )}

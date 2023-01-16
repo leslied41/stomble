@@ -8,6 +8,8 @@ import {
 import React, { useState } from "react";
 import { ChevronUp, ChevronDown } from "../../icons";
 import { BusinessProfile } from "../common";
+import { useAppDispatch } from "../../../redux/store";
+import { openUserBottomSheet } from "../../../redux/features/user/userSlice";
 
 type SingleItem = { id: string; image: string };
 
@@ -46,17 +48,36 @@ const DATA: SingleItem[] = [
   },
 ];
 
-const Item = ({ item, index }: { item: SingleItem; index: number }) => (
-  <TouchableOpacity style={{ marginLeft: index === 0 ? 0 : 9 }}>
+const Item = ({
+  item,
+  index,
+  onPress,
+}: {
+  item: SingleItem;
+  index: number;
+  onPress: () => void;
+}) => (
+  <TouchableOpacity
+    style={{ marginLeft: index === 0 ? 0 : 9 }}
+    onPress={onPress}
+  >
     <BusinessProfile image={item.image} />
   </TouchableOpacity>
 );
 
 const RecommendAccounts = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  //redux
+  const dispatch = useAppDispatch();
 
   const renderItem = ({ item, index }: { item: SingleItem; index: number }) => {
-    return <Item item={item} index={index} />;
+    return (
+      <Item
+        item={item}
+        index={index}
+        onPress={() => dispatch(openUserBottomSheet())}
+      />
+    );
   };
 
   return (
