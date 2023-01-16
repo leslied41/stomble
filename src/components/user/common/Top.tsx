@@ -8,9 +8,11 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { Bell, ArrowDown, LockOff, LockOn, Cross } from "../../svg";
+import { useNavigation } from "@react-navigation/native";
 
 const Top = () => {
   const [lockOn, setLockOn] = useState(false);
+  const navigation = useNavigation();
   return (
     <View className="h-[209px] bg-[#232637] rounded-b-[12px] ">
       <View className="flex-1" style={{ marginTop: 63 }}>
@@ -18,7 +20,10 @@ const Top = () => {
 
         <View className="relative items-center">
           {/* user name */}
-          <TouchableOpacity className="flex-row items-center">
+          <TouchableOpacity
+            className="flex-row items-center"
+            onPress={() => navigation.navigate("FullName")}
+          >
             <Text className="text-[14px] leading-[16.8px] font-bold text-white ">
               John
             </Text>

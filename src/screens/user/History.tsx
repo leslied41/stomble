@@ -2,6 +2,8 @@ import { SectionList, View } from "react-native";
 import React from "react";
 import { NoContent, VideoThumbnails } from "../../components/user/common";
 import { HistoryNoContent } from "../../components/svg";
+import { UserScreenNavigationProps } from "../../types/navigation";
+import { useNavigation } from "@react-navigation/native";
 
 const DATA = [
   {
@@ -35,9 +37,11 @@ const DATA = [
   },
 ];
 
-let hasHistoryRecord = true;
+let hasHistoryRecord = false;
 
 const HistoryScreen = () => {
+  const navigation = useNavigation<UserScreenNavigationProps<"History">>();
+
   return (
     <View className="flex-1 bg-[#222222]">
       {hasHistoryRecord ? (
@@ -56,6 +60,7 @@ const HistoryScreen = () => {
           <NoContent
             text="Sorry, you haven’t any histories yet"
             Icon={<HistoryNoContent />}
+            onPress={() => navigation.navigate("Feed")}
           />
         </View>
       )}

@@ -2,8 +2,10 @@ import { View, SectionList } from "react-native";
 import React from "react";
 import { NoContent, VideoThumbnails } from "../../components/user/common";
 import { LikedNoContent } from "../../components/svg";
+import { UserScreenNavigationProps } from "../../types/navigation";
+import { useNavigation } from "@react-navigation/native";
 
-let hasLikedVideo = true;
+let hasLikedVideo = false;
 
 const DATA = [
   {
@@ -51,6 +53,8 @@ const DATA = [
 ];
 
 const LikedScreen = () => {
+  const navigation = useNavigation<UserScreenNavigationProps<"Following">>();
+
   return (
     <View className="flex-1 bg-[#222222]">
       {hasLikedVideo ? (
@@ -69,6 +73,7 @@ const LikedScreen = () => {
           <NoContent
             text="Sorry, you haven’t liked any video yet"
             Icon={<LikedNoContent />}
+            onPress={() => navigation.navigate("Feed")}
           />
         </View>
       )}
