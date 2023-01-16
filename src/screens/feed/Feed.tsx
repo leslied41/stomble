@@ -110,6 +110,8 @@ const Feed = () => {
           pagingEnabled
           decelerationRate={"normal"}
           onViewableItemsChanged={onViewableItemsChanged.current}
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
         />
 
         <FeedBottomSheetLayout>

@@ -8,3 +8,4 @@ export {
 export { default as converArrayInPair } from "./covertArrayInPair";
 export { changePasswordFormValidate } from "./changePasswordFormValidate";
 export { convertMills } from "./convertMills";
+export { default as converArrayInTriple } from "./convertArrayInTriple";

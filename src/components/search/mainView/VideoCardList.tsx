@@ -31,6 +31,8 @@ const VideoCardList: FC<VideoCardListProps> = ({ title }) => {
           )}
           keyExtractor={(item) => item.id.toString()}
           ListFooterComponent={<ListFooterComponent />}
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
         />
       </View>
     </View>

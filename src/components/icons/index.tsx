@@ -33,6 +33,10 @@ export const ChevronDown: FC<IconProps> = ({ color = "black", size = 48 }) => {
   return <EvilIcons name="chevron-down" size={size} color={color} />;
 };
 
+export const ChevronUp: FC<IconProps> = ({ color = "black", size = 48 }) => {
+  return <EvilIcons name="chevron-up" size={size} color={color} />;
+};
+
 export const ArrowDown = ({ size = 22, color = "white" }) => (
   <MaterialIcons name="keyboard-arrow-down" size={size} color={color} />
 );
@@ -87,4 +91,8 @@ export const ClockIcon: FC<IconProps> = ({ color = "#5C5C5C", size = 24 }) => (
 
 export const UserIcon: FC<IconProps> = ({ color = "#5C5C5C", size = 24 }) => (
   <FontAwesome5 name="user" size={size} color={color} />
+);
+
+export const BinIcon: FC<IconProps> = ({ color = "#5C5C5C", size = 24 }) => (
+  <MaterialIcons name="delete" size={size} color={color} />
 );

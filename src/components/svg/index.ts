@@ -16,3 +16,6 @@ export { default as ArrowDown } from "./ArrowDown";
 export { default as LockOff } from "./LockOff";
 export { default as LockOn } from "./LockOn";
 export { default as Cross } from "./Corss";
+export { default as FollowedNoContent } from "./FollowedNoContent";
+export { default as HistoryNoContent } from "./HistoryNoContent";
+export { default as LikedNoContent } from "./LikedNoContent";
