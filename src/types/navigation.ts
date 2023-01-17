@@ -44,6 +44,7 @@ export type AuthStackParamList = {
 export type CommonStackParamList = {
   FullName: undefined;
   PersonalInfo: undefined;
+  Notification: undefined;
 };
 
 export type SearchStackParamList = {

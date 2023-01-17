@@ -9,7 +9,7 @@ import React, { useState } from "react";
 import { ChevronUp, ChevronDown } from "../../icons";
 import { BusinessProfile } from "../common";
 import { useAppDispatch } from "../../../redux/store";
-import { openUserBottomSheet } from "../../../redux/features/user/userSlice";
+import { openUserBusinessBottomSheet } from "../../../redux/features/user/userSlice";
 
 type SingleItem = { id: string; image: string };
 
@@ -75,7 +75,7 @@ const RecommendAccounts = () => {
       <Item
         item={item}
         index={index}
-        onPress={() => dispatch(openUserBottomSheet())}
+        onPress={() => dispatch(openUserBusinessBottomSheet())}
       />
     );
   };

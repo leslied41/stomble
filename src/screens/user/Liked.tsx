@@ -5,7 +5,7 @@ import { LikedNoContent } from "../../components/svg";
 import { UserScreenNavigationProps } from "../../types/navigation";
 import { useNavigation } from "@react-navigation/native";
 
-let hasLikedVideo = false;
+let hasLikedVideo = true;
 
 const DATA = [
   {

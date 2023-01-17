@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, FlatList, Image } from "react-native";
 import React from "react";
 import { useAppDispatch } from "../../../redux/store";
-import { openUserBottomSheet } from "../../../redux/features/user/userSlice";
+import { openUserBusinessBottomSheet } from "../../../redux/features/user/userSlice";
 
 type ItemProps = {
   title: string;
@@ -80,7 +80,7 @@ const FollowingList = () => {
         <Item
           {...item}
           index={index}
-          onPress={() => dispatch(openUserBottomSheet())}
+          onPress={() => dispatch(openUserBusinessBottomSheet())}
         />
       )}
       keyExtractor={(item) => item.id}
