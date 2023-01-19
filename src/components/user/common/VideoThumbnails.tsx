@@ -15,6 +15,7 @@ type VideoThumbnailsType = {
 
 const VideoThumbnails: FC<VideoThumbnailsType> = ({ videos, date }) => {
   const videos_arr = converArrayInTriple(videos);
+
   return (
     <View>
       <View className="flex-row ml-[27px] mr-[10px] justify-between h-[33.65px] items-center">
@@ -23,8 +24,8 @@ const VideoThumbnails: FC<VideoThumbnailsType> = ({ videos, date }) => {
         </Text>
         <BinIcon color="#ABABAB" size={24} />
       </View>
-      {videos_arr.map((vs, index) => (
-        <View key={`vs${index}`} className="flex-row">
+      {videos_arr.map((vs, i) => (
+        <View key={`vs${i}`} className="flex-row">
           {vs.map((v) => (
             <View
               key={v.id}

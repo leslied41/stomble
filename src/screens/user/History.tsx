@@ -43,7 +43,7 @@ const HistoryScreen = () => {
   const navigation = useNavigation<UserScreenNavigationProps<"History">>();
 
   return (
-    <View className="flex-1 bg-[#222222]">
+    <View className="flex-1 bg-[#222222] pb-5">
       {hasHistoryRecord ? (
         <SectionList
           sections={DATA}

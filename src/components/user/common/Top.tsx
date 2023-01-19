@@ -6,7 +6,7 @@ import {
   Pressable,
   Image,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Bell, ArrowDown, LockOff, LockOn, Cross } from "../../svg";
 import * as ImagePicker from "expo-image-picker";
 import { openSwitchAccountBottomSheetOpen } from "../../../redux/features/user/userSlice";
@@ -15,12 +15,30 @@ import { useNavigation } from "@react-navigation/native";
 
 const Top = () => {
   const [lockOn, setLockOn] = useState(false);
+  const [lockPopupVisible, setLockPopupVisible] = useState(false);
   const [image, setImage] = useState<string | undefined>(undefined);
+  const timeoutRef = useRef<NodeJS.Timeout>();
 
   const navigaion = useNavigation();
 
   //redux
   const dispath = useAppDispatch();
+
+  const handleLock = () => {
+    if (lockOn) {
+      setLockOn(false);
+      setLockPopupVisible(true);
+
+      const timeout = setTimeout(() => {
+        setLockPopupVisible(false);
+      }, 5000);
+      timeoutRef.current = timeout;
+    } else {
+      clearTimeout(timeoutRef.current);
+      setLockOn(true);
+      setLockPopupVisible(false);
+    }
+  };
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -81,10 +99,18 @@ const Top = () => {
         </View>
 
         {/* lock */}
-        <View className="mx-[14px] mt-3 items-end">
-          <Pressable onPress={() => setLockOn(!lockOn)}>
+        <View className="mx-[14px] mt-3 relative items-end z-10">
+          <Pressable onPress={handleLock}>
             {lockOn ? <LockOn /> : <LockOff />}
           </Pressable>
+          {/* pop up */}
+          {lockPopupVisible && (
+            <View className="w-[116px] h-[52px] rounded-[10px] bg-[#404FD3] justify-center items-center absolute top-[100%] right-0">
+              <Text className="text-[10px] leading-[12.4px] font-bold text-white">
+                You have unlocked your account
+              </Text>
+            </View>
+          )}
         </View>
 
         {/* user profile */}

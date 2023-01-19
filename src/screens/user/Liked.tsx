@@ -56,7 +56,7 @@ const LikedScreen = () => {
   const navigation = useNavigation<UserScreenNavigationProps<"Following">>();
 
   return (
-    <View className="flex-1 bg-[#222222]">
+    <View className="flex-1 bg-[#222222] pb-5">
       {hasLikedVideo ? (
         <SectionList
           sections={DATA}
