@@ -25,7 +25,6 @@ export type HomeTabParamList = {
 export type UserTabParamList = {
   Liked: undefined;
   Following: undefined;
-  History: undefined;
 };
 
 export type AuthStackParamList = {

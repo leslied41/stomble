@@ -1,8 +1,8 @@
 import React from "react";
 import { Animated, View, TouchableOpacity } from "react-native";
-import { EmptyHeartIcon, ClockIcon, UserIcon } from "../../icons";
+import { EmptyHeartIcon, UserIcon } from "../../icons";
 
-function TabBar({ state, descriptors, navigation, position }) {
+function TabBar({ state, descriptors, navigation }) {
   return (
     <View
       style={{
@@ -68,9 +68,7 @@ function TabBar({ state, descriptors, navigation, position }) {
             {route.name === "Following" && (
               <UserIcon color={isFocused ? "#fff" : "#5C5C5C"} />
             )}
-            {route.name === "History" && (
-              <ClockIcon color={isFocused ? "#fff" : "#5C5C5C"} />
-            )}
+
             <Animated.Text
               style={{
                 opacity: 1,
