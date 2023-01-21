@@ -1,14 +1,14 @@
 import { View, Text } from "react-native";
 import React, { FC, memo } from "react";
 import { CustomButton } from "../../search";
-import { useFeedContext } from "../context/FeedProvider";
+import { useGlobalContext } from "../../common/GlobalProvider";
 
 type BrandInfoProps = {
   isStatic?: boolean;
 };
 
 const BrandInfo: FC<BrandInfoProps> = ({ isStatic = false }) => {
-  const { toggleBottomSheet } = useFeedContext();
+  const { toggleBottomSheet } = useGlobalContext();
   return (
     <View>
       <View className="flex-row">

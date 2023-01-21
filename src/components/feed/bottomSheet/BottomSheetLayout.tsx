@@ -4,7 +4,7 @@ import BottomSheet, {
   BottomSheetBackdrop,
 } from "@gorhom/bottom-sheet";
 import { BottomSheetDefaultBackdropProps } from "@gorhom/bottom-sheet/lib/typescript/components/bottomSheetBackdrop/types";
-import { useFeedContext } from "../context/FeedProvider";
+import { useGlobalContext } from "../../common/GlobalProvider";
 import { type FeedBottomSheetView } from "../../../redux/features/feed/feedSlice";
 import { useAppDispatch } from "../../../redux/store";
 import { setFeedBottomSheetView } from "../../../redux/features/feed/feedSlice";
@@ -27,7 +27,7 @@ const BottomSheetLayout: FC<BottomSheetProps> = ({ children }) => {
   //redux
   const dispatch = useAppDispatch();
 
-  const { setToggleBottomSheet } = useFeedContext();
+  const { setToggleBottomSheet } = useGlobalContext();
 
   const operateBottomSheet = useCallback(
     () => (index: number, source: FeedBottomSheetView) => {

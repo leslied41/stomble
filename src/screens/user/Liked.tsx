@@ -1,10 +1,14 @@
 import { View, FlatList, Pressable } from "react-native";
-import React, { useMemo, useState } from "react";
-import { DeleteBar, NoContent, VideoThumbnails } from "../../components/user";
+import React, { useState } from "react";
+import {
+  DeleteBar,
+  NoContent,
+  VideoSingleThumbnail,
+  VideoModal,
+} from "../../components/user";
 import { LikedNoContent } from "../../components/svg";
 import { UserScreenNavigationProps } from "../../types/navigation";
 import { useNavigation } from "@react-navigation/native";
-import { converArrayInTriple } from "../../services/utils";
 import { BinIcon } from "../../components/icons";
 
 let hasLikedVideo = true;
@@ -26,8 +30,11 @@ const LikedScreen = () => {
   const [selectedItems, setSelectedItems] = useState<Array<number | string>>(
     []
   );
+  const [selectItemsIncreasing, setSelectItemsIncreasing] = useState(true);
+  const [pressedVideoIndex, setPressedVideoIndex] = useState<number>();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const navigation = useNavigation<UserScreenNavigationProps<"Following">>();
-  const processed_data = useMemo(() => converArrayInTriple(DATA), []);
 
   const turnOnDelete = () => {
     setDeleteOn(true);
@@ -37,20 +44,30 @@ const LikedScreen = () => {
     <View className="flex-1 bg-[#222222]">
       {hasLikedVideo ? (
         <View className="flex-1 relative">
+          <VideoModal
+            modalVisible={isModalOpen}
+            setIsModalOpen={setIsModalOpen}
+          />
           <View className="h-[33.5px] items-end justify-center mx-4">
             <Pressable onPress={turnOnDelete}>
               <BinIcon />
             </Pressable>
           </View>
           <FlatList
-            data={processed_data}
+            data={DATA}
             keyExtractor={(item, index) => index.toString()}
+            numColumns={3}
             renderItem={({ item }) => (
-              <VideoThumbnails
-                videos={item}
+              <VideoSingleThumbnail
+                id={item.id}
                 deleteOn={deleteOn}
                 setSelectedItems={setSelectedItems}
                 selectedItems={selectedItems}
+                setIsModalOpen={setIsModalOpen}
+                selectItemsIncreasing={selectItemsIncreasing}
+                setSelectItemsIncreasing={setSelectItemsIncreasing}
+                pressedVideoIndex={pressedVideoIndex}
+                setPressedVideoIndex={setPressedVideoIndex}
               />
             )}
           />

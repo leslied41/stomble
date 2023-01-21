@@ -1,11 +1,19 @@
-import { View, Pressable, Image, Dimensions } from "react-native";
-import React, { FC } from "react";
+import { Text, View, Pressable, Image, Dimensions } from "react-native";
+import React, { FC, useState } from "react";
+import { useEffectSkipInitial } from "../../../hooks";
 
 type SingleProps = {
   deleteOn: boolean;
   selectedItems: (number | string)[];
   setSelectedItems: React.Dispatch<React.SetStateAction<(string | number)[]>>;
   id: number | string;
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  selectItemsIncreasing: boolean;
+  setSelectItemsIncreasing: React.Dispatch<React.SetStateAction<boolean>>;
+  pressedVideoIndex: number | undefined;
+  setPressedVideoIndex: React.Dispatch<
+    React.SetStateAction<number | undefined>
+  >;
 };
 
 const VideoSingleThumbnail: FC<SingleProps> = ({
@@ -13,19 +21,48 @@ const VideoSingleThumbnail: FC<SingleProps> = ({
   selectedItems,
   setSelectedItems,
   id,
+  setIsModalOpen,
+  selectItemsIncreasing,
+  setSelectItemsIncreasing,
+  pressedVideoIndex,
+  setPressedVideoIndex,
 }) => {
+  const [videoIndex, setVideoIndex] = useState<number>();
+
   const toggleSelection = (targetId: string | number) => () => {
-    setSelectedItems((prev) => {
-      if (prev.includes(targetId)) {
-        return prev.filter((i) => i !== targetId);
-      } else {
-        return [...prev, targetId];
-      }
-    });
+    let temp = selectedItems;
+    let increasing = false;
+
+    if (temp.includes(targetId)) {
+      temp = temp.filter((i) => i !== targetId);
+      increasing = false;
+      setSelectItemsIncreasing(false);
+      setPressedVideoIndex(videoIndex);
+    } else {
+      temp = [...temp, targetId];
+      increasing = true;
+      setSelectItemsIncreasing(true);
+    }
+    if (increasing) {
+      setVideoIndex(temp.length);
+    } else {
+      setVideoIndex(undefined);
+    }
+    setSelectedItems(temp);
   };
 
+  useEffectSkipInitial(() => {
+    if (!selectItemsIncreasing && videoIndex !== undefined) {
+      if (pressedVideoIndex! < videoIndex) {
+        setVideoIndex(videoIndex - 1);
+      }
+    }
+    if (selectedItems.length === 0) setVideoIndex(undefined);
+  }, [selectedItems]);
+
   return (
-    <View
+    <Pressable
+      onPress={() => setIsModalOpen(true)}
       key={id}
       style={{
         width: (Dimensions.get("window").width - 6) / 3,
@@ -55,10 +92,14 @@ const VideoSingleThumbnail: FC<SingleProps> = ({
                 ? "#00A25B"
                 : "transparent",
             }}
-          />
+          >
+            <Text className="text-white text-[10px] leanding-3">
+              {videoIndex}
+            </Text>
+          </View>
         </Pressable>
       )}
-    </View>
+    </Pressable>
   );
 };
 

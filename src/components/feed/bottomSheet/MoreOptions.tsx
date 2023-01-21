@@ -1,10 +1,10 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import { ChevronRight } from "../../icons";
-import { useFeedContext } from "../context/FeedProvider";
+import { useGlobalContext } from "../../common/GlobalProvider";
 
 const MoreOptions = () => {
-  const { toggleBottomSheet } = useFeedContext();
+  const { toggleBottomSheet } = useGlobalContext();
   return (
     <View>
       <View className="border-b border-[#5C5C5C]">

@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, Button } from "react-native";
 import React, { useState } from "react";
 import { RadioBtnOff, RadioBtnOn } from "../../icons";
-import { useFeedContext } from "../context/FeedProvider";
+import { useGlobalContext } from "../../common/GlobalProvider";
 
 const reportOptions = [
   "Child abuse",
@@ -15,7 +15,7 @@ const reportOptions = [
 const ReportVideo = () => {
   const [reportedOptions, setReportedOptions] = useState<string[]>([]);
 
-  const { toggleBottomSheet } = useFeedContext();
+  const { toggleBottomSheet } = useGlobalContext();
 
   const toggleOption = (option: string) => () => {
     if (reportedOptions.includes(option))

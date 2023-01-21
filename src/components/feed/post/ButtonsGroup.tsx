@@ -2,10 +2,10 @@ import { Text, View, TouchableOpacity } from "react-native";
 import React, { memo } from "react";
 import { BusinessProfile } from "../../search";
 import { HeartIcon, ShareIcon, ThreeDotsIcon } from "../../icons";
-import { useFeedContext } from "../context/FeedProvider";
+import { useGlobalContext } from "../../common/GlobalProvider";
 
 const ButtonsGroup = () => {
-  const { toggleBottomSheet } = useFeedContext();
+  const { toggleBottomSheet } = useGlobalContext();
   return (
     <View>
       <TouchableOpacity onPress={() => toggleBottomSheet!(4, "BrandInfo")}>
