@@ -8,6 +8,7 @@ import {
   ReadMoreBottomView,
   ShareBottomView,
   ThanksReportBottomView,
+  ReportVideoBottomView,
   IntroOverlay,
   SinglePost,
   Welcome,
@@ -18,7 +19,6 @@ import { BusinessBottomSheetView as BrandInfoView } from "../../components/searc
 //redux
 import { getFeedBottomSheetView } from "../../redux/features/feed/feedSlice";
 import { useAppSelector } from "../../redux/store";
-import { ReportVideoBottomView } from "../../components/feed/bottomSheet";
 
 const fakeData = [
   { id: "1", data: "1" },

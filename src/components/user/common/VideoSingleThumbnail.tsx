@@ -43,6 +43,7 @@ const VideoSingleThumbnail: FC<SingleProps> = ({
       increasing = true;
       setSelectItemsIncreasing(true);
     }
+
     if (increasing) {
       setVideoIndex(temp.length);
     } else {
