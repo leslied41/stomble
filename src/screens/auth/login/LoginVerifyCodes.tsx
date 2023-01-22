@@ -1,10 +1,6 @@
 import React, { useCallback } from "react";
-import {
-  AuthLayout,
-  VerifyCodes,
-  BottomSheetLayout,
-  LoginBottomSheet,
-} from "../../../components/auth";
+import { VerifyCodes, LoginBottomSheet } from "../../../components/auth";
+import { BottomSheetLayout, ScreenLayout } from "../../../components/common";
 import { useAppDispatch, useAppSelector } from "../../../redux/store";
 import {
   getIsLoginBottomSheetOpen,
@@ -33,12 +29,13 @@ const LoginVerifyCodes = ({ route }: RootScreenProps<"LoginVerifyCodes">) => {
         snapPoint="95%"
         isBottomSheetOpen={isLoginBottomSheetOpen}
         closeBottomSheet={() => dispatch(closeLoginBottomSheet())}
+        variant="auth"
       >
         <LoginBottomSheet />
       </BottomSheetLayout>
-      <AuthLayout header={title}>
+      <ScreenLayout header={title}>
         <VerifyCodes onPress={verifyCodes} />
-      </AuthLayout>
+      </ScreenLayout>
     </>
   );
 };

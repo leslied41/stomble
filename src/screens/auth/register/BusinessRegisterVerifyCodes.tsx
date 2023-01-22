@@ -1,11 +1,12 @@
 import React from "react";
-import { AuthLayout, VerifyCodes } from "../../../components/auth";
+import { VerifyCodes } from "../../../components/auth";
+import { ScreenLayout } from "../../../components/common";
 
 const BusinessRegisterVerifyCodes = () => {
   return (
-    <AuthLayout header="Business register">
+    <ScreenLayout header="Business register">
       <VerifyCodes />
-    </AuthLayout>
+    </ScreenLayout>
   );
 };
 

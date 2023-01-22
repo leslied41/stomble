@@ -30,6 +30,8 @@ const SavedAccounts: FC<SavedAccountsProps> = ({}) => {
         <ScrollView
           className="flex-1 flex-row"
           horizontal
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
           onLayout={(e) => {
             const { width } = e.nativeEvent.layout;
             setScrollViewWidth(width);

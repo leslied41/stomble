@@ -1,10 +1,11 @@
 import { View, Text } from "react-native";
 import React from "react";
-import { AuthLayout, ChangePasswordForm } from "../../../components/auth";
+import { ChangePasswordForm } from "../../../components/auth";
+import { ScreenLayout } from "../../../components/common";
 
 const ChangePassword = () => {
   return (
-    <AuthLayout header="Forget password">
+    <ScreenLayout header="Forget password">
       <View className="mt-[22px]">
         <Text className="text-[16px] leading-[19.2px] font-bold text-white ">
           Change password
@@ -18,7 +19,7 @@ const ChangePassword = () => {
       <View className="mt-[23px]">
         <ChangePasswordForm />
       </View>
-    </AuthLayout>
+    </ScreenLayout>
   );
 };
 

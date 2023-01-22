@@ -5,14 +5,26 @@ import {
   NativeStackNavigationProp,
   NativeStackScreenProps,
 } from "@react-navigation/native-stack";
-import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
-import type { CompositeScreenProps } from "@react-navigation/native";
+import {
+  BottomTabScreenProps,
+  BottomTabNavigationProp,
+} from "@react-navigation/bottom-tabs";
+import type {
+  CompositeScreenProps,
+  CompositeNavigationProp,
+} from "@react-navigation/native";
+import type { MaterialTopTabNavigationProp } from "@react-navigation/material-top-tabs";
 
 export type HomeTabParamList = {
-  VideoPlay: undefined;
-  Search: undefined;
+  Feed: undefined;
+  SearchRoutes: undefined;
   User: undefined;
   Settings: undefined;
+};
+
+export type UserTabParamList = {
+  Liked: undefined;
+  Following: undefined;
 };
 
 export type AuthStackParamList = {
@@ -31,6 +43,12 @@ export type AuthStackParamList = {
 export type CommonStackParamList = {
   FullName: undefined;
   PersonalInfo: undefined;
+  Notification: undefined;
+};
+
+export type SearchStackParamList = {
+  Search: undefined;
+  SearchResult: undefined;
 };
 
 export type RootStackParamList = AuthStackParamList &
@@ -47,6 +65,15 @@ export type HomeScreenTabProps<T extends keyof HomeTabParamList> =
   CompositeScreenProps<
     BottomTabScreenProps<HomeTabParamList, T>,
     NativeStackScreenProps<RootStackParamList>
+  >;
+/**
+ * combine UserTabParamList and HomeTabParamList. now user can navigate from user screens like liked screen or history screen to
+ * feed screen.
+ */
+export type UserScreenNavigationProps<T extends keyof UserTabParamList> =
+  CompositeNavigationProp<
+    MaterialTopTabNavigationProp<UserTabParamList, T>,
+    BottomTabNavigationProp<HomeTabParamList>
   >;
 
 /**
@@ -80,6 +107,14 @@ export type RootScreenProps<T extends keyof RootStackParamList> =
   NativeStackScreenProps<RootStackParamList, T>;
 
 /**
+ * SearchScreenNavigationType
+ */
+export type SearchScreenNavigationType<T extends keyof SearchStackParamList> =
+  NativeStackNavigationProp<SearchStackParamList, T>;
+export type SearchScreenProps<T extends keyof SearchStackParamList> =
+  NativeStackScreenProps<SearchStackParamList, T>;
+
+/**
  * declared these ParamList globally. So when use the ParamLists below,
  * you do not need to import, as they are declared as global now.
  * scenario: const Tab = createBottomTabNavigator<ReactNavigation.HomeParamList>();
@@ -87,8 +122,10 @@ export type RootScreenProps<T extends keyof RootStackParamList> =
 declare global {
   namespace ReactNavigation {
     interface HomeParamList extends HomeTabParamList {}
+    interface UserParamList extends UserTabParamList {}
     interface AuthParamList extends AuthStackParamList {}
     interface CommonParamList extends CommonStackParamList {}
+    interface SearchParamList extends SearchStackParamList {}
     interface RootParamList extends RootStackParamList {}
   }
 }
