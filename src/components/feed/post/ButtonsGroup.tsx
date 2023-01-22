@@ -1,7 +1,8 @@
-import { Text, View, TouchableOpacity } from "react-native";
+import { Text, View, TouchableOpacity, Image } from "react-native";
 import React, { memo } from "react";
 import { BusinessProfile } from "../../search";
 import { HeartIcon, ShareIcon, ThreeDotsIcon } from "../../icons";
+import NumberGenerator from "./NumberGenerator";
 import { useGlobalContext } from "../../common/GlobalProvider";
 
 const ButtonsGroup = () => {
@@ -27,9 +28,13 @@ const ButtonsGroup = () => {
         className="mt-[30px] items-center"
       >
         <ShareIcon size={29} color="white" />
+        {/* <Image source={require("../../../../assets/images/feed/heart.png")} /> */}
         <Text className="text-[11px] leading-[13.2px] text-white font-bold">
           100
         </Text>
+        {/* <View className="mt-1">
+          <NumberGenerator num="111" />
+        </View> */}
       </TouchableOpacity>
 
       <TouchableOpacity

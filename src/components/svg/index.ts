@@ -20,3 +20,4 @@ export { default as FollowedNoContent } from "./FollowedNoContent";
 export { default as HistoryNoContent } from "./HistoryNoContent";
 export { default as LikedNoContent } from "./LikedNoContent";
 export { default as NotificationIcon } from "./NotificationIcon";
+export { default as EmptyPlayIcon } from "./EmptyPlay";

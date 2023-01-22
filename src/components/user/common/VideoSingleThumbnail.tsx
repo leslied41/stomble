@@ -1,6 +1,7 @@
 import { Text, View, Pressable, Image, Dimensions } from "react-native";
 import React, { FC, useState } from "react";
 import { useEffectSkipInitial } from "../../../hooks";
+import { EmptyPlayIcon } from "../../svg";
 
 type SingleProps = {
   deleteOn: boolean;
@@ -75,6 +76,13 @@ const VideoSingleThumbnail: FC<SingleProps> = ({
         style={{ width: "100%" }}
         resizeMode="cover"
       />
+      {/* play icon and times of played */}
+      <View className="absolute bottom-[10px] left-[9px] flex-row items-center">
+        <EmptyPlayIcon />
+        <Text className="text-[10px] leading-3 font-medium text-white ml-[5.3px]">
+          100.5K
+        </Text>
+      </View>
       {/* overlay */}
       {deleteOn && (
         <Pressable

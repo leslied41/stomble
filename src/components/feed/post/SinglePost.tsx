@@ -169,7 +169,7 @@ const SinglePost = forwardRef<any, Props>(
           onPlaybackStatusUpdate={statusUpdate}
           usePoster
           posterSource={{
-            uri: "https://ih1.redbubble.net/image.417625751.3848/st,small,507x507-pad,600x600,f8f8f8.jpg",
+            uri: "https://www.themoviedb.org/t/p/w500/6H8gTq1QCB0bD9CGDhrIJITiGVX.jpg",
           }}
           posterStyle={{ resizeMode: "cover", height: "100%" }}
           source={{
