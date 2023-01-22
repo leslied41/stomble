@@ -1,7 +1,8 @@
 import { View } from "react-native";
 import React, { useCallback } from "react";
-import { AuthLayout, VerifyCodes } from "../../../components/auth";
+import { VerifyCodes } from "../../../components/auth";
 import { RootScreenProps } from "../../../types/navigation";
+import { ScreenLayout } from "../../../components/common";
 
 const ForgetPasswordVerifyCodes = ({
   navigation,
@@ -13,11 +14,11 @@ const ForgetPasswordVerifyCodes = ({
     navigation.navigate("ChangePassword");
   }, [navigation]);
   return (
-    <AuthLayout header="Forget Password">
+    <ScreenLayout header="Forget Password">
       <View>
         <VerifyCodes buttonTitle="Confirm" onPress={confirmCodes} />
       </View>
-    </AuthLayout>
+    </ScreenLayout>
   );
 };
 

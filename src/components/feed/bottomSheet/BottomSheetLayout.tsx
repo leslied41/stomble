@@ -1,13 +1,14 @@
-import React, { FC, useCallback, useRef, useEffect } from "react";
+import React, { FC, useCallback, useRef } from "react";
 import BottomSheet, {
   BottomSheetView,
   BottomSheetBackdrop,
 } from "@gorhom/bottom-sheet";
 import { BottomSheetDefaultBackdropProps } from "@gorhom/bottom-sheet/lib/typescript/components/bottomSheetBackdrop/types";
-import { useFeedContext } from "../context/FeedProvider";
+import { useGlobalContext } from "../../common/GlobalProvider";
 import { type FeedBottomSheetView } from "../../../redux/features/feed/feedSlice";
 import { useAppDispatch } from "../../../redux/store";
 import { setFeedBottomSheetView } from "../../../redux/features/feed/feedSlice";
+import { useFocusEffect } from "@react-navigation/native";
 
 enum SNAPPOINTS {
   THANKSREPORT = "8%",
@@ -27,10 +28,11 @@ const BottomSheetLayout: FC<BottomSheetProps> = ({ children }) => {
   //redux
   const dispatch = useAppDispatch();
 
-  const { setToggleBottomSheet } = useFeedContext();
+  const { setToggleBottomSheet } = useGlobalContext();
 
   const operateBottomSheet = useCallback(
     () => (index: number, source: FeedBottomSheetView) => {
+      console.log("fire");
       index === -1 && bottomSheetRef.current?.close();
       bottomSheetRef.current?.snapToIndex(index);
       dispatch(setFeedBottomSheetView(source));
@@ -41,10 +43,14 @@ const BottomSheetLayout: FC<BottomSheetProps> = ({ children }) => {
    * set operateBottomSheet to usecontext and
    * make it available throughtout feedscreen.
    */
-  useEffect(() => {
-    if (!setToggleBottomSheet) return;
-    setToggleBottomSheet(operateBottomSheet);
-  }, [operateBottomSheet, setToggleBottomSheet]);
+  useFocusEffect(
+    React.useCallback(() => {
+      if (!setToggleBottomSheet) return;
+      setToggleBottomSheet(operateBottomSheet);
+
+      return () => setToggleBottomSheet(undefined);
+    }, [operateBottomSheet, setToggleBottomSheet])
+  );
 
   const renderBackdrop = useCallback(
     (props: JSX.IntrinsicAttributes & BottomSheetDefaultBackdropProps) => (

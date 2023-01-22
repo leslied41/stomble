@@ -1,12 +1,11 @@
 import { View } from "react-native";
 import React from "react";
 import {
-  AuthLayout,
   PersonalRegisterForm,
   GenderInputBottomSheet,
   PersonalBirthdayBottomSheet,
 } from "../../../components/auth";
-import { BottomSheetLayout } from "../../../components/common";
+import { BottomSheetLayout, ScreenLayout } from "../../../components/common";
 import { useAppDispatch, useAppSelector } from "../../../redux/store";
 import {
   getIsGenderBottomSheetOpen,
@@ -49,11 +48,11 @@ const PersonalRegister = () => {
         <PersonalBirthdayBottomSheet />
       </BottomSheetLayout>
 
-      <AuthLayout header="Personal register">
+      <ScreenLayout header="Personal register">
         <View className="flex-1 mt-[35px]">
           <PersonalRegisterForm />
         </View>
-      </AuthLayout>
+      </ScreenLayout>
     </>
   );
 };

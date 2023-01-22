@@ -1,10 +1,6 @@
 import React, { useCallback } from "react";
-import {
-  AuthLayout,
-  VerifyCodes,
-  LoginBottomSheet,
-} from "../../../components/auth";
-import { BottomSheetLayout } from "../../../components/common";
+import { VerifyCodes, LoginBottomSheet } from "../../../components/auth";
+import { BottomSheetLayout, ScreenLayout } from "../../../components/common";
 import { useAppDispatch, useAppSelector } from "../../../redux/store";
 import {
   getIsLoginBottomSheetOpen,
@@ -37,9 +33,9 @@ const LoginVerifyCodes = ({ route }: RootScreenProps<"LoginVerifyCodes">) => {
       >
         <LoginBottomSheet />
       </BottomSheetLayout>
-      <AuthLayout header={title}>
+      <ScreenLayout header={title}>
         <VerifyCodes onPress={verifyCodes} />
-      </AuthLayout>
+      </ScreenLayout>
     </>
   );
 };

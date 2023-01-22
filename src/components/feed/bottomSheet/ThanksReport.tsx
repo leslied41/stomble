@@ -1,9 +1,9 @@
 import { View, Text } from "react-native";
 import React, { useEffect } from "react";
-import { useFeedContext } from "../context/FeedProvider";
+import { useGlobalContext } from "../../common/GlobalProvider";
 
 const ThanksReport = () => {
-  const { toggleBottomSheet } = useFeedContext();
+  const { toggleBottomSheet } = useGlobalContext();
 
   useEffect(() => {
     setTimeout(() => {

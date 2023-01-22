@@ -1,6 +1,6 @@
 export { SearchHeaderBar } from "./common";
 export { SearchHintView } from "./searchHintView";
-export { SearchBottomSheetView } from "./bottomSheetView";
+export { BusinessBottomSheetView } from "./bottomSheetView";
 export { MainView } from "./mainView";
 export { BusinessList, ResultMainView } from "./searchResult";
 export { CustomButton } from "./ui";

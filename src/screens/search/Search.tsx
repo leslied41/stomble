@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import {
   SearchHeaderBar,
   SearchHintView,
-  SearchBottomSheetView,
+  BusinessBottomSheetView,
   MainView,
 } from "../../components/search";
 import { BottomSheetLayout } from "../../components/common";
@@ -50,7 +50,7 @@ const Search = () => {
         isBottomSheetOpen={isBottomSheetOpen}
         closeBottomSheet={() => dispatch(closeSearchBottomSheet())}
       >
-        <SearchBottomSheetView />
+        <BusinessBottomSheetView />
       </BottomSheetLayout>
     </View>
   );

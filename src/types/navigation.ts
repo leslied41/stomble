@@ -5,14 +5,26 @@ import {
   NativeStackNavigationProp,
   NativeStackScreenProps,
 } from "@react-navigation/native-stack";
-import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
-import type { CompositeScreenProps } from "@react-navigation/native";
+import {
+  BottomTabScreenProps,
+  BottomTabNavigationProp,
+} from "@react-navigation/bottom-tabs";
+import type {
+  CompositeScreenProps,
+  CompositeNavigationProp,
+} from "@react-navigation/native";
+import type { MaterialTopTabNavigationProp } from "@react-navigation/material-top-tabs";
 
 export type HomeTabParamList = {
   Feed: undefined;
   SearchRoutes: undefined;
   User: undefined;
   Settings: undefined;
+};
+
+export type UserTabParamList = {
+  Liked: undefined;
+  Following: undefined;
 };
 
 export type AuthStackParamList = {
@@ -31,6 +43,7 @@ export type AuthStackParamList = {
 export type CommonStackParamList = {
   FullName: undefined;
   PersonalInfo: undefined;
+  Notification: undefined;
 };
 
 export type SearchStackParamList = {
@@ -52,6 +65,15 @@ export type HomeScreenTabProps<T extends keyof HomeTabParamList> =
   CompositeScreenProps<
     BottomTabScreenProps<HomeTabParamList, T>,
     NativeStackScreenProps<RootStackParamList>
+  >;
+/**
+ * combine UserTabParamList and HomeTabParamList. now user can navigate from user screens like liked screen or history screen to
+ * feed screen.
+ */
+export type UserScreenNavigationProps<T extends keyof UserTabParamList> =
+  CompositeNavigationProp<
+    MaterialTopTabNavigationProp<UserTabParamList, T>,
+    BottomTabNavigationProp<HomeTabParamList>
   >;
 
 /**
@@ -100,6 +122,7 @@ export type SearchScreenProps<T extends keyof SearchStackParamList> =
 declare global {
   namespace ReactNavigation {
     interface HomeParamList extends HomeTabParamList {}
+    interface UserParamList extends UserTabParamList {}
     interface AuthParamList extends AuthStackParamList {}
     interface CommonParamList extends CommonStackParamList {}
     interface SearchParamList extends SearchStackParamList {}

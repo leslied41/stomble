@@ -1,7 +1,8 @@
 import { View } from "react-native";
 import React from "react";
-import { AuthLayout, LoginForm } from "../../../components/auth";
+import { LoginForm } from "../../../components/auth";
 import { RootScreenProps } from "../../../types/navigation";
+import { ScreenLayout } from "../../../components/common";
 
 const Login = ({ route }: RootScreenProps<"Login">) => {
   const { title } = route.params;
@@ -9,11 +10,11 @@ const Login = ({ route }: RootScreenProps<"Login">) => {
   //title. so just pass the title in using navigation.
 
   return (
-    <AuthLayout header={title}>
+    <ScreenLayout header={title}>
       <View className="flex-1 mt-[35px]">
         <LoginForm />
       </View>
-    </AuthLayout>
+    </ScreenLayout>
   );
 };
 

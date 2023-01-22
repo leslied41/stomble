@@ -8,18 +8,17 @@ import {
   ReadMoreBottomView,
   ShareBottomView,
   ThanksReportBottomView,
+  ReportVideoBottomView,
   IntroOverlay,
   SinglePost,
   Welcome,
   Demo,
   Finish,
 } from "../../components/feed";
-import FeedProvider from "../../components/feed/context/FeedProvider";
-import { SearchBottomSheetView as BrandInfoView } from "../../components/search";
+import { BusinessBottomSheetView as BrandInfoView } from "../../components/search";
 //redux
 import { getFeedBottomSheetView } from "../../redux/features/feed/feedSlice";
 import { useAppSelector } from "../../redux/store";
-import { ReportVideoBottomView } from "../../components/feed/bottomSheet";
 
 const fakeData = [
   { id: "1", data: "1" },
@@ -81,53 +80,46 @@ const Feed = () => {
   );
 
   return (
-    <FeedProvider>
-      <View className="flex-1">
-        <IntroOverlay modalVisible={isIntroOpen}>
-          {introPage === "welcome" && <Welcome setIntroPage={setIntroPage} />}
-          {introPage === "demo" && (
-            <Demo setIntroPage={setIntroPage} setIsIntroOpen={setIsIntroOpen} />
-          )}
-          {introPage === "finish" && (
-            <Finish
-              setIntroPage={setIntroPage}
-              setIsIntroOpen={setIsIntroOpen}
-            />
-          )}
-        </IntroOverlay>
+    <View className="flex-1">
+      <IntroOverlay modalVisible={isIntroOpen}>
+        {introPage === "welcome" && <Welcome setIntroPage={setIntroPage} />}
+        {introPage === "demo" && (
+          <Demo setIntroPage={setIntroPage} setIsIntroOpen={setIsIntroOpen} />
+        )}
+        {introPage === "finish" && (
+          <Finish setIntroPage={setIntroPage} setIsIntroOpen={setIsIntroOpen} />
+        )}
+      </IntroOverlay>
 
-        <FlatList
-          data={fakeData}
-          renderItem={renderItem}
-          windowSize={3}
-          initialNumToRender={0}
-          maxToRenderPerBatch={2}
-          removeClippedSubviews
-          //usePoster
-          //posterSource={{uri:''}}
-          viewabilityConfig={{ itemVisiblePercentThreshold: 100 }}
-          keyExtractor={(item) => item.id}
-          pagingEnabled
-          decelerationRate={"normal"}
-          onViewableItemsChanged={onViewableItemsChanged.current}
-        />
+      <FlatList
+        data={fakeData}
+        renderItem={renderItem}
+        windowSize={3}
+        initialNumToRender={0}
+        maxToRenderPerBatch={2}
+        removeClippedSubviews
+        viewabilityConfig={{ itemVisiblePercentThreshold: 100 }}
+        keyExtractor={(item) => item.id}
+        pagingEnabled
+        decelerationRate={"normal"}
+        onViewableItemsChanged={onViewableItemsChanged.current}
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
+      />
 
-        <FeedBottomSheetLayout>
-          {feedBottomSheetView === "FeedReadMore" && <ReadMoreBottomView />}
-          {feedBottomSheetView === "BrandInfo" && <BrandInfoView />}
-          {feedBottomSheetView === "FeedMoreOptions" && (
-            <MoreOptionsBottomSheetView />
-          )}
-          {feedBottomSheetView === "FeedShare" && <ShareBottomView />}
-          {feedBottomSheetView === "FeedReportVideo" && (
-            <ReportVideoBottomView />
-          )}
-          {feedBottomSheetView === "FeedThanksReport" && (
-            <ThanksReportBottomView />
-          )}
-        </FeedBottomSheetLayout>
-      </View>
-    </FeedProvider>
+      <FeedBottomSheetLayout>
+        {feedBottomSheetView === "FeedReadMore" && <ReadMoreBottomView />}
+        {feedBottomSheetView === "BrandInfo" && <BrandInfoView />}
+        {feedBottomSheetView === "FeedMoreOptions" && (
+          <MoreOptionsBottomSheetView />
+        )}
+        {feedBottomSheetView === "FeedShare" && <ShareBottomView />}
+        {feedBottomSheetView === "FeedReportVideo" && <ReportVideoBottomView />}
+        {feedBottomSheetView === "FeedThanksReport" && (
+          <ThanksReportBottomView />
+        )}
+      </FeedBottomSheetLayout>
+    </View>
   );
 };
 

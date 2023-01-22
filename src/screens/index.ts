@@ -12,6 +12,6 @@ export {
   ChangePasswordScreen,
 } from "./auth";
 export { SearchRoutes } from "./search";
-export { SettingsScreen } from "./settings";
-export { UserScreen } from "./user";
+export { SettingsScreen, FullNameScreen, PersonalInfoScreen } from "./settings";
+export { UserScreen, NotificationScreen } from "./user";
 export { FeedScreen } from "./feed";
