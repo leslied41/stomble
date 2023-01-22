@@ -6,7 +6,7 @@ import {
   ViewToken,
   useWindowDimensions,
 } from "react-native";
-import React, { FC, useEffect, useRef } from "react";
+import React, { FC, useRef } from "react";
 import {
   FeedBottomSheetLayout,
   MoreOptionsBottomSheetView,
@@ -27,7 +27,6 @@ import Animated, {
   runOnJS,
   useAnimatedGestureHandler,
   useAnimatedStyle,
-  useDerivedValue,
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
@@ -72,8 +71,9 @@ const VideoModal: FC<VideoModalProps> = ({ modalVisible, setIsModalOpen }) => {
     },
     onEnd: (e) => {
       if (X.value > windowWidth / 2 || e.velocityX > 500) {
+        X.value = windowWidth;
+        X.value = withTiming(0, { duration: 200 });
         runOnJS(setIsModalOpen)(false);
-        X.value = 0;
       } else {
         X.value = 0;
       }
@@ -121,8 +121,6 @@ const VideoModal: FC<VideoModalProps> = ({ modalVisible, setIsModalOpen }) => {
             initialNumToRender={0}
             maxToRenderPerBatch={2}
             removeClippedSubviews
-            //usePoster
-            //posterSource={{uri:''}}
             viewabilityConfig={{ itemVisiblePercentThreshold: 100 }}
             keyExtractor={(item) => item.id}
             pagingEnabled

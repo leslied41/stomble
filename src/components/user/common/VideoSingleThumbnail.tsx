@@ -66,14 +66,14 @@ const VideoSingleThumbnail: FC<SingleProps> = ({
       onPress={() => setIsModalOpen(true)}
       key={id}
       style={{
-        width: (Dimensions.get("window").width - 6) / 3,
+        width: (Dimensions.get("screen").width - 40) / 3,
         position: "relative",
       }}
     >
       <Image
         source={require("../../../../assets/images/user/test2.png")}
         style={{ width: "100%" }}
-        resizeMode="contain"
+        resizeMode="cover"
       />
       {/* overlay */}
       {deleteOn && (

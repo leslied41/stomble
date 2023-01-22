@@ -98,8 +98,6 @@ const Feed = () => {
         initialNumToRender={0}
         maxToRenderPerBatch={2}
         removeClippedSubviews
-        //usePoster
-        //posterSource={{uri:''}}
         viewabilityConfig={{ itemVisiblePercentThreshold: 100 }}
         keyExtractor={(item) => item.id}
         pagingEnabled

@@ -9,7 +9,7 @@ const Tab = createMaterialTopTabNavigator<ReactNavigation.UserParamList>();
 function UserRoutes() {
   return (
     <Tab.Navigator
-      style={{ backgroundColor: "#000000" }}
+      sceneContainerStyle={{ backgroundColor: "#000000" }}
       screenOptions={{
         tabBarStyle: {
           backgroundColor: "#222222",

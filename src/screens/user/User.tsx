@@ -21,10 +21,14 @@ const User = () => {
     getIsSwitchAccountBottomSheetOpen
   );
   return (
-    <View className="flex-1">
+    <View className="flex-1 bg-black">
       <Top />
-      <View className="flex-1">
-        <UserRoutes />
+      <View className="flex-1 bg-black  relative ">
+        <View className="absolute left-0 top-0 w-[17px] h-[80px] bg-[#232637] rounded-bl-[12px]" />
+        <View className=" flex-1 mx-[17px]">
+          <UserRoutes />
+        </View>
+        <View className="absolute right-0 top-0 w-[17px] h-[80px] bg-[#232637] rounded-br-[12px]" />
       </View>
 
       <BottomSheetLayout

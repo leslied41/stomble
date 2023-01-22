@@ -167,6 +167,11 @@ const SinglePost = forwardRef<any, Props>(
           isLooping
           shouldPlay={true}
           onPlaybackStatusUpdate={statusUpdate}
+          usePoster
+          posterSource={{
+            uri: "https://ih1.redbubble.net/image.417625751.3848/st,small,507x507-pad,600x600,f8f8f8.jpg",
+          }}
+          posterStyle={{ resizeMode: "cover", height: "100%" }}
           source={{
             uri: "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4",
           }}

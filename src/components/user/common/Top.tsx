@@ -49,7 +49,7 @@ const Top = () => {
   };
 
   return (
-    <View className="h-[209px] bg-[#232637] rounded-b-[12px] ">
+    <View className="h-[209px] bg-[#232637]  ">
       <View className="flex-1" style={{ marginTop: 63 }}>
         <StatusBar barStyle="light-content" />
 
@@ -82,7 +82,7 @@ const Top = () => {
         {/* lock */}
 
         {/* user profile */}
-        <View className="flex-1 mt-[14px] bg-[#222222]  relative ">
+        <View className="flex-1 mt-[14px] bg-[#222222]  relative mx-[17px] rounded-t-[16px]">
           <TouchableOpacity
             className="absolute w-[110px] h-[110px] rounded-[55px] left-1/2 bg-[#222222] justify-center items-center"
             style={{ transform: [{ translateX: -55 }, { translateY: -38 }] }}

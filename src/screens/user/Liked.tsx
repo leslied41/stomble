@@ -25,6 +25,8 @@ const DATA = [
   { id: 9, src: "" },
 ];
 
+const Separator = () => <View style={{ height: 2 }} />;
+
 const LikedScreen = () => {
   const [deleteOn, setDeleteOn] = useState(false);
   const [selectedItems, setSelectedItems] = useState<Array<number | string>>(
@@ -57,6 +59,10 @@ const LikedScreen = () => {
             data={DATA}
             keyExtractor={(item, index) => index.toString()}
             numColumns={3}
+            columnWrapperStyle={{ justifyContent: "space-between" }}
+            ItemSeparatorComponent={Separator}
+            showsVerticalScrollIndicator={false}
+            showsHorizontalScrollIndicator={false}
             renderItem={({ item }) => (
               <VideoSingleThumbnail
                 id={item.id}
