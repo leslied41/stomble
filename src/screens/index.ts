@@ -11,7 +11,7 @@ export {
   ForgetPasswordVerifyCodesScreen,
   ChangePasswordScreen,
 } from "./auth";
-export { SearchScreen } from "./search";
-export { SettingsScreen } from "./settings";
-export { UserScreen } from "./user";
-export { VideoPlayScreen } from "./videoPlay";
+export { SearchRoutes } from "./search";
+export { SettingsScreen, FullNameScreen, PersonalInfoScreen } from "./settings";
+export { UserScreen, NotificationScreen } from "./user";
+export { FeedScreen } from "./feed";

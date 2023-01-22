@@ -1,6 +1,10 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { FullNameScreen, PersonalInfoScreen } from "../../screens/settings";
+import {
+  NotificationScreen,
+  FullNameScreen,
+  PersonalInfoScreen,
+} from "../../screens";
 
 const Stack = createNativeStackNavigator<ReactNavigation.CommonParamList>();
 
@@ -13,6 +17,11 @@ const CommonRoutes = () => {
       <Stack.Group>
         <Stack.Screen name="FullName" component={FullNameScreen} />
         <Stack.Screen name="PersonalInfo" component={PersonalInfoScreen} />
+        <Stack.Screen
+          name="Notification"
+          component={NotificationScreen}
+          options={{ headerShown: false }}
+        />
       </Stack.Group>
     </>
   );

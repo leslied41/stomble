@@ -1,10 +1,16 @@
-import { View, Text } from "react-native";
-import React from "react";
+import { View } from "react-native";
+import React, { FC } from "react";
+import History from "./History";
+import Hint from "./Hint";
 
-const SearchHintView = () => {
+type Props = {
+  searchText: string;
+};
+
+const SearchHintView: FC<Props> = ({ searchText }) => {
   return (
-    <View className="flex-1 bg-black">
-      <Text>SearchHintView</Text>
+    <View className="flex-1 bg-[#222222]">
+      {searchText ? <Hint /> : <History />}
     </View>
   );
 };

@@ -1,7 +1,7 @@
 function converArrayInPair(arr) {
   const _arr = [];
   for (let key in arr) {
-    if (key % 2 === 0) {
+    if (Number(key) % 2 === 0) {
       const pair = [];
       pair.push(arr[key]);
       if (arr[Number(key) + 1]) {

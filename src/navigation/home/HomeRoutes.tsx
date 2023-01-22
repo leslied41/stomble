@@ -1,9 +1,9 @@
 import React from "react";
 import {
-  SearchScreen,
   SettingsScreen,
   UserScreen,
-  VideoPlayScreen,
+  FeedScreen,
+  SearchRoutes,
 } from "../../screens";
 import { TabBar } from "../../components/common";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -20,11 +20,12 @@ const HomeRoutes = () => {
           height: 91,
         },
         tabBarShowLabel: false,
-        tabBarIcon: ({ focused, size }) => TabBar({ focused, size }),
+        tabBarIcon: ({ focused, size }) =>
+          TabBar({ focused, size }) as React.ReactNode,
       })}
     >
-      <Tab.Screen name="VideoPlay" component={VideoPlayScreen} />
-      <Tab.Screen name="Search" component={SearchScreen} />
+      <Tab.Screen name="Feed" component={FeedScreen} />
+      <Tab.Screen name="SearchRoutes" component={SearchRoutes} />
       <Tab.Screen name="User" component={UserScreen} />
       <Tab.Screen name="Settings" component={SettingsScreen} />
     </Tab.Navigator>

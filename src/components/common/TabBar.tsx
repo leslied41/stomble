@@ -12,11 +12,11 @@ const TabBar: FC<Props> = ({ focused, size }) => {
   let text = "";
   size = 20;
 
-  if (route.name === "VideoPlay") {
+  if (route.name === "Feed") {
     iconName = "home";
     Icon = Octicons;
     text = "Home";
-  } else if (route.name === "Search") {
+  } else if (route.name === "SearchRoutes") {
     iconName = "search";
     Icon = Octicons;
     text = "Discover";

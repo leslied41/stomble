@@ -3,10 +3,10 @@ import React, { useState } from "react";
 import {
   SearchHeaderBar,
   SearchHintView,
-  SearchBottomSheetLayout,
-  SearchBottomSheetView,
+  BusinessBottomSheetView,
   MainView,
 } from "../../components/search";
+import { BottomSheetLayout } from "../../components/common";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import {
   getIsSearchBottomOpen,
@@ -31,26 +31,27 @@ const Search = () => {
       <SearchHeaderBar
         searchText={searchText}
         setSearchText={setSearchText}
+        showSearchList={showSearchList}
         setShowSearchList={setShowSearchList}
       />
 
-      <View className="flex-1 mx-[17px]">
+      <View className="flex-1 ">
         {showSearchList ? (
-          <SearchHintView />
+          <SearchHintView searchText={searchText} />
         ) : (
-          <View className="mt-7 flex-1">
+          <View className="mt-7 mx-[17px] flex-1">
             <MainView />
           </View>
         )}
       </View>
 
       {/*  bottom sheet */}
-      <SearchBottomSheetLayout
+      <BottomSheetLayout
         isBottomSheetOpen={isBottomSheetOpen}
         closeBottomSheet={() => dispatch(closeSearchBottomSheet())}
       >
-        <SearchBottomSheetView />
-      </SearchBottomSheetLayout>
+        <BusinessBottomSheetView />
+      </BottomSheetLayout>
     </View>
   );
 };

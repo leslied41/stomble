@@ -7,7 +7,12 @@ import {
   Feather,
   FontAwesome5,
 } from "@expo/vector-icons";
-import React from "react";
+import React, { FC } from "react";
+
+type IconProps = {
+  size?: number;
+  color?: string;
+};
 export const UserPlus = () => {
   return <AntDesign name="adduser" size={24} color="black" />;
 };
@@ -20,8 +25,16 @@ export const KeyIcon = () => {
   return <Ionicons name="ios-key-outline" size={24} color="black" />;
 };
 
-export const ChevronRight = () => {
-  return <EvilIcons name="chevron-right" size={48} color="black" />;
+export const ChevronRight: FC<IconProps> = ({ color = "black", size = 48 }) => {
+  return <EvilIcons name="chevron-right" size={size} color={color} />;
+};
+
+export const ChevronDown: FC<IconProps> = ({ color = "black", size = 48 }) => {
+  return <EvilIcons name="chevron-down" size={size} color={color} />;
+};
+
+export const ChevronUp: FC<IconProps> = ({ color = "black", size = 48 }) => {
+  return <EvilIcons name="chevron-up" size={size} color={color} />;
 };
 
 export const ArrowDown = ({ size = 22, color = "white" }) => (
@@ -56,10 +69,30 @@ export const RadioBtnOn = () => (
 
 export const PlayIcon = () => <Feather name="play" size={12} color="#5C5C5C" />;
 
-export const HeartIcon = ({ color = "#5C5C5C" }) => (
-  <AntDesign name="heart" size={12} color={color} />
+export const HeartIcon: FC<IconProps> = ({ color = "#5C5C5C", size = 12 }) => (
+  <AntDesign name="heart" size={size} color={color} />
+);
+export const EmptyHeartIcon: FC<IconProps> = ({
+  color = "#5C5C5C",
+  size = 24,
+}) => <AntDesign name="hearto" size={size} color={color} />;
+export const ShareIcon: FC<IconProps> = ({ color = "#5C5C5C", size = 12 }) => (
+  <FontAwesome5 name="share" size={size} color={color} />
 );
 
-export const ShareIcon = () => (
-  <FontAwesome5 name="share" size={12} color="#5C5C5C" />
+export const ThreeDotsIcon: FC<IconProps> = ({
+  size = 24,
+  color = "black",
+}) => <Entypo name="dots-three-horizontal" size={size} color={color} />;
+
+export const ClockIcon: FC<IconProps> = ({ color = "#5C5C5C", size = 24 }) => (
+  <FontAwesome5 name="clock" size={size} color={color} />
+);
+
+export const UserIcon: FC<IconProps> = ({ color = "#5C5C5C", size = 24 }) => (
+  <FontAwesome5 name="user" size={size} color={color} />
+);
+
+export const BinIcon: FC<IconProps> = ({ color = "#5C5C5C", size = 24 }) => (
+  <MaterialIcons name="delete" size={size} color={color} />
 );

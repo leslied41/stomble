@@ -1,11 +1,10 @@
 import { View } from "react-native";
 import React from "react";
 import {
-  AuthLayout,
   BusinessRegisterForm,
-  BottomSheetLayout,
   BusinessBirthdayBottomSheet,
 } from "../../../components/auth";
+import { BottomSheetLayout, ScreenLayout } from "../../../components/common";
 import { useAppDispatch, useAppSelector } from "../../../redux/store";
 import {
   getIsBusinessBirthdayBottomSheetOpen,
@@ -25,15 +24,16 @@ const BusinessRegister = () => {
         snapPoint="40%"
         isBottomSheetOpen={isBusinessBirthdayBottomSheetOpen}
         closeBottomSheet={() => dispatch(closeBusinessBirthdayBottomSheet())}
+        variant="auth"
       >
         <BusinessBirthdayBottomSheet />
       </BottomSheetLayout>
 
-      <AuthLayout header="Business register">
+      <ScreenLayout header="Business register">
         <View className="flex-1 mt-[35px]">
           <BusinessRegisterForm />
         </View>
-      </AuthLayout>
+      </ScreenLayout>
     </>
   );
 };
