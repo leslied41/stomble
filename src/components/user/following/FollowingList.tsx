@@ -1,5 +1,6 @@
 import { View, Text, TouchableOpacity, FlatList, Image } from "react-native";
 import React from "react";
+import { FollowingButton } from "../common";
 import { useAppDispatch } from "../../../redux/store";
 import { openUserBusinessBottomSheet } from "../../../redux/features/user/userSlice";
 
@@ -40,11 +41,11 @@ const Item = ({ title, subTitle, index, onPress }: ItemProps) => (
         </Text>
       </View>
     </View>
-    <TouchableOpacity className="w-[65px] h-[21px] rounded-[5px] bg-[#326FCB] justify-center items-center">
-      <Text className="text-[10.85px] leading-[19.9px] font-bold text-white">
-        Following
-      </Text>
-    </TouchableOpacity>
+
+    <FollowingButton
+      followed={false}
+      onPress={() => console.log("following")}
+    />
   </View>
 );
 

@@ -44,6 +44,7 @@ export type CommonStackParamList = {
   FullName: undefined;
   PersonalInfo: undefined;
   Notification: undefined;
+  RecommendAccounts: undefined;
 };
 
 export type SearchStackParamList = {
@@ -73,13 +74,17 @@ export type HomeScreenNavigationProps<T extends keyof HomeTabParamList> =
   >;
 
 /**
- * combine UserTabParamList and HomeTabParamList. now user can navigate from user screens like liked screen or history screen to
+ * combine UserTabParamList and HomeTabParamList and RootStackParamList. now user can navigate from user screens like liked screen or history screen to
  * feed screen.
  */
 export type UserScreenNavigationProps<T extends keyof UserTabParamList> =
   CompositeNavigationProp<
     MaterialTopTabNavigationProp<UserTabParamList, T>,
-    BottomTabNavigationProp<HomeTabParamList>
+    // BottomTabNavigationProp<HomeTabParamList>
+    CompositeNavigationProp<
+      BottomTabNavigationProp<HomeTabParamList>,
+      NativeStackNavigationProp<RootStackParamList>
+    >
   >;
 
 /**

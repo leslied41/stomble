@@ -10,6 +10,8 @@ import { ChevronUp, ChevronDown } from "../../icons";
 import { BusinessProfile } from "../common";
 import { useAppDispatch } from "../../../redux/store";
 import { openUserBusinessBottomSheet } from "../../../redux/features/user/userSlice";
+import { useNavigation } from "@react-navigation/native";
+import { UserScreenNavigationProps } from "../../../types/navigation";
 
 type SingleItem = { id: string; image: string };
 
@@ -58,12 +60,39 @@ const Item = ({
   onPress: () => void;
 }) => (
   <TouchableOpacity
-    style={{ marginLeft: index === 0 ? 0 : 9 }}
+    style={{
+      marginLeft: index === 0 ? 0 : 13,
+      flexDirection: "row",
+      alignItems: "center",
+      marginTop: 10,
+    }}
     onPress={onPress}
   >
     <BusinessProfile image={item.image} />
+    <View className="ml-[11.53px]">
+      <Text className="text-[10.91px] leading-[13px] text-white font-medium">
+        McDonald's
+      </Text>
+      <Text className="text-[#ABABAB] text-[10.91px] leading-[13px] font-medium mt-1">
+        I'm loving it
+      </Text>
+    </View>
   </TouchableOpacity>
 );
+
+const ListFooter = () => {
+  const navigation = useNavigation<UserScreenNavigationProps<"Following">>();
+  return (
+    <TouchableOpacity
+      className="flex-1 ml-[33px] mr-[18px] justify-center"
+      onPress={() => navigation.navigate("RecommendAccounts")}
+    >
+      <Text className="text-[#326FCB] text-[10.91px] leading-[13.09px] font-medium">
+        See more
+      </Text>
+    </TouchableOpacity>
+  );
+};
 
 const RecommendAccounts = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -109,6 +138,7 @@ const RecommendAccounts = () => {
           horizontal
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}
+          ListFooterComponent={<ListFooter />}
         />
       </View>
     </View>
