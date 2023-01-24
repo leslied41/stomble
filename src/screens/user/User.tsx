@@ -25,9 +25,7 @@ const User = () => {
       <Top />
       <View className="flex-1 bg-black  relative ">
         <View className="absolute left-0 top-0 w-[17px] h-[80px] bg-[#232637] rounded-bl-[12px]" />
-        <View className=" flex-1 mx-[17px]">
-          <UserRoutes />
-        </View>
+        <UserRoutes />
         <View className="absolute right-0 top-0 w-[17px] h-[80px] bg-[#232637] rounded-br-[12px]" />
       </View>
 

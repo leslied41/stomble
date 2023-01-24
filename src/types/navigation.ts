@@ -66,6 +66,12 @@ export type HomeScreenTabProps<T extends keyof HomeTabParamList> =
     BottomTabScreenProps<HomeTabParamList, T>,
     NativeStackScreenProps<RootStackParamList>
   >;
+export type HomeScreenNavigationProps<T extends keyof HomeTabParamList> =
+  CompositeNavigationProp<
+    BottomTabNavigationProp<HomeTabParamList, T>,
+    NativeStackNavigationProp<RootStackParamList>
+  >;
+
 /**
  * combine UserTabParamList and HomeTabParamList. now user can navigate from user screens like liked screen or history screen to
  * feed screen.
@@ -98,7 +104,7 @@ export type CommonScreenProps<T extends keyof CommonStackParamList> =
 
 /**
  * RootScreenProps and RootScreenNavigationType include both AuthScreenProps and CommonScreenProps.
- * The logic and scenario is same like above two. And you can only use this one, cause this one is
+ * The logic and scenario is same like above two. And you can simply use this one, cause this one is
  * the combination of above two. As RootStackParamList inherit AuthStackParamList and CommonStackParamList.
  */
 export type RootScreenNavigationType<T extends keyof RootStackParamList> =

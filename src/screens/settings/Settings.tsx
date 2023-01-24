@@ -1,7 +1,21 @@
 import { View, Text, Button } from "react-native";
 import React from "react";
 import { useColorScheme } from "nativewind";
-import { HomeScreenTabProps } from "../../types/navigation";
+import { useNavigation } from "@react-navigation/native";
+import {
+  HomeScreenTabProps,
+  HomeScreenNavigationProps,
+} from "../../types/navigation";
+
+const TestNavigation = () => {
+  const navigation = useNavigation<HomeScreenNavigationProps<"Settings">>();
+  return (
+    <Button
+      onPress={() => navigation.navigate("PersonalInfo")}
+      title="to personal info"
+    />
+  );
+};
 
 const Settings = ({ navigation }: HomeScreenTabProps<"Settings">) => {
   const { colorScheme, toggleColorScheme } = useColorScheme();
@@ -18,6 +32,7 @@ const Settings = ({ navigation }: HomeScreenTabProps<"Settings">) => {
         onPress={() => navigation.navigate("FullName")}
         title="to full name"
       />
+      <TestNavigation />
     </View>
   );
 };
