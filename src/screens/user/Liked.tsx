@@ -1,7 +1,6 @@
 import { View, FlatList, Pressable } from "react-native";
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import {
-  DeleteBar,
   NoContent,
   VideoSingleThumbnail,
   VideoModal,
@@ -26,12 +25,19 @@ const DATA = [
 ];
 
 const Separator = () => <View style={{ height: 2 }} />;
+type LikedProps = {
+  deleteOn: boolean;
+  setDeleteOn: React.Dispatch<React.SetStateAction<boolean>>;
+  selectedItems: (string | number)[];
+  setSelectedItems: React.Dispatch<React.SetStateAction<(string | number)[]>>;
+};
 
-const LikedScreen = () => {
-  const [deleteOn, setDeleteOn] = useState(false);
-  const [selectedItems, setSelectedItems] = useState<Array<number | string>>(
-    []
-  );
+const LikedScreen: FC<LikedProps> = ({
+  deleteOn,
+  setDeleteOn,
+  selectedItems,
+  setSelectedItems,
+}) => {
   const [selectItemsIncreasing, setSelectItemsIncreasing] = useState(true);
   const [pressedVideoIndex, setPressedVideoIndex] = useState<number>();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -77,13 +83,6 @@ const LikedScreen = () => {
               />
             )}
           />
-          {deleteOn && (
-            <DeleteBar
-              setDeleteOn={setDeleteOn}
-              selectedItems={selectedItems}
-              setSelectedItems={setSelectedItems}
-            />
-          )}
         </View>
       ) : (
         <View className="mt-[70px]">
