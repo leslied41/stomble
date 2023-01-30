@@ -9,6 +9,7 @@ type PsInputProps = {
   special_char_check?: boolean;
   ps_length_check?: boolean;
   patternCheck?: boolean;
+  left?: boolean
 };
 
 const PasswordInput: FC<PsInputProps> = ({
@@ -17,6 +18,7 @@ const PasswordInput: FC<PsInputProps> = ({
   value,
   special_char_check,
   ps_length_check,
+  left,
   patternCheck = true,
 }) => {
   const [hidePassword, setHidePassword] = useState(true);
@@ -32,13 +34,15 @@ const PasswordInput: FC<PsInputProps> = ({
           placeholderTextColor="#ABABAB"
           textContentType="password"
           secureTextEntry={!hidePassword}
-          textAlign="center"
-          className="flex-1 py-2 h-8 rounded-[5px] bg-[#5C5C5C] text-white text-[16px] leading-[19.2px] mr-3"
+          textAlign={left ? "left" : "center"}
+          className="flex-1 py-2 h-8 rounded-[5px] bg-[#5C5C5C] text-white text-[16px] leading-[19.2px] pl-2"
         />
 
-        <Pressable onPress={() => setHidePassword((prev) => !prev)}>
-          {hidePassword ? <EyeCloseIcon /> : <EyeIcon />}
-        </Pressable>
+        <View className="absolute right-0 pr-2">
+          <Pressable onPress={() => setHidePassword((prev) => !prev)}>
+            {hidePassword ? <EyeCloseIcon /> : <EyeIcon />}
+          </Pressable>
+        </View>
       </View>
 
       {patternCheck && (

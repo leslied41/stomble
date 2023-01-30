@@ -15,7 +15,7 @@ const ChangePassword = () => {
           completed
         </Text>
       </View>
-
+      
       <View className="mt-[23px]">
         <ChangePasswordForm />
       </View>

@@ -6,16 +6,18 @@ import { useNavigation } from "@react-navigation/native";
 type ScreenLayoutProps = {
   children: React.ReactNode;
   header: string;
+  goBack?: boolean;
+  done?: () => void | undefined;
 };
 
-const ScreenLayout: FC<ScreenLayoutProps> = ({ children, header }) => {
+const ScreenLayout: FC<ScreenLayoutProps> = ({ children, header, goBack, done }) => {
   const [height, setHeight] = useState(0);
   const navigation = useNavigation();
 
   return (
     <View className="bg-[#232637] flex-1">
       <StatusBar barStyle="light-content" />
-      <HeaderBar text={header} manual onPress={navigation.goBack} />
+      <HeaderBar text={header} manual onPress={navigation.goBack} goBack={goBack} done={done} />
       <View
         className="bg-black flex-1 relative"
         onLayout={(e) => {

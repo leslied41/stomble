@@ -48,7 +48,7 @@ const PersonalRegister = () => {
         <PersonalBirthdayBottomSheet />
       </BottomSheetLayout>
 
-      <ScreenLayout header="Personal register">
+      <ScreenLayout header="Personal register" >
         <View className="flex-1 mt-[35px]">
           <PersonalRegisterForm />
         </View>
