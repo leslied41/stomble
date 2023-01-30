@@ -10,11 +10,15 @@ import { useCountdown } from "../../../hooks";
 type VerifyCodesProps = {
   onPress?: () => void;
   buttonTitle?: string;
+  buttonRadius?: number;
+  header?: string
 };
 
 const VerifyCodes: FC<VerifyCodesProps> = ({
   onPress,
   buttonTitle = "Sign in",
+  header,
+  buttonRadius
 }) => {
   const [value, setValue] = useState("");
   const [enableResend, setEnableResend] = useState(false);
@@ -41,7 +45,7 @@ const VerifyCodes: FC<VerifyCodesProps> = ({
           Enter the 6 digits code we send to
         </Text>
         <Text className="text-[14px] leading-[16.8px] font-medium text-white text-center">
-          +61******234
+          {header ? header : "+61******234"}
         </Text>
       </View>
 
@@ -85,8 +89,9 @@ const VerifyCodes: FC<VerifyCodesProps> = ({
       <View className="mt-[45px]">
         <CustomButton
           text={buttonTitle}
+          borderRadius={buttonRadius}
           disabled={!value || value.length !== 6}
-          onPress={onPress}
+          onPress={onPress!}
         />
       </View>
     </View>
