@@ -92,6 +92,7 @@ const RecommendedAccounts = () => {
       />
     );
   };
+
   return (
     <View className="flex-1">
       <ScreenLayout header="Recommended accounts">
@@ -105,6 +106,7 @@ const RecommendedAccounts = () => {
           />
         </View>
       </ScreenLayout>
+
       <BottomSheetLayout
         isBottomSheetOpen={isBusinessBottomSheetOpen}
         closeBottomSheet={() =>

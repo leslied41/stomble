@@ -34,7 +34,7 @@ const PostOverlay: FC<PostOverlayProps> = ({
    * to play or pause of video and grab
    * positionMillis,durationMillis when video paused.
    */
-  const operatePlay = async () => {
+  const operatePlay = () => {
     if (playing) {
       pause();
     } else {

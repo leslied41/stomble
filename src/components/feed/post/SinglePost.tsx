@@ -43,7 +43,6 @@ const SinglePost = forwardRef<any, Props>(
      * play video
      * @returns
      */
-
     const play = useCallback(async () => {
       if (ref.current == null) return;
 
@@ -61,6 +60,7 @@ const SinglePost = forwardRef<any, Props>(
         }
       }
     }, []);
+
     /**
      *
      * @returns pause video
@@ -87,7 +87,6 @@ const SinglePost = forwardRef<any, Props>(
      * stop video
      * @returns
      */
-
     const stop = async () => {
       if (ref.current == null) return;
 
@@ -108,7 +107,6 @@ const SinglePost = forwardRef<any, Props>(
      * when the fourth video get rendered, the first one will unload.
      * @returns
      */
-
     const unload = async () => {
       if (ref.current == null) return;
 
