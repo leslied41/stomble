@@ -63,6 +63,7 @@ export type CommonStackParamList = {
   PrivacyPolicy: undefined;
   Terms: undefined;
   OpenSourceLibrary: undefined;
+  RecommendedAccounts: undefined;
 };
 
 export type SearchStackParamList = {

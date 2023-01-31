@@ -22,6 +22,7 @@ import {
   SettingNotificationsScreen,
   TermsScreen,
   VerifyNewContactScreen,
+  RecommendAccountsScreen,
 } from "../../screens";
 
 import { VerifyScreen } from "../../components/settings";
@@ -143,6 +144,11 @@ const CommonRoutes = () => {
         <Stack.Screen
           name="OpenSourceLibrary"
           component={OpenSourceLibrary}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="RecommendedAccounts"
+          component={RecommendAccountsScreen}
           options={{ headerShown: false }}
         />
       </Stack.Group>

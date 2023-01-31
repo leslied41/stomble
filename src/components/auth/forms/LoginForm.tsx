@@ -8,6 +8,7 @@ import Policy from "./Policy";
 import { CustomButton } from "../common";
 import { useNavigation } from "@react-navigation/native";
 import { RootScreenNavigationType } from "../../../types/navigation";
+import { useLoginMutation } from "../../../redux/features/auth/authApiSlice";
 
 type FormValues = {
   phone: string;
@@ -16,16 +17,19 @@ type FormValues = {
 
 const LoginForm = () => {
   const navigation = useNavigation<RootScreenNavigationType<"Login">>();
+  const [login, { isLoading }] = useLoginMutation();
 
   const submitForm = useCallback(
-    (values: FormValues) => {
+    async (values: FormValues) => {
       console.log(values);
+      const userData = await login({ ...values });
+
       //the phone and password will be verified in backend, if
       //verified, navigate to anther screen to verify code sent to
       //phone.
       navigation.navigate("LoginVerifyCodes", { title: "Sign in" });
     },
-    [navigation]
+    [login, navigation]
   );
 
   const forgetPassword = () => {

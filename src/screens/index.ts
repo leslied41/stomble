@@ -36,5 +36,9 @@ export {
   PasswordScreen,
 } from "./settings";
 
-export { UserScreen, NotificationScreen } from "./user";
+export {
+  UserScreen,
+  NotificationScreen,
+  RecommendAccountsScreen,
+} from "./user";
 export { FeedScreen } from "./feed";

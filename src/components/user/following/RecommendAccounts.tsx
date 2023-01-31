@@ -85,7 +85,7 @@ const ListFooter = () => {
   return (
     <TouchableOpacity
       className="flex-1 ml-[33px] mr-[18px] justify-center"
-      onPress={() => navigation.navigate("RecommendAccounts")}
+      onPress={() => navigation.navigate("RecommendedAccounts")}
     >
       <Text className="text-[#326FCB] text-[10.91px] leading-[13.09px] font-medium">
         See more

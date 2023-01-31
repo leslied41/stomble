@@ -9,6 +9,8 @@ type AuthSliceState = {
   gender: string;
   birthday: string;
   business_birthday: string;
+  //authentication
+  currentUser: string | null;
 };
 
 const initialState: AuthSliceState = {
@@ -19,6 +21,7 @@ const initialState: AuthSliceState = {
   gender: "",
   birthday: "",
   business_birthday: "",
+  currentUser: "null",
 };
 
 export const authSlice = createSlice({
@@ -71,6 +74,14 @@ export const authSlice = createSlice({
     closeLoginBottomSheet: (state) => {
       state.isLoginBottomSheetOpen = false;
     },
+    //authentication
+    setCredentials: (state, action) => {
+      const { user } = action.payload;
+      state.currentUser = user;
+    },
+    logOut: (state) => {
+      state.currentUser = null;
+    },
   },
 });
 
@@ -86,6 +97,8 @@ export const getGender = (state: RootState) => state.auth.gender;
 export const getBirthday = (state: RootState) => state.auth.birthday;
 export const getBusinessBirthday = (state: RootState) =>
   state.auth.business_birthday;
+//auth
+export const getCurrentUser = (state: RootState) => state.auth.currentUser;
 
 export const {
   openGenderBottomSheet,
@@ -102,5 +115,8 @@ export const {
   clearBusinessBirthday,
   openLoginBottomSheet,
   closeLoginBottomSheet,
+  //authentication
+  setCredentials,
+  logOut,
 } = authSlice.actions;
 export default authSlice.reducer;
