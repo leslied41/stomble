@@ -7,11 +7,13 @@ import { ArrowDown } from "../../icons";
 type PhoneNumberInputProps = {
   onChangeFormattedText: (text: string) => void;
   defaultValue: string;
+  error?: boolean
 };
 
 const PhoneNumberInput: FC<PhoneNumberInputProps> = ({
   onChangeFormattedText,
   defaultValue,
+  error
 }) => {
   const phoneInput = useRef(null);
   const [countryObj, setCountryObj] = useState<any>();
@@ -33,7 +35,7 @@ const PhoneNumberInput: FC<PhoneNumberInputProps> = ({
         backgroundColor: "#222222",
       }}
       textContainerStyle={{
-        backgroundColor: "#5C5C5C",
+        backgroundColor: error ? "#FB4E4E" : "#5C5C5C",
         borderRadius: 5,
         paddingLeft: 0,
       }}
@@ -45,7 +47,7 @@ const PhoneNumberInput: FC<PhoneNumberInputProps> = ({
         fontWeight: "400",
       }}
       countryPickerButtonStyle={{
-        backgroundColor: "#5C5C5C",
+        backgroundColor: error ? "#FB4E4E" : "#5C5C5C",
         height: 36,
         width: "auto",
         marginRight: 6,

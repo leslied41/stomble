@@ -20,6 +20,7 @@ export type HomeTabParamList = {
   SearchRoutes: undefined;
   User: undefined;
   Settings: undefined;
+  Email: undefined;
 };
 
 export type UserTabParamList = {
@@ -44,7 +45,24 @@ export type CommonStackParamList = {
   FullName: undefined;
   PersonalInfo: undefined;
   Notification: undefined;
-  RecommendAccounts: undefined;
+  SettingNotification: undefined;
+  ContactUs: undefined;
+  Gender: undefined;
+  Birthday: undefined;
+  VerifyScreen: { header: string; title: string; onPress: () => void };
+  ChangeEmail: { title: string };
+  ChangePhone: undefined;
+  DeleteAccount: undefined;
+  AcknowledgeDelete: undefined;
+  VeryfyNewContact: { header: string; title: string; onPress: () => void };
+  DeleteSuccess: undefined;
+  Security: undefined;
+  CurrentPassword: undefined;
+  NewPassword: undefined;
+  About: undefined;
+  PrivacyPolicy: undefined;
+  Terms: undefined;
+  OpenSourceLibrary: undefined;
 };
 
 export type SearchStackParamList = {
@@ -62,6 +80,7 @@ export type RootStackParamList = AuthStackParamList &
  * navigate from the nesting screens in the tab of HomeRoutes to the screens in
  * AuthRoutes or CommonRoutes.
  */
+
 export type HomeScreenTabProps<T extends keyof HomeTabParamList> =
   CompositeScreenProps<
     BottomTabScreenProps<HomeTabParamList, T>,

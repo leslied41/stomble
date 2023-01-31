@@ -4,7 +4,10 @@ import authSlice from "./features/auth/authSlice";
 import searchSlice from "./features/search/searchSlice";
 import feedSlice from "./features/feed/feedSlice";
 import userSlice from "./features/user/userSlice";
+import settingSlice from "./features/setting/settingSlice";
+
 import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux";
+
 
 /**
  * apply typescript to redux documentation
@@ -18,6 +21,7 @@ const store = configureStore({
     search: searchSlice,
     feed: feedSlice,
     user: userSlice,
+    setting: settingSlice,
   },
 });
 

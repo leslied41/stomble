@@ -1,12 +1,12 @@
 import React from "react";
 import {
-  SettingsScreen,
   UserScreen,
   FeedScreen,
   SearchRoutes,
 } from "../../screens";
 import { TabBar } from "../../components/common";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { SettingsScreen } from "../../screens/settings";
 
 const Tab = createBottomTabNavigator<ReactNavigation.HomeParamList>();
 

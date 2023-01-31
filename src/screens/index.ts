@@ -11,11 +11,30 @@ export {
   ForgetPasswordVerifyCodesScreen,
   ChangePasswordScreen,
 } from "./auth";
+
 export { SearchRoutes } from "./search";
-export { SettingsScreen, FullNameScreen, PersonalInfoScreen } from "./settings";
+
 export {
-  UserScreen,
-  NotificationScreen,
-  RecommendAccountsScreen,
-} from "./user";
+  SecurityScreen,
+  FullNameScreen,
+  SettingNotificationsScreen,
+  ContactUsScreen,
+  GenderScreen,
+  PersonalInfo,
+  NewPasswordScreen,
+  BirthdayScreen,
+  ChangeEmailScreen,
+  VerifyNewContactScreen,
+  ChangePhoneScreen,
+  DeleteAccountScreen,
+  AcknowledgeDeleteScreen,
+  DeleteSuccessScreen,
+  AboutScreen,
+  PrivacyPolicyScreen,
+  TermsScreen,
+  OpenSourceLibrary,
+  PasswordScreen,
+} from "./settings";
+
+export { UserScreen, NotificationScreen } from "./user";
 export { FeedScreen } from "./feed";
